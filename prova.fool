@@ -1,0 +1,77 @@
+
+let 	  
+  fun g:int (x:(int)->int, j:(int)->int)
+  let
+   var i:(int)->int=j;
+  in
+   x(4)  - i(6);
+  
+  fun k:int (j:int)
+  	  j * 2;
+  fun f:int (i:int)
+    let
+      fun z:int (j:int)
+      	j+2;
+	  fun h:int (j:int)
+	  	z(j)*5;
+	in 
+	  h(i)+1;
+  
+  
+  var b:int=5;
+  fun t:int() b;
+  fun a:int(m:((int)->int,(int)->int)->int)
+    m(f,k);
+in
+  print (a(g));
+
+
+
+/*  let 
+  fun x:int(i:int, j:int) i-j;
+  fun f:int (i:int, j:int, x:(int, int)->int) x(i, j) + j;
+in
+  print (f(3,5,x));
+  
+/* SERBATOIO ESEMPI
+let 
+  fun f:int (i:int, j:int) i+j;
+in
+  print (f(3,5));
+  
+let 
+  fun f:int (i:int, j:int) i+j;
+in
+  print (f(3,5));
+  
+let 
+  var x:int = 1;
+  var b:bool = true;
+in
+  print (if (b) then { x+1 } else { x+2 });
+---------------
+let 
+  fun f:int (i:int, j:int) i+j;
+in
+  print (f(3,5));
+----------------
+let
+  var y:int = 5+2;
+  fun f:bool (n:int, m:int)
+    let 
+      var x:int = m;
+  in x==y;   
+in  
+  print ( 
+    if f(y,8) 
+      then { false }
+      else { 10 }
+  ); 
+  
+  
+  let 
+  fun x:int(i:int, j:int) i-j;
+  fun f:int (i:int, j:int, x:(int, int)->int) x(i, j) + j;
+in
+  print (f(3,5));
+*/
