@@ -62,6 +62,23 @@ public class CTentry {
 		return allMethods;
 	}
 
+	/*public STentry getMethod(String id, ArrayList<Node> parlist){
+		for(Node n : allMethods){
+			MethodNode m = (MethodNode)n;
+			if(m.getId().equals(id)){
+				for(int i = 0; i < m.getParlist().size(); i++){
+					//Controllo che siano lo stesso tipo 
+					ParNode passedPar = ((ParNode)parlist.get(i));
+					Node nn = m.getParlist().get(i);
+					ParNode officialPar = ((ParNode)nn);
+					
+					if (passedPar.getType() instanceof (officialPar.getType().getClass())) {
+						
+					}
+				}
+			}
+		}
+	}*/
     
 	public HashMap<String, STentry> getVTable() {
 		return vTable;
@@ -142,5 +159,13 @@ public class CTentry {
 		}
 		
 	}
+
+	@Override
+	public String toString() {
+		return "CTentry [vTable=" + vTable + ", offsetFields=" + offsetFields + ", offsetMethods=" + offsetMethods
+				+ ", allFields=" + allFields + ", allMethods=" + allMethods + ", locals=" + locals + "]";
+	}
+	
+	
 	                               
 }

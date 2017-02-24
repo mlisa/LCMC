@@ -11,14 +11,14 @@ public class FOOLlib {
 	private static int funLabCount = 0;
 
 	private static String funCode = "";
-	
+
 	private static HashMap<String, String> superTypeMap;
 
 	// valuta se il tipo "a" � <= al tipo "b", dove "a" e "b" sono tipi di base:
 	// int o bool
 	public static boolean isSubtype(Node a, Node b) {
 
-		// Se sto confrontando funzioni
+		// Se sto confrontando funzioni o metodi
 		if (a instanceof ArrowTypeNode && b instanceof ArrowTypeNode) {
 
 			ArrowTypeNode ar = (ArrowTypeNode) a;
@@ -40,15 +40,27 @@ public class FOOLlib {
 
 		} else if (a instanceof ClassTypeNode && b instanceof ClassTypeNode){
 			
-			ClassTypeNode ac = (ClassTypeNode) a;
-			ClassTypeNode bc = (ClassTypeNode) b;
+			String subClassID = ((ClassTypeNode) a).getClassID();
+			String superClassID = ((ClassTypeNode) b).getClassID();
 			
-			if (true){
-				return false;
+			//Se sono due classi uguali
+			if(subClassID.equals(superClassID)){
+				return true;
 			}
 			
-			return true;
+			do {
+				if (superTypeMap.containsKey(subClassID) && superTypeMap.get(subClassID).equals(superClassID)){
+					return true;
+				}
+				
+				subClassID = superClassID;
+				superClassID = superTypeMap.get(superClassID);
+			} while(superClassID != null);
 			
+			return false;
+			
+		} else if (a instanceof EmptyTypeNode && b instanceof ClassTypeNode){
+			return true; 
 		}
 
 		return a.getClass().equals(b.getClass()) || ((a instanceof BoolTypeNode) && (b instanceof IntTypeNode)); //
@@ -70,8 +82,8 @@ public class FOOLlib {
 	public static String getCode() {
 		return funCode;
 	}
-	
-	public static void putSuperType(HashMap<String, String> map){
+
+	public static void putSuperType(HashMap<String, String> map) {
 		superTypeMap = map;
 	}
 

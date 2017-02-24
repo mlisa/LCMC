@@ -175,6 +175,8 @@ add
 srv
 pop
 pop
+pop
+pop
 sra
 pop
 pop
@@ -246,6 +248,8 @@ lw
 add
 lw
 srv
+pop
+pop
 pop
 pop
 sra
@@ -334,6 +338,8 @@ add
 lw
 js
 srv
+pop
+pop
 pop
 pop
 sra

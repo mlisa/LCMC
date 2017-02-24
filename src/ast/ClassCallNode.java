@@ -1,6 +1,26 @@
 package ast;
 
+import java.util.ArrayList;
+
+import lib.FOOLlib;
+
 public class ClassCallNode implements Node {
+
+	private String classId;
+	private String methodId;
+	private STentry classEntry;
+	private STentry methodEntry;
+	private ArrayList<Node> parlist;
+	private int nestingLevel;
+	
+	public ClassCallNode(String classId, String methodId, STentry classEntry, STentry methodEntry, ArrayList<Node> parlist, int nestingLevel) {
+		this.classId = classId;
+		this.methodId = methodId;
+		this.classEntry = classEntry;
+		this.methodEntry = methodEntry;
+		this.parlist = parlist;
+		this.nestingLevel = nestingLevel; 
+	}
 
 	@Override
 	public String toPrint(String indent) {
@@ -10,8 +30,29 @@ public class ClassCallNode implements Node {
 
 	@Override
 	public Node typeCheck() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Node> parMethod = ((ArrowTypeNode)methodEntry.getType()).getParList();
+				
+		//I parametri devono essere di stessa cardinalità
+		if(parlist.size() == parMethod.size()){
+			//Controllo che i parametri siano del tipo giusto
+			for(int i=0; i <parlist.size(); i++){
+				
+				Node parType = ((ParNode)parlist.get(i)).getSymType();
+				Node fieldType = ((ParNode)parMethod.get(i)).getSymType();
+				
+				//Se non è sottotipo lancio errore
+				if(!FOOLlib.isSubtype(parType, fieldType)){
+					System.out.println("ERRORE");
+					System.exit(1);
+				}
+			}
+		} else {
+			System.out.println("ERRORE");
+			System.exit(1);
+		}
+		
+		//Valore di ritorno del metodo
+		return methodEntry.getType();
 	}
 
 	@Override

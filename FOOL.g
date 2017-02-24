@@ -43,18 +43,18 @@ prog  returns [Node ast]
   
 //Dichiarazioni di classi in LET
 cllist returns [ArrayList<Node> astlist] : {        
-	     $astlist = new ArrayList<Node>();
-	     //Lista dei campi
-	     ArrayList<Node> fieldList = new ArrayList<Node>();
-	     //Lista dei metodi
-	     ArrayList<Node> methodList = new ArrayList<Node>();
-    } 
+	   $astlist = new ArrayList<Node>();
+	   //Lista dei campi
+	   ArrayList<Node> fieldList = new ArrayList<Node>();
+	   //Lista dei metodi
+	   ArrayList<Node> methodList = new ArrayList<Node>();
+  } 
   //----------------------------------------------------------INIZIO DELLE CLASSI
   (CLASS classId=ID { 
       //Nuova entry per la class table
       CTentry ctEntry = new CTentry(); 
-      //Aggiungo alla Symbol Table di questo livello la virtual table della CTentry
-      symTable.add(ctEntry.getVTable());
+      CTentry superClassEntry = new CTentry();
+      
       //Prendo la Symbol table del livello corrente
       HashMap<String, STentry> hm = symTable.get(nestingLevel);
      
@@ -65,108 +65,111 @@ cllist returns [ArrayList<Node> astlist] : {
       }          
   } 
   (EXTENDS superClass=ID {
-    //Se la classe estende un'altra classe
-	  if(classTable.get($superClass) != null) {
-	    //Se esiste la superclasse utilizzo il costruttore che prende in input una CTentry
-	    ctEntry = new CTentry(classTable.get($superClass));
-	    //Aggiungo la relazione fra le classi alla SuperType map
-	    superType.put($classId.text, $superClass.text);
-	  } else { 
-	    //Non esiste la superclasse - errore
-	    System.out.println("Class of name "+$superClass.text + "does not exist.");
-	    System.exit(0);
-	  } 
-  })?  
-    //----------------------------------------------------------INIZIO DEI CAMPI
-     LPAR ( fieldID=ID COLON b=basic {  
-       //Primo campo:
-       //Aggiungo il campo alla CTentry (i controlli sono effettuati all'interno del metodo)
-       ctEntry.addField($fieldId.text, $b.ast);      
-       //Aggiungo il campo alla fieldList 
-       fieldList.add(new FieldNode($fieldId.text, $b.ast));
-     } 
-     (COMMA fieldId=ID COLON b=basic { 
-       //Campi successivi al primo 
-       ctEntry.addField($fieldId.text, $b.ast);
-       fieldList.add(new FieldNode($fieldId.text, $b.ast));
-       
-     }
-     )*)? 
-     RPAR
-         //----------------------------------------------------------INIZIO CORPO DELLA CLASSE
-         CLPAR
-            //----------------------------------------------------------INIZIO METODI         
-            ( FUN funId=ID COLON retType=basic { 
-               //Creo la Symbol Table per il metodo
-               HashMap<String, STentry> methodSymTable = new HashMap<>();
-               //Creo la lista per i tipi dei parametri
-               ArrayList<Node> parTypes = new ArrayList<>();
-               //Setto gli offset di partenza per i parametri
-               int parOffset = 1; // qui c'è il primo parametro
-               int offset = -2; // qui c'è la prima variabile, in mezzo c'è l'AL/FP/SL(0) e RA/CL/DL(-1)
-               //Aumento il nesting level per creare una nuova symbol table per lo scope del metodo
-               nestingLevel++;
-               //La aggiungo alla lista di symbol table
-               symTable.add(methodSymTable);
-               //Creo un method node 
-               MethodNode mNode = new MethodNode($funId.text, $retType.ast);
-               //Lo aggiungo alla methodList
-               methodList.add(mNode);
-               //Lo aggiungo alla alla virtual table
-               ctEntry.addMethod($funId.text, mNode);         
-            } 
-            //----------------------------------------------------------INIZIO DEI PARAMETRI 
-            LPAR (parId=ID COLON t=type {
-               //Creo la STEntry per il parametro e imposto 
-               STentry STentry = new STentry(nestingLevel, $t.ast, parOffset++);      //HO TOLTO DA QUI IL SET AS METHOD PERCHE ERA SBAGLIATO
-               //Aggiungo il parametro al method node
-               mNode.addPar(new ParNode($parId.text, $t.ast));
-               //Aggiungo il tipo alla partypes
-               parTypes.add($t.ast);
-               //Aggiungo alla symbol table del metodo il 
-               methodSymTable.put($parId.text, STentry);
-               // qui non controllo che il parametro esista già, perchè è il primo 
-            } (COMMA parId=ID COLON t=type { 
-                //parametri successivi al primo; li aggiungo e controllo che non siano già stati dichiarati
-               mNode.addPar(new ParNode($parId.text, $t.ast));
-               if (methodSymTable.put($parId.text, new STentry(nestingLevel, $t.ast, parOffset++)) != null) {
-                   System.out.println("PAR id "+$parId.text+" at line "+$parId.line+" already declared");
-                   System.exit(0);
-               } 
-            }
-            )* )? RPAR
-            //----------------------------------------------------------INIZIO DICHIARAZIONI METODO
-                  (LET (VAR varId=ID COLON varType=basic ASS varExp=exp SEMIC {
-                      //Aggiungo la variabile al metodo
-	                    mNode.addVar(new VarNode($varId.text, $varType.ast, $varExp.ast));
-	                    //Controllo che la variabile non sia già stata dichiarata
-	                    if (methodSymTable.put($parId.text, new STentry(nestingLevel, $varType.ast, offset--)) != null) {
-	                      System.out.println("VAR id "+$parId.text+" at line "+$parId.line+" already declared");
-	                      System.exit(0);
-	                    }
-                    }
-                  )*
-                  IN)? 
-                  //----------------------------------------------------------INIZIO CORPO METODO
-                  body=exp {
-                    //Aggiungo il corpo
-                    mNode.addBody($body.ast);
-                    //Aggiungo il tipo della symbol table
-                    mNode.addSymType(new ArrowTypeNode(parTypes, retType));
-                    //Rimuovo la symbol table perchè non mi serve in più (la dichiarazione è finita)
-                    symTable.remove(nestingLevel--); 
-                  }
-              SEMIC
-            )*                
-         CRPAR
-     {
+	    //Se la classe estende un'altra classe
+		  if(classTable.get($superClass.text) != null) {
+		    //Se esiste la superclasse utilizzo il costruttore che prende in input una CTentry
+		    superClassEntry =  new CTentry(classTable.get($superClass.text));
+		    ctEntry = superClassEntry;
+		    //Aggiungo la relazione fra le classi alla SuperType map
+		    superType.put($classId.text, $superClass.text);
+		  } else { 
+		    //Non esiste la superclasse - errore
+		    System.out.println("Class of name "+$superClass.text + "does not exist.");
+		    System.exit(0);
+		  } 
+  })? {
       //Aggiungo la ctentry all'interno della class table
       classTable.put($classId.text, ctEntry);
+      //Aggiungo alla Symbol Table di questo livello la virtual table della CTentry
+      symTable.add(ctEntry.getVTable());
       //Creo il ClassNode e lo aggiungo alla lista
-      $astlist.add(new ClassNode($classId.text, fieldList, methodList));
-     }
-     )*
-   ; 
+      $astlist.add(new ClassNode($classId.text, fieldList, methodList, ctEntry, superClassEntry));
+        
+  } 
+  //----------------------------------------------------------INIZIO DEI CAMPI
+  LPAR ( fieldId=ID COLON b=basic {  
+    //Primo campo:
+    //Aggiungo il campo alla CTentry (i controlli sono effettuati all'interno del metodo)
+    ctEntry.addField($fieldId.text, $b.ast);     
+    //Aggiungo il campo alla fieldList 
+    fieldList.add(new FieldNode($fieldId.text, $b.ast));
+  } 
+  (COMMA fieldId=ID COLON b=basic { 
+    //Campi successivi al primo 
+    ctEntry.addField($fieldId.text, $b.ast);
+    fieldList.add(new FieldNode($fieldId.text, $b.ast));
+    
+  })*)? 
+  RPAR
+      //----------------------------------------------------------INIZIO CORPO DELLA CLASSE
+      CLPAR
+         //----------------------------------------------------------INIZIO METODI         
+         ( FUN funId=ID COLON retType=basic { 
+            //Creo la Symbol Table per il metodo
+            HashMap<String, STentry> methodSymTable = new HashMap<>();
+            //Creo la lista per i tipi dei parametri
+            ArrayList<Node> parTypes = new ArrayList<>();
+            //Setto gli offset di partenza per i parametri
+            int parOffset = 1; // qui c'è il primo parametro
+            int offset = -2; // qui c'è la prima variabile, in mezzo c'è l'AL/FP/SL(0) e RA/CL/DL(-1)
+            //Aumento il nesting level per creare una nuova symbol table per lo scope del metodo
+            nestingLevel++;
+            //La aggiungo alla lista di symbol table
+            symTable.add(methodSymTable);
+            //Creo un method node 
+            MethodNode mNode = new MethodNode($funId.text, $retType.ast);
+            //Lo aggiungo alla methodList
+            methodList.add(mNode);
+            //Lo aggiungo alla alla virtual table
+            ctEntry.addMethod($funId.text, mNode);         
+         } 
+         //----------------------------------------------------------INIZIO DEI PARAMETRI 
+         LPAR (parId=ID COLON t=type {
+            //Creo la STEntry per il parametro e imposto 
+            STentry STentry = new STentry(nestingLevel, $t.ast, parOffset++);      //HO TOLTO DA QUI IL SET AS METHOD PERCHE ERA SBAGLIATO
+            //Aggiungo il parametro al method node
+            mNode.addPar(new ParNode($parId.text, $t.ast));
+            //Aggiungo il tipo alla partypes
+            parTypes.add($t.ast);
+            //Aggiungo alla symbol table del metodo il 
+            methodSymTable.put($parId.text, STentry);
+            // qui non controllo che il parametro esista già, perchè è il primo 
+         } (COMMA parId=ID COLON t=type { 
+             //parametri successivi al primo; li aggiungo e controllo che non siano già stati dichiarati
+            mNode.addPar(new ParNode($parId.text, $t.ast));
+            if (methodSymTable.put($parId.text, new STentry(nestingLevel, $t.ast, parOffset++)) != null) {
+                System.out.println("PAR id "+$parId.text+" at line "+$parId.line+" already declared");
+                System.exit(0);
+            } 
+         }
+         )* )? RPAR
+         //----------------------------------------------------------INIZIO DICHIARAZIONI METODO
+               (LET (VAR varId=ID COLON varType=basic ASS varExp=exp SEMIC {
+                   //Aggiungo la variabile al metodo
+                  mNode.addVar(new VarNode($varId.text, $varType.ast, $varExp.ast));
+                  //Controllo che la variabile non sia già stata dichiarata
+                  if (methodSymTable.put($parId.text, new STentry(nestingLevel, $varType.ast, offset--)) != null) {
+                    System.out.println("VAR id "+$parId.text+" at line "+$parId.line+" already declared");
+                    System.exit(0);
+                  }
+                 }
+               )*
+               IN)? 
+               //----------------------------------------------------------INIZIO CORPO METODO
+               body=exp {
+                 //Aggiungo il corpo
+                 mNode.addBody($body.ast);
+                 //Aggiungo il tipo della symbol table
+                 mNode.addSymType(new ArrowTypeNode(parTypes, retType));
+                 //Rimuovo la symbol table perchè non mi serve in più (la dichiarazione è finita)
+                 symTable.remove(nestingLevel--); 
+               }
+           SEMIC
+         )*                
+      CRPAR
+      
+  )*
+; 
  
 declist returns [ArrayList<Node> astlist]
   : { //Lista delle cose dichiarate 
@@ -326,13 +329,24 @@ value returns [Node ast]
   | NULL  
     {$ast = new EmptyNode();}   
   | NEW i=ID {
+    //Creo la lista del parametri
     ArrayList<Node> fieldList = new ArrayList<Node>();
-    NewNode newNode = new NewNode($i.text, fieldList);
+    //Prendo la CTentry dalla class table
+    CTentry classEntry = classTable.get($i.text);
+    //Controllo l'esistenza della classe 
+    if(classEntry == null){
+          System.out.println("Class id "+$i.text+" at line "+$i.line+" not declared");
+          System.exit(0);
+        }
+        //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
+    NewNode newNode = new NewNode($i.text, fieldList, classEntry);
     }
   LPAR (e=exp {
+    //Aggiungo i parametri
     fieldList.add($e.ast);
   }
   (COMMA e=exp{
+    //Aggiungo i parametri
     fieldList.add($e.ast);
   }
   )* )? RPAR     
@@ -346,11 +360,15 @@ value returns [Node ast]
       {$ast= new NotNode($t.ast);}  
   | PRINT LPAR e=exp RPAR 
     {$ast= new PrintNode($e.ast);}
-  | i=ID {//cercare la dichiarazione
+  | i=ID {
+      //cercare la dichiarazione
 	    int j=nestingLevel;
+	    System.out.println("Nestinglevel " + nestingLevel);
+	    
 	    STentry entry=null; 
 	    while (j>=0 && entry==null) {
 	      entry=(symTable.get(j--)).get($i.text);
+	      System.out.println(entry);
 	    }
 	    if (entry==null) {
 	      System.out.println("Id "+$i.text+" at line "+$i.line+" not declared");
@@ -365,7 +383,37 @@ value returns [Node ast]
         )* 
       )?
       RPAR {$ast=new CallNode($i.text,entry,argList,nestingLevel);}
-      | DOT id=ID LPAR (e=exp (COMMA e=exp)* )? RPAR 
+      | DOT methodId=ID {
+        CTentry classCTEntry = classTable.get($methodId.text);
+        ArrayList<Node> methodParlist = new ArrayList<>();
+        if(classCTEntry == null){
+          System.out.println("Class id "+$i.text+" at line "+$i.line+" not declared");
+          System.exit(0);
+        }
+        //Prendo dalla ctentry la virtual table da cui poi risalgo al metodo
+        STentry methodSTEntry = classCTEntry.getVTable().get($methodId.text);
+        
+        STentry classSTEntry = symTable.get(0).get($i.text);
+        //Controllo che il metodo esista 
+        if(methodSTEntry == null) {
+          System.out.println("Method id "+$i.text+" at line "+$i.line+" not declared");
+          System.exit(0); 
+        }
+        
+        
+      }
+      LPAR (e=exp {
+        //Aggiungo il primo parametro
+        methodParlist.add($e.ast);
+      }
+      
+      (COMMA ee=exp{
+      //Aggiungo i parametri successivi
+        methodParlist.add($ee.ast);
+        
+      })* )?
+      { $ast = new ClassCallNode($i.text, $methodId.text, classSTEntry, methodSTEntry, methodParlist, nestingLevel); }
+       RPAR 
     )?      
   ; 
 

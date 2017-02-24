@@ -14,7 +14,11 @@ public class ParNode implements DecNode {
 			 +type.toPrint(s+"  ") ; 
   }
   
-  //non utilizzato
+  public Node getType() {
+	return type;
+}
+
+//non utilizzato
   public Node typeCheck () {
      return null;
   }
