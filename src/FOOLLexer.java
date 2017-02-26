@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g 2017-02-24 16:16:17
+// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g 2017-02-25 12:41:49
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -66,15 +66,15 @@ public class FOOLLexer extends Lexer {
 	public FOOLLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g"; }
+	@Override public String getGrammarFileName() { return "D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g"; }
 
 	// $ANTLR start "PLUS"
 	public final void mPLUS() throws RecognitionException {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:425:9: ( '+' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:425:11: '+'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:535:9: ( '+' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:535:11: '+'
 			{
 			match('+'); 
 			}
@@ -93,8 +93,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:426:9: ( '-' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:426:11: '-'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:536:9: ( '-' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:536:11: '-'
 			{
 			match('-'); 
 			}
@@ -113,8 +113,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:427:10: ( '*' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:427:12: '*'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:537:10: ( '*' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:537:12: '*'
 			{
 			match('*'); 
 			}
@@ -133,8 +133,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:428:7: ( '/' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:428:9: '/'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:538:7: ( '/' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:538:9: '/'
 			{
 			match('/'); 
 			}
@@ -153,8 +153,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:429:7: ( '(' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:429:9: '('
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:539:7: ( '(' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:539:9: '('
 			{
 			match('('); 
 			}
@@ -173,8 +173,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = RPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:430:7: ( ')' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:430:9: ')'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:540:7: ( ')' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:540:9: ')'
 			{
 			match(')'); 
 			}
@@ -193,8 +193,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = CLPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:431:7: ( '{' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:431:9: '{'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:541:7: ( '{' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:541:9: '{'
 			{
 			match('{'); 
 			}
@@ -213,8 +213,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = CRPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:432:7: ( '}' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:432:9: '}'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:542:7: ( '}' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:542:9: '}'
 			{
 			match('}'); 
 			}
@@ -233,8 +233,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = SEMIC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:433:9: ( ';' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:433:11: ';'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:543:9: ( ';' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:543:11: ';'
 			{
 			match(';'); 
 			}
@@ -253,8 +253,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:434:9: ( ':' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:434:11: ':'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:544:9: ( ':' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:544:11: ':'
 			{
 			match(':'); 
 			}
@@ -273,8 +273,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:435:7: ( ',' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:435:9: ','
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:545:7: ( ',' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:545:9: ','
 			{
 			match(','); 
 			}
@@ -293,8 +293,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = DOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:436:5: ( '.' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:436:7: '.'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:546:5: ( '.' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:546:7: '.'
 			{
 			match('.'); 
 			}
@@ -313,8 +313,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:437:5: ( '||' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:437:7: '||'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:547:5: ( '||' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:547:7: '||'
 			{
 			match("||"); 
 
@@ -334,8 +334,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:438:5: ( '&&' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:438:7: '&&'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:548:5: ( '&&' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:548:7: '&&'
 			{
 			match("&&"); 
 
@@ -355,8 +355,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:439:5: ( 'not' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:439:7: 'not'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:549:5: ( 'not' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:549:7: 'not'
 			{
 			match("not"); 
 
@@ -376,8 +376,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = GE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:440:5: ( '>=' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:440:7: '>='
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:550:5: ( '>=' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:550:7: '>='
 			{
 			match(">="); 
 
@@ -397,8 +397,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:441:5: ( '<=' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:441:7: '<='
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:551:5: ( '<=' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:551:7: '<='
 			{
 			match("<="); 
 
@@ -418,8 +418,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = EQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:442:5: ( '==' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:442:7: '=='
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:552:5: ( '==' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:552:7: '=='
 			{
 			match("=="); 
 
@@ -439,8 +439,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ASS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:443:5: ( '=' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:443:7: '='
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:553:5: ( '=' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:553:7: '='
 			{
 			match('='); 
 			}
@@ -459,8 +459,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = TRUE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:444:7: ( 'true' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:444:9: 'true'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:554:7: ( 'true' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:554:9: 'true'
 			{
 			match("true"); 
 
@@ -480,8 +480,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = FALSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:445:7: ( 'false' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:445:9: 'false'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:555:7: ( 'false' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:555:9: 'false'
 			{
 			match("false"); 
 
@@ -501,8 +501,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:446:5: ( 'if' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:446:7: 'if'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:556:5: ( 'if' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:556:7: 'if'
 			{
 			match("if"); 
 
@@ -522,8 +522,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = THEN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:447:7: ( 'then' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:447:9: 'then'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:557:7: ( 'then' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:557:9: 'then'
 			{
 			match("then"); 
 
@@ -543,8 +543,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:448:7: ( 'else' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:448:9: 'else'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:558:7: ( 'else' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:558:9: 'else'
 			{
 			match("else"); 
 
@@ -564,8 +564,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:449:7: ( 'print' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:449:9: 'print'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:559:7: ( 'print' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:559:9: 'print'
 			{
 			match("print"); 
 
@@ -585,8 +585,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:450:9: ( 'let' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:450:11: 'let'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:560:9: ( 'let' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:560:11: 'let'
 			{
 			match("let"); 
 
@@ -606,8 +606,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = IN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:451:9: ( 'in' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:451:11: 'in'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:561:9: ( 'in' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:561:11: 'in'
 			{
 			match("in"); 
 
@@ -627,8 +627,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:452:9: ( 'var' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:452:11: 'var'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:562:9: ( 'var' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:562:11: 'var'
 			{
 			match("var"); 
 
@@ -648,8 +648,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = FUN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:453:5: ( 'fun' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:453:7: 'fun'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:563:5: ( 'fun' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:563:7: 'fun'
 			{
 			match("fun"); 
 
@@ -669,8 +669,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = CLASS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:454:7: ( 'class' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:454:9: 'class'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:564:7: ( 'class' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:564:9: 'class'
 			{
 			match("class"); 
 
@@ -690,8 +690,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = EXTENDS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:455:9: ( 'extends' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:455:11: 'extends'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:565:9: ( 'extends' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:565:11: 'extends'
 			{
 			match("extends"); 
 
@@ -711,8 +711,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = NEW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:456:7: ( 'new' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:456:9: 'new'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:566:7: ( 'new' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:566:9: 'new'
 			{
 			match("new"); 
 
@@ -732,8 +732,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = NULL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:457:9: ( 'null' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:457:11: 'null'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:567:9: ( 'null' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:567:11: 'null'
 			{
 			match("null"); 
 
@@ -753,8 +753,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:458:5: ( 'int' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:458:7: 'int'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:568:5: ( 'int' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:568:7: 'int'
 			{
 			match("int"); 
 
@@ -774,8 +774,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:459:7: ( 'bool' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:459:9: 'bool'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:569:7: ( 'bool' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:569:9: 'bool'
 			{
 			match("bool"); 
 
@@ -795,8 +795,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ARROW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:460:9: ( '->' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:460:11: '->'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:570:9: ( '->' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:570:11: '->'
 			{
 			match("->"); 
 
@@ -816,7 +816,7 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='0') ) {
@@ -834,15 +834,15 @@ public class FOOLLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:11: '0'
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:11: '0'
 					{
 					match('0'); 
 					}
 					break;
 				case 2 :
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
 					{
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:17: ( '-' )?
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:17: ( '-' )?
 					int alt1=2;
 					int LA1_0 = input.LA(1);
 					if ( (LA1_0=='-') ) {
@@ -850,7 +850,7 @@ public class FOOLLexer extends Lexer {
 					}
 					switch (alt1) {
 						case 1 :
-							// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:18: '-'
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:18: '-'
 							{
 							match('-'); 
 							}
@@ -858,8 +858,8 @@ public class FOOLLexer extends Lexer {
 
 					}
 
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:24: ( '1' .. '9' ) ( '0' .. '9' )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:24: ( '1' .. '9' ) ( '0' .. '9' )*
 					{
 					if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -869,7 +869,7 @@ public class FOOLLexer extends Lexer {
 						recover(mse);
 						throw mse;
 					}
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:461:34: ( '0' .. '9' )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:571:34: ( '0' .. '9' )*
 					loop2:
 					while (true) {
 						int alt2=2;
@@ -880,7 +880,7 @@ public class FOOLLexer extends Lexer {
 
 						switch (alt2) {
 						case 1 :
-							// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:
 							{
 							if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 								input.consume();
@@ -918,8 +918,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:463:7: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:463:9: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:573:7: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:573:9: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -929,7 +929,7 @@ public class FOOLLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:463:28: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:573:28: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			loop4:
 			while (true) {
 				int alt4=2;
@@ -940,7 +940,7 @@ public class FOOLLexer extends Lexer {
 
 				switch (alt4) {
 				case 1 :
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -974,10 +974,10 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = WHITESP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:465:9: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:465:11: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:575:9: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:575:11: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			{
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:465:11: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:575:11: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			int cnt5=0;
 			loop5:
 			while (true) {
@@ -989,7 +989,7 @@ public class FOOLLexer extends Lexer {
 
 				switch (alt5) {
 				case 1 :
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:
 					{
 					if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 						input.consume();
@@ -1027,12 +1027,12 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:467:9: ( '/*' ( . )* '*/' )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:467:11: '/*' ( . )* '*/'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:577:9: ( '/*' ( . )* '*/' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:577:11: '/*' ( . )* '*/'
 			{
 			match("/*"); 
 
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:467:16: ( . )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:577:16: ( . )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -1053,7 +1053,7 @@ public class FOOLLexer extends Lexer {
 
 				switch (alt6) {
 				case 1 :
-					// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:467:16: .
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:577:16: .
 					{
 					matchAny(); 
 					}
@@ -1083,8 +1083,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ERR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:469:10: ( . )
-			// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:469:12: .
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:579:10: ( . )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:579:12: .
 			{
 			matchAny(); 
 			 System.out.println("Invalid char: "+getText()); lexicalErrors++; _channel=HIDDEN; 
@@ -1101,292 +1101,292 @@ public class FOOLLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:8: ( PLUS | MINUS | TIMES | DIV | LPAR | RPAR | CLPAR | CRPAR | SEMIC | COLON | COMMA | DOT | OR | AND | NOT | GE | LE | EQ | ASS | TRUE | FALSE | IF | THEN | ELSE | PRINT | LET | IN | VAR | FUN | CLASS | EXTENDS | NEW | NULL | INT | BOOL | ARROW | INTEGER | ID | WHITESP | COMMENT | ERR )
+		// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:8: ( PLUS | MINUS | TIMES | DIV | LPAR | RPAR | CLPAR | CRPAR | SEMIC | COLON | COMMA | DOT | OR | AND | NOT | GE | LE | EQ | ASS | TRUE | FALSE | IF | THEN | ELSE | PRINT | LET | IN | VAR | FUN | CLASS | EXTENDS | NEW | NULL | INT | BOOL | ARROW | INTEGER | ID | WHITESP | COMMENT | ERR )
 		int alt7=41;
 		alt7 = dfa7.predict(input);
 		switch (alt7) {
 			case 1 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:10: PLUS
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:10: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
 			case 2 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:15: MINUS
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:15: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
 			case 3 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:21: TIMES
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:21: TIMES
 				{
 				mTIMES(); 
 
 				}
 				break;
 			case 4 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:27: DIV
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:27: DIV
 				{
 				mDIV(); 
 
 				}
 				break;
 			case 5 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:31: LPAR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:31: LPAR
 				{
 				mLPAR(); 
 
 				}
 				break;
 			case 6 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:36: RPAR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:36: RPAR
 				{
 				mRPAR(); 
 
 				}
 				break;
 			case 7 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:41: CLPAR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:41: CLPAR
 				{
 				mCLPAR(); 
 
 				}
 				break;
 			case 8 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:47: CRPAR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:47: CRPAR
 				{
 				mCRPAR(); 
 
 				}
 				break;
 			case 9 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:53: SEMIC
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:53: SEMIC
 				{
 				mSEMIC(); 
 
 				}
 				break;
 			case 10 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:59: COLON
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:59: COLON
 				{
 				mCOLON(); 
 
 				}
 				break;
 			case 11 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:65: COMMA
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:65: COMMA
 				{
 				mCOMMA(); 
 
 				}
 				break;
 			case 12 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:71: DOT
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:71: DOT
 				{
 				mDOT(); 
 
 				}
 				break;
 			case 13 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:75: OR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:75: OR
 				{
 				mOR(); 
 
 				}
 				break;
 			case 14 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:78: AND
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:78: AND
 				{
 				mAND(); 
 
 				}
 				break;
 			case 15 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:82: NOT
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:82: NOT
 				{
 				mNOT(); 
 
 				}
 				break;
 			case 16 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:86: GE
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:86: GE
 				{
 				mGE(); 
 
 				}
 				break;
 			case 17 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:89: LE
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:89: LE
 				{
 				mLE(); 
 
 				}
 				break;
 			case 18 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:92: EQ
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:92: EQ
 				{
 				mEQ(); 
 
 				}
 				break;
 			case 19 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:95: ASS
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:95: ASS
 				{
 				mASS(); 
 
 				}
 				break;
 			case 20 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:99: TRUE
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:99: TRUE
 				{
 				mTRUE(); 
 
 				}
 				break;
 			case 21 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:104: FALSE
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:104: FALSE
 				{
 				mFALSE(); 
 
 				}
 				break;
 			case 22 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:110: IF
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:110: IF
 				{
 				mIF(); 
 
 				}
 				break;
 			case 23 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:113: THEN
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:113: THEN
 				{
 				mTHEN(); 
 
 				}
 				break;
 			case 24 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:118: ELSE
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:118: ELSE
 				{
 				mELSE(); 
 
 				}
 				break;
 			case 25 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:123: PRINT
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:123: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
 			case 26 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:129: LET
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:129: LET
 				{
 				mLET(); 
 
 				}
 				break;
 			case 27 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:133: IN
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:133: IN
 				{
 				mIN(); 
 
 				}
 				break;
 			case 28 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:136: VAR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:136: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
 			case 29 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:140: FUN
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:140: FUN
 				{
 				mFUN(); 
 
 				}
 				break;
 			case 30 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:144: CLASS
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:144: CLASS
 				{
 				mCLASS(); 
 
 				}
 				break;
 			case 31 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:150: EXTENDS
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:150: EXTENDS
 				{
 				mEXTENDS(); 
 
 				}
 				break;
 			case 32 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:158: NEW
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:158: NEW
 				{
 				mNEW(); 
 
 				}
 				break;
 			case 33 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:162: NULL
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:162: NULL
 				{
 				mNULL(); 
 
 				}
 				break;
 			case 34 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:167: INT
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:167: INT
 				{
 				mINT(); 
 
 				}
 				break;
 			case 35 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:171: BOOL
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:171: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
 			case 36 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:176: ARROW
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:176: ARROW
 				{
 				mARROW(); 
 
 				}
 				break;
 			case 37 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:182: INTEGER
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:182: INTEGER
 				{
 				mINTEGER(); 
 
 				}
 				break;
 			case 38 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:190: ID
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:190: ID
 				{
 				mID(); 
 
 				}
 				break;
 			case 39 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:193: WHITESP
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:193: WHITESP
 				{
 				mWHITESP(); 
 
 				}
 				break;
 			case 40 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:201: COMMENT
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:201: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
 			case 41 :
-				// /Users/lisamazzini/Documents/workspace/FOOL_12_02/FOOL.g:1:209: ERR
+				// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:1:209: ERR
 				{
 				mERR(); 
 

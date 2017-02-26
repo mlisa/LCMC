@@ -6,19 +6,33 @@ import lib.FOOLlib;
 
 public class ClassNode implements DecNode {
 	
-	private String id;
+	//private String id;
+	private Node type;
 	private ArrayList<Node> fieldList = new ArrayList<Node>();
 	private ArrayList<Node> methodList = new ArrayList<Node>();
 	private CTentry classEntry;
 	private CTentry superEntry; 
 	
-	public ClassNode(String i, ArrayList<Node> fList, ArrayList<Node> mList, CTentry classEntry, CTentry superEntry) {
-		this.id = i;
+	public ClassNode(Node type, ArrayList<Node> fList, ArrayList<Node> mList, CTentry classEntry, CTentry superEntry) {
+		//this.id = i; // Il nome della Classe è contenuto in Type!!!
+		this.type = type;
 		this.fieldList = fList;
 		this.methodList = mList;
 		this.classEntry = classEntry;
 		this.superEntry = superEntry;
 	
+	}
+	
+	public String getClassID(){
+		return ((ClassTypeNode) this.type).getClassID();
+	}
+	
+	public void addMethod(Node method){
+		this.methodList.add(method);
+	}
+	
+	public void addField(Node field){
+		this.fieldList.add(field);
 	}
 
 	@Override
@@ -70,7 +84,7 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public Node getSymType() {
-		return new ClassTypeNode(this.id);
+		return this.type;
 	}
 
 }

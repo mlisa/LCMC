@@ -21,7 +21,23 @@ public class ClassCallNode implements Node {
 		this.parlist = parlist;
 		this.nestingLevel = nestingLevel; 
 	}
+	
+	public String getClassId() {
+		return classId;
+	}
 
+	public String getMethodId() {
+		return methodId;
+	}
+
+	public STentry getClassEntry() {
+		return classEntry;
+	}
+
+	public int getNestingLevel() {
+		return nestingLevel;
+	}
+	
 	@Override
 	public String toPrint(String indent) {
 		// TODO Auto-generated method stub
