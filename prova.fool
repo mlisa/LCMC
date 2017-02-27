@@ -10,9 +10,10 @@ let
   
   class BankLoan (loan: Account) {
     fun getLoan:Account () loan;
-    fun openLoan:Account (m:TradingAcc) if ((m.getMon()+m.getInv())>=30000) 
-      then {new Account(loan.getMon())} 
-      else {null};
+    fun openLoan:Account (m:TradingAcc) 
+    	if ((m.getMon()+m.getInv())>=30000) 
+      	then {new Account(loan.getMon())} 
+      	else {null};
   } 
   
   class MyBankLoan extends BankLoan (loan: TradingAcc) {

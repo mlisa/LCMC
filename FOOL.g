@@ -158,10 +158,6 @@ cllist returns [ArrayList<Node> astlist] : {
 				        //Aggiungo il tipo alla partypes
                         parTypes.add($mparnType.ast);
                         
-                        //Occorre creare anche qui una STEntry???
-                        //Aggiungo alla symbol table del metodo la relativa entry
-                        methodSymTable.put($mparnID.text, new STentry(nestingLevel, $mparnType.ast, parOffset++));
-                        
 				        if (methodSymTable.put($mparnID.text, new STentry(nestingLevel, $mparnType.ast, parOffset++)) != null) {
 				            System.out.println("PAR id "+$mparnID.text+" at line "+$mparnID.line+" already declared");
 				            System.exit(0);
@@ -238,9 +234,9 @@ declist returns [ArrayList<Node> astlist] : {
 						//Prendo la symbol table attuale
 						HashMap<String,STentry> hm = symTable.get(nestingLevel);
 						//Creo una nuova entry
-						STentry entry = new STentry(nestingLevel,offset--); //separo introducendo "entry"
+						STentry entry = new STentry(nestingLevel, offset--); //separo introducendo "entry"
 						
-						offset = -2; // ???
+						offset--; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
 						
 						//Controllo che non sia già dichiarata una funzione con lo stesso nome 
 						if (hm.put($funID.text,entry) != null){ 
@@ -262,9 +258,9 @@ declist returns [ArrayList<Node> astlist] : {
 					
 							//Aggiungo il primo parametro
 							parTypes.add($parfType.ast); 
-							f.addPar(new ParNode($parfID.text,$parfType.ast));
+							f.addPar(new ParNode($parfID.text, $parfType.ast));
 							
-							f.addSymType($parfType.ast);
+							//f.addSymType($parfType.ast);
 							
 							// Occorre controllare che il tipo della funzione sia ArrowTypeNode 
                             // poichè il tal caso devo riservare 2 spazi!
@@ -280,7 +276,7 @@ declist returns [ArrayList<Node> astlist] : {
                             parTypes.add($parnType.ast);
                             f.addPar(new ParNode($parnID.text, $parnType.ast));
                             
-                            f.addSymType($parnType.ast); // Perchè non lo mettiamo ???
+                            //f.addSymType($parnType.ast); // Perchè non lo mettiamo ???
                             
                             // Occorre controllare che il tipo della funzione sia ArrowTypeNode 
                             // poichè il tal caso devo riservare 2 spazi!
@@ -293,7 +289,7 @@ declist returns [ArrayList<Node> astlist] : {
 						} )* //chiudo parentesi comma
 						
 					)? RPAR {
-					
+					    // ArrowType Duplicato 
 						entry.addType(new ArrowTypeNode(parTypes, $funType.ast));
 						f.addSymType(new ArrowTypeNode(parTypes, $funType.ast));
 						
@@ -418,21 +414,21 @@ value returns [Node ast] :
         } | 
         
         NEW 
-	       i=ID {
+	       newClassID = ID {
 	       
 			//Creo la lista del parametri
 			ArrayList<Node> fieldList = new ArrayList<Node>();
 			//Prendo la CTentry dalla class table
-			CTentry classEntry = classTable.get($i.text);
+			CTentry classEntry = classTable.get($newClassID.text);
 			
 			//Controllo l'esistenza della classe 
 			if(classEntry == null){
-				System.out.println("Class id "+$i.text+" at line "+$i.line+" not declared");
+				System.out.println("Class id "+$newClassID.text+" at line "+$newClassID.line+" not declared");
 				System.exit(0);
 		    }
 		    
 		    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
-		    NewNode newNode = new NewNode($i.text, fieldList, classEntry);
+		    NewNode newNode = new NewNode($newClassID.text, fieldList, classEntry);
 		    
 		    } LPAR (
 		        newfExpr = exp {
@@ -460,52 +456,55 @@ value returns [Node ast] :
 		    $ast = new PrintNode($e.ast);
 		} | 
 		
-		i = ID {
+		callID = ID {
 			
 			//cercare la dichiarazione
 		    int j = nestingLevel;
 		    System.out.println("Nestinglevel " + nestingLevel);
-		    STentry entry = null; 
+		    STentry calledEntry = null; 
 		    
-		    while (j >= 0 && entry == null) {
-				entry=(symTable.get(j--)).get($i.text);
-				System.out.println(entry);
+		    while (j >= 0 && calledEntry == null) {
+				calledEntry = (symTable.get(j--)).get($callID.text);
+				System.out.println(calledEntry);
 		    }
 		    
-		    if (entry == null) {
-				System.out.println("ID "+$i.text+" at line "+$i.line+" not declared");
+		    if (calledEntry == null) {
+				System.out.println("ID "+$callID.text+" at line "+$callID.line+" not declared");
 				System.exit(0);
 		    }
 		                   
-		    $ast= new IdNode($i.text,entry,nestingLevel);
+		    $ast= new IdNode($callID.text, calledEntry, nestingLevel);
 		} ( // Possibili usi dell'ID -> ID() o ID.ID(x1, x2, ...)
 		    LPAR {
 		        ArrayList<Node> argList = new ArrayList<Node>();
 		    }(
-		        fa = exp {
-		            argList.add($fa.ast);
-		        }(COMMA a = exp {
-		            argList.add($a.ast);
+		        farg = exp {
+		            argList.add($farg.ast);
+		        }(COMMA narg = exp {
+		            argList.add($narg.ast);
 		        } )*
 		    )? 
 		    RPAR {
-		        $ast=new CallNode($i.text,entry,argList,nestingLevel);
+		        $ast=new CallNode($callID.text, calledEntry, argList, nestingLevel);
 		    } | 
 		
 		    DOT methodID = ID {
-		    
-		        CTentry classCTEntry = classTable.get($methodID.text);
+		        ClassTypeNode classCallType = (ClassTypeNode)calledEntry.getType();
+		        // Cerco se esiste una classe del tipo dell'oggetto che fa la call del metodo 
+		        CTentry classCTEntry = classTable.get(classCallType.getClassID());
+		        
 		        ArrayList<Node> methodParlist = new ArrayList<>();
 		        
+		        // Se non esiste alcuna classe del tipo dell'oggetto, allora cacio, pepe ed erore
 		        if(classCTEntry == null){
-					System.out.println("Class id "+ $i.text +" at line "+$i.line+" not declared");
+					System.out.println("Class id "+ $callID.text +" at line "+$callID.line+" not declared");
 					System.exit(0);
 		        }
 		        
 		        //Prendo dalla ctentry la virtual table da cui poi risalgo al metodo
 		        STentry methodSTEntry = classCTEntry.getVTable().get($methodID.text);
 		        
-		        STentry classSTEntry = symTable.get(0).get($i.text);
+		        STentry classSTEntry = symTable.get(0).get($callID.text);
 		        
 		        //Controllo che il metodo esista 
 		        if(methodSTEntry == null) {
@@ -522,7 +521,7 @@ value returns [Node ast] :
 		            methodParlist.add($callnExpr.ast);
 		        })* 
 		    )? { 
-		        $ast = new ClassCallNode($i.text, $methodID.text, classSTEntry, methodSTEntry, methodParlist, nestingLevel); 
+		        $ast = new ClassCallNode($callID.text, $methodID.text, classSTEntry, methodSTEntry, methodParlist, nestingLevel); 
 		    } RPAR 
 	    )?      
     ; 

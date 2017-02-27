@@ -29,4 +29,5 @@ public class ClassTypeNode implements Node {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

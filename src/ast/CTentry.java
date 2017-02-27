@@ -42,8 +42,7 @@ public class CTentry {
 		this.offsetMethods = entry.getOffsetMethods();
 		this.allFields = new ArrayList<Node>(entry.getAllFields());
 		this.allMethods = new ArrayList<Node>(entry.getAllMethods());
-		this.locals = new HashSet<Integer>();
-		
+		this.locals = new HashSet<Integer>();	
 	}
 	
 	public int getOffsetFields() {
@@ -112,7 +111,7 @@ public class CTentry {
 			
 			// inserisco l'entry nella virtual table
 			this.vTable.put(name, newEntry);
-			
+			System.out.println("field: " + name + "offset: " + offset);
 			//Controllo che non ci siano già dichiarati dei campi all'offset indicato, altrimenti lo aggiungo 		
 			if(!this.locals.add(offset)){
 				// ritorna true se non era presente
@@ -138,9 +137,9 @@ public class CTentry {
 			this.allMethods.set(offset, field); //Per i metodi uso semplicemente l'offset perchè si muove come gli indici della lista 
 		} else {
 			//Se è un metodo nuovo, creo una nuova entry all'offset a cui si è arrivati (nesting level sempre = 1 ) 
-			newEntry = new STentry(1,type,this.offsetMethods);
+			newEntry = new STentry(1, type, this.offsetMethods);
 			//Mi salvo l'offset per controllare all'interno delle variabili locali
-			offset = this.offsetFields;
+			offset = this.offsetMethods;
 			// Aumento l'offset che indica il prossimo spazio libero
 			this.offsetMethods++;
 			//Aggiungo il metodo alla lista dei metodi
@@ -150,7 +149,7 @@ public class CTentry {
 		// inserisco l'entry nella virtual table come metodo
 		newEntry.setAsMethod();
 		this.vTable.put(name, newEntry);
-		
+		System.out.println("method: " + name + "offset: " + offset);
 		//Controllo che non ci siano già dichiarati dei metodi all'offset indicato, altrimenti lo aggiungo 
 		if(!this.locals.add(offset)){		
 			// ritorna true se non era presente

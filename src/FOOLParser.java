@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g 2017-02-25 12:41:48
+// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g 2017-02-27 09:40:41
 
 		import java.util.ArrayList;
 		import java.util.HashMap;
@@ -454,10 +454,6 @@ public class FOOLParser extends Parser {
 															        //Aggiungo il tipo alla partypes
 											                        parTypes.add(mparnType);
 											                        
-											                        //Occorre creare anche qui una STEntry???
-											                        //Aggiungo alla symbol table del metodo la relativa entry
-											                        methodSymTable.put((mparnID!=null?mparnID.getText():null), new STentry(nestingLevel, mparnType, parOffset++));
-											                        
 															        if (methodSymTable.put((mparnID!=null?mparnID.getText():null), new STentry(nestingLevel, mparnType, parOffset++)) != null) {
 															            System.out.println("PAR id "+(mparnID!=null?mparnID.getText():null)+" at line "+(mparnID!=null?mparnID.getLine():0)+" already declared");
 															            System.exit(0);
@@ -477,7 +473,7 @@ public class FOOLParser extends Parser {
 							}
 
 							match(input,RPAR,FOLLOW_RPAR_in_cllist377); 
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:171:13: ( LET ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )* IN )?
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:167:13: ( LET ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )* IN )?
 							int alt8=2;
 							int LA8_0 = input.LA(1);
 							if ( (LA8_0==LET) ) {
@@ -485,10 +481,10 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt8) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:172:9: LET ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )* IN
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:168:9: LET ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )* IN
 									{
 									match(input,LET,FOLLOW_LET_in_cllist389); 
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:172:13: ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:168:13: ( VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC )*
 									loop7:
 									while (true) {
 										int alt7=2;
@@ -499,7 +495,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt7) {
 										case 1 :
-											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:173:13: VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC
+											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:169:13: VAR varID= ID COLON varType= basic ASS varExp= exp SEMIC
 											{
 											match(input,VAR,FOLLOW_VAR_in_cllist406); 
 											varID=(Token)match(input,ID,FOLLOW_ID_in_cllist412); 
@@ -597,7 +593,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "declist"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:208:1: declist returns [ArrayList<Node> astlist] : ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:204:1: declist returns [ArrayList<Node> astlist] : ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ ;
 	public final ArrayList<Node> declist() throws RecognitionException {
 		ArrayList<Node> astlist = null;
 
@@ -615,8 +611,8 @@ public class FOOLParser extends Parser {
 		Node e =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:208:43: ( ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:208:45: ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:204:43: ( ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:204:45: ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
 			{
 
 					    //Lista delle cose dichiarate  
@@ -626,7 +622,7 @@ public class FOOLParser extends Parser {
 					    // Layout AR -> AccLink (AL) at 0 && RA at -1
 					    int offset=-2; 
 				    
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:215:8: ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:211:8: ( ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
 			int cnt15=0;
 			loop15:
 			while (true) {
@@ -638,9 +634,9 @@ public class FOOLParser extends Parser {
 
 				switch (alt15) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:216:10: ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:212:10: ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC
 					{
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:216:10: ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp )
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:212:10: ( VAR varID= ID COLON varType= type ASS varExp= exp | FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp )
 					int alt14=2;
 					int LA14_0 = input.LA(1);
 					if ( (LA14_0==VAR) ) {
@@ -658,7 +654,7 @@ public class FOOLParser extends Parser {
 
 					switch (alt14) {
 						case 1 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:218:8: VAR varID= ID COLON varType= type ASS varExp= exp
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:214:8: VAR varID= ID COLON varType= type ASS varExp= exp
 							{
 							match(input,VAR,FOLLOW_VAR_in_declist552); 
 							varID=(Token)match(input,ID,FOLLOW_ID_in_declist558); 
@@ -687,7 +683,7 @@ public class FOOLParser extends Parser {
 							}
 							break;
 						case 2 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:231:8: FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:227:8: FUN funID= ID COLON funType= type LPAR (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )? RPAR ( LET d= declist IN )? e= exp
 							{
 							match(input,FUN,FOLLOW_FUN_in_declist596); 
 							funID=(Token)match(input,ID,FOLLOW_ID_in_declist614); 
@@ -705,9 +701,9 @@ public class FOOLParser extends Parser {
 													//Prendo la symbol table attuale
 													HashMap<String,STentry> hm = symTable.get(nestingLevel);
 													//Creo una nuova entry
-													STentry entry = new STentry(nestingLevel,offset--); //separo introducendo "entry"
+													STentry entry = new STentry(nestingLevel, offset--); //separo introducendo "entry"
 													
-													offset = -2; // ???
+													offset--; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
 													
 													//Controllo che non sia già dichiarata una funzione con lo stesso nome 
 													if (hm.put((funID!=null?funID.getText():null),entry) != null){ 
@@ -726,7 +722,7 @@ public class FOOLParser extends Parser {
 													
 												
 							match(input,LPAR,FOLLOW_LPAR_in_declist626); 
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:260:13: (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )?
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:256:13: (parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )* )?
 							int alt12=2;
 							int LA12_0 = input.LA(1);
 							if ( (LA12_0==ID) ) {
@@ -734,7 +730,7 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt12) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:261:10: parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:257:10: parfID= ID COLON parfType= type ( COMMA parnID= ID COLON parnType= type )*
 									{
 									parfID=(Token)match(input,ID,FOLLOW_ID_in_declist643); 
 									match(input,COLON,FOLLOW_COLON_in_declist645); 
@@ -746,9 +742,9 @@ public class FOOLParser extends Parser {
 														
 																//Aggiungo il primo parametro
 																parTypes.add(parfType); 
-																f.addPar(new ParNode((parfID!=null?parfID.getText():null),parfType));
+																f.addPar(new ParNode((parfID!=null?parfID.getText():null), parfType));
 																
-																f.addSymType(parfType);
+																//f.addSymType(parfType);
 																
 																// Occorre controllare che il tipo della funzione sia ArrowTypeNode 
 									                            // poichè il tal caso devo riservare 2 spazi!
@@ -759,7 +755,7 @@ public class FOOLParser extends Parser {
 																}
 																
 															
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:277:9: ( COMMA parnID= ID COLON parnType= type )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:273:9: ( COMMA parnID= ID COLON parnType= type )*
 									loop11:
 									while (true) {
 										int alt11=2;
@@ -770,7 +766,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt11) {
 										case 1 :
-											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:277:10: COMMA parnID= ID COLON parnType= type
+											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:273:10: COMMA parnID= ID COLON parnType= type
 											{
 											match(input,COMMA,FOLLOW_COMMA_in_declist656); 
 											parnID=(Token)match(input,ID,FOLLOW_ID_in_declist662); 
@@ -785,7 +781,7 @@ public class FOOLParser extends Parser {
 											                            parTypes.add(parnType);
 											                            f.addPar(new ParNode((parnID!=null?parnID.getText():null), parnType));
 											                            
-											                            f.addSymType(parnType); // Perchè non lo mettiamo ???
+											                            //f.addSymType(parnType); // Perchè non lo mettiamo ???
 											                            
 											                            // Occorre controllare che il tipo della funzione sia ArrowTypeNode 
 											                            // poichè il tal caso devo riservare 2 spazi!
@@ -811,12 +807,12 @@ public class FOOLParser extends Parser {
 
 							match(input,RPAR,FOLLOW_RPAR_in_declist693); 
 
-												
+												    // ArrowType Duplicato 
 													entry.addType(new ArrowTypeNode(parTypes, funType));
 													f.addSymType(new ArrowTypeNode(parTypes, funType));
 													
 												
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:300:8: ( LET d= declist IN )?
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:296:8: ( LET d= declist IN )?
 							int alt13=2;
 							int LA13_0 = input.LA(1);
 							if ( (LA13_0==LET) ) {
@@ -824,7 +820,7 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt13) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:300:9: LET d= declist IN
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:296:9: LET d= declist IN
 									{
 									match(input,LET,FOLLOW_LET_in_declist698); 
 									pushFollow(FOLLOW_declist_in_declist704);
@@ -881,7 +877,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "type"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:310:1: type returns [Node ast] : (b= basic |a= arrow );
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:306:1: type returns [Node ast] : (b= basic |a= arrow );
 	public final Node type() throws RecognitionException {
 		Node ast = null;
 
@@ -890,7 +886,7 @@ public class FOOLParser extends Parser {
 		Node a =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:310:25: (b= basic |a= arrow )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:306:25: (b= basic |a= arrow )
 			int alt16=2;
 			int LA16_0 = input.LA(1);
 			if ( (LA16_0==BOOL||LA16_0==ID||LA16_0==INT) ) {
@@ -908,7 +904,7 @@ public class FOOLParser extends Parser {
 
 			switch (alt16) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:311:9: b= basic
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:307:9: b= basic
 					{
 					pushFollow(FOLLOW_basic_in_type768);
 					b=basic();
@@ -920,7 +916,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:313:13: a= arrow
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:309:13: a= arrow
 					{
 					pushFollow(FOLLOW_arrow_in_type778);
 					a=arrow();
@@ -948,7 +944,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "basic"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:318:1: basic returns [Node ast] : ( INT | BOOL |i= ID );
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:314:1: basic returns [Node ast] : ( INT | BOOL |i= ID );
 	public final Node basic() throws RecognitionException {
 		Node ast = null;
 
@@ -956,7 +952,7 @@ public class FOOLParser extends Parser {
 		Token i=null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:318:26: ( INT | BOOL |i= ID )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:314:26: ( INT | BOOL |i= ID )
 			int alt17=3;
 			switch ( input.LA(1) ) {
 			case INT:
@@ -981,7 +977,7 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt17) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:319:9: INT
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:315:9: INT
 					{
 					match(input,INT,FOLLOW_INT_in_basic810); 
 
@@ -990,7 +986,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:323:9: BOOL
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:319:9: BOOL
 					{
 					match(input,BOOL,FOLLOW_BOOL_in_basic833); 
 
@@ -999,7 +995,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:327:9: i= ID
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:323:9: i= ID
 					{
 					i=(Token)match(input,ID,FOLLOW_ID_in_basic860); 
 
@@ -1024,7 +1020,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "arrow"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:332:1: arrow returns [Node ast] : LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:328:1: arrow returns [Node ast] : LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic ;
 	public final Node arrow() throws RecognitionException {
 		Node ast = null;
 
@@ -1034,14 +1030,14 @@ public class FOOLParser extends Parser {
 		Node r =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:332:26: ( LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:333:9: LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:328:26: ( LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:329:9: LPAR (t= type ( COMMA ty= type )* )? RPAR ARROW r= basic
 			{
 			match(input,LPAR,FOLLOW_LPAR_in_arrow891); 
 
 			            ArrayList<Node> typeList = new ArrayList<>(); 
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:335:11: (t= type ( COMMA ty= type )* )?
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:331:11: (t= type ( COMMA ty= type )* )?
 			int alt19=2;
 			int LA19_0 = input.LA(1);
 			if ( (LA19_0==BOOL||LA19_0==ID||LA19_0==INT||LA19_0==LPAR) ) {
@@ -1049,7 +1045,7 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt19) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:335:12: t= type ( COMMA ty= type )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:331:12: t= type ( COMMA ty= type )*
 					{
 					pushFollow(FOLLOW_type_in_arrow900);
 					t=type();
@@ -1059,7 +1055,7 @@ public class FOOLParser extends Parser {
 					            //aggiungo il primo
 					            typeList.add(t);
 					        
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:338:11: ( COMMA ty= type )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:334:11: ( COMMA ty= type )*
 					loop18:
 					while (true) {
 						int alt18=2;
@@ -1070,7 +1066,7 @@ public class FOOLParser extends Parser {
 
 						switch (alt18) {
 						case 1 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:338:13: COMMA ty= type
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:334:13: COMMA ty= type
 							{
 							match(input,COMMA,FOLLOW_COMMA_in_arrow906); 
 							pushFollow(FOLLOW_type_in_arrow912);
@@ -1120,7 +1116,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "exp"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:346:1: exp returns [Node ast] : f= term ( PLUS l= term | MINUS l= term | OR l= term )* ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:342:1: exp returns [Node ast] : f= term ( PLUS l= term | MINUS l= term | OR l= term )* ;
 	public final Node exp() throws RecognitionException {
 		Node ast = null;
 
@@ -1129,8 +1125,8 @@ public class FOOLParser extends Parser {
 		Node l =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:346:24: (f= term ( PLUS l= term | MINUS l= term | OR l= term )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:347:9: f= term ( PLUS l= term | MINUS l= term | OR l= term )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:342:24: (f= term ( PLUS l= term | MINUS l= term | OR l= term )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:343:9: f= term ( PLUS l= term | MINUS l= term | OR l= term )*
 			{
 			pushFollow(FOLLOW_term_in_exp971);
 			f=term();
@@ -1139,7 +1135,7 @@ public class FOOLParser extends Parser {
 
 			            ast = f;    
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:349:11: ( PLUS l= term | MINUS l= term | OR l= term )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:345:11: ( PLUS l= term | MINUS l= term | OR l= term )*
 			loop20:
 			while (true) {
 				int alt20=4;
@@ -1162,7 +1158,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt20) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:351:10: PLUS l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:347:10: PLUS l= term
 					{
 					match(input,PLUS,FOLLOW_PLUS_in_exp995); 
 					pushFollow(FOLLOW_term_in_exp1001);
@@ -1175,7 +1171,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:355:10: MINUS l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:351:10: MINUS l= term
 					{
 					match(input,MINUS,FOLLOW_MINUS_in_exp1027); 
 					pushFollow(FOLLOW_term_in_exp1033);
@@ -1188,7 +1184,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:359:10: OR l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:355:10: OR l= term
 					{
 					match(input,OR,FOLLOW_OR_in_exp1058); 
 					pushFollow(FOLLOW_term_in_exp1064);
@@ -1223,7 +1219,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:365:1: term returns [Node ast] : f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:361:1: term returns [Node ast] : f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* ;
 	public final Node term() throws RecognitionException {
 		Node ast = null;
 
@@ -1232,8 +1228,8 @@ public class FOOLParser extends Parser {
 		Node l =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:365:26: (f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:366:9: f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:361:26: (f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:362:9: f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )*
 			{
 			pushFollow(FOLLOW_factor_in_term1107);
 			f=factor();
@@ -1242,7 +1238,7 @@ public class FOOLParser extends Parser {
 
 			            ast = f;
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:368:11: ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:364:11: ( TIMES l= factor | DIV l= factor | AND l= factor )*
 			loop21:
 			while (true) {
 				int alt21=4;
@@ -1265,7 +1261,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt21) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:370:10: TIMES l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:366:10: TIMES l= factor
 					{
 					match(input,TIMES,FOLLOW_TIMES_in_term1131); 
 					pushFollow(FOLLOW_factor_in_term1137);
@@ -1278,7 +1274,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:374:10: DIV l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:370:10: DIV l= factor
 					{
 					match(input,DIV,FOLLOW_DIV_in_term1162); 
 					pushFollow(FOLLOW_factor_in_term1168);
@@ -1291,7 +1287,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:378:10: AND l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:374:10: AND l= factor
 					{
 					match(input,AND,FOLLOW_AND_in_term1193); 
 					pushFollow(FOLLOW_factor_in_term1199);
@@ -1326,7 +1322,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "factor"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:384:1: factor returns [Node ast] : f= value ( EQ l= value | LE l= value | GE l= value )* ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:380:1: factor returns [Node ast] : f= value ( EQ l= value | LE l= value | GE l= value )* ;
 	public final Node factor() throws RecognitionException {
 		Node ast = null;
 
@@ -1335,8 +1331,8 @@ public class FOOLParser extends Parser {
 		Node l =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:384:28: (f= value ( EQ l= value | LE l= value | GE l= value )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:385:9: f= value ( EQ l= value | LE l= value | GE l= value )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:380:28: (f= value ( EQ l= value | LE l= value | GE l= value )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:381:9: f= value ( EQ l= value | LE l= value | GE l= value )*
 			{
 			pushFollow(FOLLOW_value_in_factor1245);
 			f=value();
@@ -1345,7 +1341,7 @@ public class FOOLParser extends Parser {
 
 			            ast = f;
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:387:11: ( EQ l= value | LE l= value | GE l= value )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:383:11: ( EQ l= value | LE l= value | GE l= value )*
 			loop22:
 			while (true) {
 				int alt22=4;
@@ -1368,7 +1364,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt22) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:389:13: EQ l= value
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:385:13: EQ l= value
 					{
 					match(input,EQ,FOLLOW_EQ_in_factor1272); 
 					pushFollow(FOLLOW_value_in_factor1278);
@@ -1381,7 +1377,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:393:13: LE l= value
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:389:13: LE l= value
 					{
 					match(input,LE,FOLLOW_LE_in_factor1309); 
 					pushFollow(FOLLOW_value_in_factor1315);
@@ -1394,7 +1390,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:397:13: GE l= value
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:393:13: GE l= value
 					{
 					match(input,GE,FOLLOW_GE_in_factor1346); 
 					pushFollow(FOLLOW_value_in_factor1352);
@@ -1429,13 +1425,14 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "value"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:403:1: value returns [Node ast] : (n= INTEGER | TRUE | FALSE | NULL | NEW i= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR | LPAR e= exp RPAR | IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR | NOT LPAR t= term RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )? );
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:399:1: value returns [Node ast] : (n= INTEGER | TRUE | FALSE | NULL | NEW newClassID= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR | LPAR e= exp RPAR | IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR | NOT LPAR t= term RPAR | PRINT LPAR e= exp RPAR |callID= ID ( LPAR (farg= exp ( COMMA narg= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )? );
 	public final Node value() throws RecognitionException {
 		Node ast = null;
 
 
 		Token n=null;
-		Token i=null;
+		Token newClassID=null;
+		Token callID=null;
 		Token methodID=null;
 		Node newfExpr =null;
 		Node newnExpr =null;
@@ -1444,13 +1441,13 @@ public class FOOLParser extends Parser {
 		Node y =null;
 		Node z =null;
 		Node t =null;
-		Node fa =null;
-		Node a =null;
+		Node farg =null;
+		Node narg =null;
 		Node callfExp =null;
 		Node callnExpr =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:403:26: (n= INTEGER | TRUE | FALSE | NULL | NEW i= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR | LPAR e= exp RPAR | IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR | NOT LPAR t= term RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )? )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:399:26: (n= INTEGER | TRUE | FALSE | NULL | NEW newClassID= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR | LPAR e= exp RPAR | IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR | NOT LPAR t= term RPAR | PRINT LPAR e= exp RPAR |callID= ID ( LPAR (farg= exp ( COMMA narg= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )? )
 			int alt30=10;
 			switch ( input.LA(1) ) {
 			case INTEGER:
@@ -1510,7 +1507,7 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt30) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:404:9: n= INTEGER
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:400:9: n= INTEGER
 					{
 					n=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_value1400); 
 
@@ -1519,7 +1516,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:408:9: TRUE
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:404:9: TRUE
 					{
 					match(input,TRUE,FOLLOW_TRUE_in_value1424); 
 
@@ -1528,7 +1525,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:412:9: FALSE
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:408:9: FALSE
 					{
 					match(input,FALSE,FOLLOW_FALSE_in_value1448); 
 
@@ -1537,7 +1534,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 4 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:416:9: NULL
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:412:9: NULL
 					{
 					match(input,NULL,FOLLOW_NULL_in_value1472); 
 
@@ -1546,29 +1543,29 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 5 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:420:9: NEW i= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:416:9: NEW newClassID= ID LPAR (newfExpr= exp ( COMMA newnExpr= exp )* )? RPAR
 					{
 					match(input,NEW,FOLLOW_NEW_in_value1496); 
-					i=(Token)match(input,ID,FOLLOW_ID_in_value1509); 
+					newClassID=(Token)match(input,ID,FOLLOW_ID_in_value1511); 
 
 						       
 								//Creo la lista del parametri
 								ArrayList<Node> fieldList = new ArrayList<Node>();
 								//Prendo la CTentry dalla class table
-								CTentry classEntry = classTable.get((i!=null?i.getText():null));
+								CTentry classEntry = classTable.get((newClassID!=null?newClassID.getText():null));
 								
 								//Controllo l'esistenza della classe 
 								if(classEntry == null){
-									System.out.println("Class id "+(i!=null?i.getText():null)+" at line "+(i!=null?i.getLine():0)+" not declared");
+									System.out.println("Class id "+(newClassID!=null?newClassID.getText():null)+" at line "+(newClassID!=null?newClassID.getLine():0)+" not declared");
 									System.exit(0);
 							    }
 							    
 							    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
-							    NewNode newNode = new NewNode((i!=null?i.getText():null), fieldList, classEntry);
+							    NewNode newNode = new NewNode((newClassID!=null?newClassID.getText():null), fieldList, classEntry);
 							    
 							    
-					match(input,LPAR,FOLLOW_LPAR_in_value1513); 
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:437:14: (newfExpr= exp ( COMMA newnExpr= exp )* )?
+					match(input,LPAR,FOLLOW_LPAR_in_value1515); 
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:433:14: (newfExpr= exp ( COMMA newnExpr= exp )* )?
 					int alt24=2;
 					int LA24_0 = input.LA(1);
 					if ( (LA24_0==FALSE||(LA24_0 >= ID && LA24_0 <= IF)||LA24_0==INTEGER||LA24_0==LPAR||(LA24_0 >= NEW && LA24_0 <= NULL)||LA24_0==PRINT||LA24_0==TRUE) ) {
@@ -1576,9 +1573,9 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt24) {
 						case 1 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:438:11: newfExpr= exp ( COMMA newnExpr= exp )*
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:434:11: newfExpr= exp ( COMMA newnExpr= exp )*
 							{
-							pushFollow(FOLLOW_exp_in_value1531);
+							pushFollow(FOLLOW_exp_in_value1533);
 							newfExpr=exp();
 							state._fsp--;
 
@@ -1586,7 +1583,7 @@ public class FOOLParser extends Parser {
 									            //Aggiungo i parametri
 									            fieldList.add(newfExpr);
 									        
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:441:13: ( COMMA newnExpr= exp )*
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:437:13: ( COMMA newnExpr= exp )*
 							loop23:
 							while (true) {
 								int alt23=2;
@@ -1597,10 +1594,10 @@ public class FOOLParser extends Parser {
 
 								switch (alt23) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:441:14: COMMA newnExpr= exp
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:437:14: COMMA newnExpr= exp
 									{
-									match(input,COMMA,FOLLOW_COMMA_in_value1536); 
-									pushFollow(FOLLOW_exp_in_value1542);
+									match(input,COMMA,FOLLOW_COMMA_in_value1538); 
+									pushFollow(FOLLOW_exp_in_value1544);
 									newnExpr=exp();
 									state._fsp--;
 
@@ -1621,104 +1618,104 @@ public class FOOLParser extends Parser {
 
 					}
 
-					match(input,RPAR,FOLLOW_RPAR_in_value1558); 
+					match(input,RPAR,FOLLOW_RPAR_in_value1560); 
 					}
 					break;
 				case 6 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:447:3: LPAR e= exp RPAR
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:443:3: LPAR e= exp RPAR
 					{
-					match(input,LPAR,FOLLOW_LPAR_in_value1567); 
-					pushFollow(FOLLOW_exp_in_value1573);
+					match(input,LPAR,FOLLOW_LPAR_in_value1569); 
+					pushFollow(FOLLOW_exp_in_value1575);
 					e=exp();
 					state._fsp--;
 
-					match(input,RPAR,FOLLOW_RPAR_in_value1575); 
+					match(input,RPAR,FOLLOW_RPAR_in_value1577); 
 
 							    ast = e;
 							
 					}
 					break;
 				case 7 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:451:3: IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:447:3: IF x= exp THEN CLPAR y= exp CRPAR ELSE CLPAR z= exp CRPAR
 					{
-					match(input,IF,FOLLOW_IF_in_value1587); 
-					pushFollow(FOLLOW_exp_in_value1593);
+					match(input,IF,FOLLOW_IF_in_value1589); 
+					pushFollow(FOLLOW_exp_in_value1595);
 					x=exp();
 					state._fsp--;
 
-					match(input,THEN,FOLLOW_THEN_in_value1595); 
-					match(input,CLPAR,FOLLOW_CLPAR_in_value1597); 
-					pushFollow(FOLLOW_exp_in_value1603);
+					match(input,THEN,FOLLOW_THEN_in_value1597); 
+					match(input,CLPAR,FOLLOW_CLPAR_in_value1599); 
+					pushFollow(FOLLOW_exp_in_value1605);
 					y=exp();
 					state._fsp--;
 
-					match(input,CRPAR,FOLLOW_CRPAR_in_value1605); 
-					match(input,ELSE,FOLLOW_ELSE_in_value1607); 
-					match(input,CLPAR,FOLLOW_CLPAR_in_value1609); 
-					pushFollow(FOLLOW_exp_in_value1615);
+					match(input,CRPAR,FOLLOW_CRPAR_in_value1607); 
+					match(input,ELSE,FOLLOW_ELSE_in_value1609); 
+					match(input,CLPAR,FOLLOW_CLPAR_in_value1611); 
+					pushFollow(FOLLOW_exp_in_value1617);
 					z=exp();
 					state._fsp--;
 
-					match(input,CRPAR,FOLLOW_CRPAR_in_value1617); 
+					match(input,CRPAR,FOLLOW_CRPAR_in_value1619); 
 
 							    ast = new IfNode(x,y,z);
 							
 					}
 					break;
 				case 8 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:455:3: NOT LPAR t= term RPAR
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:451:3: NOT LPAR t= term RPAR
 					{
-					match(input,NOT,FOLLOW_NOT_in_value1630); 
-					match(input,LPAR,FOLLOW_LPAR_in_value1632); 
-					pushFollow(FOLLOW_term_in_value1638);
+					match(input,NOT,FOLLOW_NOT_in_value1632); 
+					match(input,LPAR,FOLLOW_LPAR_in_value1634); 
+					pushFollow(FOLLOW_term_in_value1640);
 					t=term();
 					state._fsp--;
 
-					match(input,RPAR,FOLLOW_RPAR_in_value1640); 
+					match(input,RPAR,FOLLOW_RPAR_in_value1642); 
 
 							    ast = new NotNode(t);
 							
 					}
 					break;
 				case 9 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:459:3: PRINT LPAR e= exp RPAR
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:455:3: PRINT LPAR e= exp RPAR
 					{
-					match(input,PRINT,FOLLOW_PRINT_in_value1652); 
-					match(input,LPAR,FOLLOW_LPAR_in_value1654); 
-					pushFollow(FOLLOW_exp_in_value1660);
+					match(input,PRINT,FOLLOW_PRINT_in_value1654); 
+					match(input,LPAR,FOLLOW_LPAR_in_value1656); 
+					pushFollow(FOLLOW_exp_in_value1662);
 					e=exp();
 					state._fsp--;
 
-					match(input,RPAR,FOLLOW_RPAR_in_value1662); 
+					match(input,RPAR,FOLLOW_RPAR_in_value1664); 
 
 							    ast = new PrintNode(e);
 							
 					}
 					break;
 				case 10 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:463:3: i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )?
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:459:3: callID= ID ( LPAR (farg= exp ( COMMA narg= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )?
 					{
-					i=(Token)match(input,ID,FOLLOW_ID_in_value1678); 
+					callID=(Token)match(input,ID,FOLLOW_ID_in_value1680); 
 
 								
 								//cercare la dichiarazione
 							    int j = nestingLevel;
 							    System.out.println("Nestinglevel " + nestingLevel);
-							    STentry entry = null; 
+							    STentry calledEntry = null; 
 							    
-							    while (j >= 0 && entry == null) {
-									entry=(symTable.get(j--)).get((i!=null?i.getText():null));
-									System.out.println(entry);
+							    while (j >= 0 && calledEntry == null) {
+									calledEntry = (symTable.get(j--)).get((callID!=null?callID.getText():null));
+									System.out.println(calledEntry);
 							    }
 							    
-							    if (entry == null) {
-									System.out.println("ID "+(i!=null?i.getText():null)+" at line "+(i!=null?i.getLine():0)+" not declared");
+							    if (calledEntry == null) {
+									System.out.println("ID "+(callID!=null?callID.getText():null)+" at line "+(callID!=null?callID.getLine():0)+" not declared");
 									System.exit(0);
 							    }
 							                   
-							    ast = new IdNode((i!=null?i.getText():null),entry,nestingLevel);
+							    ast = new IdNode((callID!=null?callID.getText():null), calledEntry, nestingLevel);
 							
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:481:5: ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )?
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:477:5: ( LPAR (farg= exp ( COMMA narg= exp )* )? RPAR | DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR )?
 					int alt29=3;
 					int LA29_0 = input.LA(1);
 					if ( (LA29_0==LPAR) ) {
@@ -1729,13 +1726,13 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt29) {
 						case 1 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:482:7: LPAR (fa= exp ( COMMA a= exp )* )? RPAR
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:478:7: LPAR (farg= exp ( COMMA narg= exp )* )? RPAR
 							{
-							match(input,LPAR,FOLLOW_LPAR_in_value1691); 
+							match(input,LPAR,FOLLOW_LPAR_in_value1693); 
 
 									        ArrayList<Node> argList = new ArrayList<Node>();
 									    
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:484:8: (fa= exp ( COMMA a= exp )* )?
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:480:8: (farg= exp ( COMMA narg= exp )* )?
 							int alt26=2;
 							int LA26_0 = input.LA(1);
 							if ( (LA26_0==FALSE||(LA26_0 >= ID && LA26_0 <= IF)||LA26_0==INTEGER||LA26_0==LPAR||(LA26_0 >= NEW && LA26_0 <= NULL)||LA26_0==PRINT||LA26_0==TRUE) ) {
@@ -1743,16 +1740,16 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt26) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:485:11: fa= exp ( COMMA a= exp )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:481:11: farg= exp ( COMMA narg= exp )*
 									{
-									pushFollow(FOLLOW_exp_in_value1710);
-									fa=exp();
+									pushFollow(FOLLOW_exp_in_value1712);
+									farg=exp();
 									state._fsp--;
 
 
-											            argList.add(fa);
+											            argList.add(farg);
 											        
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:487:12: ( COMMA a= exp )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:483:12: ( COMMA narg= exp )*
 									loop25:
 									while (true) {
 										int alt25=2;
@@ -1763,15 +1760,15 @@ public class FOOLParser extends Parser {
 
 										switch (alt25) {
 										case 1 :
-											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:487:13: COMMA a= exp
+											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:483:13: COMMA narg= exp
 											{
-											match(input,COMMA,FOLLOW_COMMA_in_value1714); 
-											pushFollow(FOLLOW_exp_in_value1720);
-											a=exp();
+											match(input,COMMA,FOLLOW_COMMA_in_value1716); 
+											pushFollow(FOLLOW_exp_in_value1722);
+											narg=exp();
 											state._fsp--;
 
 
-													            argList.add(a);
+													            argList.add(narg);
 													        
 											}
 											break;
@@ -1786,31 +1783,34 @@ public class FOOLParser extends Parser {
 
 							}
 
-							match(input,RPAR,FOLLOW_RPAR_in_value1743); 
+							match(input,RPAR,FOLLOW_RPAR_in_value1745); 
 
-									        ast =new CallNode((i!=null?i.getText():null),entry,argList,nestingLevel);
+									        ast =new CallNode((callID!=null?callID.getText():null), calledEntry, argList, nestingLevel);
 									    
 							}
 							break;
 						case 2 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:495:7: DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:491:7: DOT methodID= ID LPAR (callfExp= exp ( COMMA callnExpr= exp )* )? RPAR
 							{
-							match(input,DOT,FOLLOW_DOT_in_value1759); 
-							methodID=(Token)match(input,ID,FOLLOW_ID_in_value1765); 
+							match(input,DOT,FOLLOW_DOT_in_value1761); 
+							methodID=(Token)match(input,ID,FOLLOW_ID_in_value1767); 
 
-									    
-									        CTentry classCTEntry = classTable.get((methodID!=null?methodID.getText():null));
+									        ClassTypeNode classCallType = (ClassTypeNode)calledEntry.getType();
+									        // Cerco se esiste una classe del tipo dell'oggetto che fa la call del metodo 
+									        CTentry classCTEntry = classTable.get(classCallType.getClassID());
+									        
 									        ArrayList<Node> methodParlist = new ArrayList<>();
 									        
+									        // Se non esiste alcuna classe del tipo dell'oggetto, allora cacio, pepe ed erore
 									        if(classCTEntry == null){
-												System.out.println("Class id "+ (i!=null?i.getText():null) +" at line "+(i!=null?i.getLine():0)+" not declared");
+												System.out.println("Class id "+ (callID!=null?callID.getText():null) +" at line "+(callID!=null?callID.getLine():0)+" not declared");
 												System.exit(0);
 									        }
 									        
 									        //Prendo dalla ctentry la virtual table da cui poi risalgo al metodo
 									        STentry methodSTEntry = classCTEntry.getVTable().get((methodID!=null?methodID.getText():null));
 									        
-									        STentry classSTEntry = symTable.get(0).get((i!=null?i.getText():null));
+									        STentry classSTEntry = symTable.get(0).get((callID!=null?callID.getText():null));
 									        
 									        //Controllo che il metodo esista 
 									        if(methodSTEntry == null) {
@@ -1819,8 +1819,8 @@ public class FOOLParser extends Parser {
 									        }
 									             
 									    
-							match(input,LPAR,FOLLOW_LPAR_in_value1769); 
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:516:14: (callfExp= exp ( COMMA callnExpr= exp )* )?
+							match(input,LPAR,FOLLOW_LPAR_in_value1771); 
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:515:14: (callfExp= exp ( COMMA callnExpr= exp )* )?
 							int alt28=2;
 							int LA28_0 = input.LA(1);
 							if ( (LA28_0==FALSE||(LA28_0 >= ID && LA28_0 <= IF)||LA28_0==INTEGER||LA28_0==LPAR||(LA28_0 >= NEW && LA28_0 <= NULL)||LA28_0==PRINT||LA28_0==TRUE) ) {
@@ -1828,9 +1828,9 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt28) {
 								case 1 :
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:517:11: callfExp= exp ( COMMA callnExpr= exp )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:516:11: callfExp= exp ( COMMA callnExpr= exp )*
 									{
-									pushFollow(FOLLOW_exp_in_value1787);
+									pushFollow(FOLLOW_exp_in_value1789);
 									callfExp=exp();
 									state._fsp--;
 
@@ -1838,7 +1838,7 @@ public class FOOLParser extends Parser {
 											            //Aggiungo il primo parametro
 											            methodParlist.add(callfExp);
 											        
-									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:520:13: ( COMMA callnExpr= exp )*
+									// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:519:13: ( COMMA callnExpr= exp )*
 									loop27:
 									while (true) {
 										int alt27=2;
@@ -1849,10 +1849,10 @@ public class FOOLParser extends Parser {
 
 										switch (alt27) {
 										case 1 :
-											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:520:14: COMMA callnExpr= exp
+											// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:519:14: COMMA callnExpr= exp
 											{
-											match(input,COMMA,FOLLOW_COMMA_in_value1792); 
-											pushFollow(FOLLOW_exp_in_value1798);
+											match(input,COMMA,FOLLOW_COMMA_in_value1794); 
+											pushFollow(FOLLOW_exp_in_value1800);
 											callnExpr=exp();
 											state._fsp--;
 
@@ -1874,9 +1874,9 @@ public class FOOLParser extends Parser {
 							}
 
 							 
-									        ast = new ClassCallNode((i!=null?i.getText():null), (methodID!=null?methodID.getText():null), classSTEntry, methodSTEntry, methodParlist, nestingLevel); 
+									        ast = new ClassCallNode((callID!=null?callID.getText():null), (methodID!=null?methodID.getText():null), classSTEntry, methodSTEntry, methodParlist, nestingLevel); 
 									    
-							match(input,RPAR,FOLLOW_RPAR_in_value1816); 
+							match(input,RPAR,FOLLOW_RPAR_in_value1818); 
 							}
 							break;
 
@@ -2011,44 +2011,44 @@ public class FOOLParser extends Parser {
 	public static final BitSet FOLLOW_FALSE_in_value1448 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_NULL_in_value1472 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_NEW_in_value1496 = new BitSet(new long[]{0x0000000000800000L});
-	public static final BitSet FOLLOW_ID_in_value1509 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_LPAR_in_value1513 = new BitSet(new long[]{0x0000046749900000L});
-	public static final BitSet FOLLOW_exp_in_value1531 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_COMMA_in_value1536 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1542 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_RPAR_in_value1558 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LPAR_in_value1567 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1573 = new BitSet(new long[]{0x0000004000000000L});
-	public static final BitSet FOLLOW_RPAR_in_value1575 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IF_in_value1587 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1593 = new BitSet(new long[]{0x0000010000000000L});
-	public static final BitSet FOLLOW_THEN_in_value1595 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CLPAR_in_value1597 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1603 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_CRPAR_in_value1605 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_ELSE_in_value1607 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CLPAR_in_value1609 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1615 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_CRPAR_in_value1617 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NOT_in_value1630 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_LPAR_in_value1632 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_term_in_value1638 = new BitSet(new long[]{0x0000004000000000L});
-	public static final BitSet FOLLOW_RPAR_in_value1640 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRINT_in_value1652 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_LPAR_in_value1654 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1660 = new BitSet(new long[]{0x0000004000000000L});
-	public static final BitSet FOLLOW_RPAR_in_value1662 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_value1678 = new BitSet(new long[]{0x0000000040008002L});
-	public static final BitSet FOLLOW_LPAR_in_value1691 = new BitSet(new long[]{0x0000046749900000L});
-	public static final BitSet FOLLOW_exp_in_value1710 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_COMMA_in_value1714 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1720 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_RPAR_in_value1743 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DOT_in_value1759 = new BitSet(new long[]{0x0000000000800000L});
-	public static final BitSet FOLLOW_ID_in_value1765 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_LPAR_in_value1769 = new BitSet(new long[]{0x0000046749900000L});
-	public static final BitSet FOLLOW_exp_in_value1787 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_COMMA_in_value1792 = new BitSet(new long[]{0x0000042749900000L});
-	public static final BitSet FOLLOW_exp_in_value1798 = new BitSet(new long[]{0x0000004000000800L});
-	public static final BitSet FOLLOW_RPAR_in_value1816 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_value1511 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_LPAR_in_value1515 = new BitSet(new long[]{0x0000046749900000L});
+	public static final BitSet FOLLOW_exp_in_value1533 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_COMMA_in_value1538 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1544 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_RPAR_in_value1560 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAR_in_value1569 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1575 = new BitSet(new long[]{0x0000004000000000L});
+	public static final BitSet FOLLOW_RPAR_in_value1577 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IF_in_value1589 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1595 = new BitSet(new long[]{0x0000010000000000L});
+	public static final BitSet FOLLOW_THEN_in_value1597 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CLPAR_in_value1599 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1605 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_CRPAR_in_value1607 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_ELSE_in_value1609 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CLPAR_in_value1611 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1617 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_CRPAR_in_value1619 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NOT_in_value1632 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_LPAR_in_value1634 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_term_in_value1640 = new BitSet(new long[]{0x0000004000000000L});
+	public static final BitSet FOLLOW_RPAR_in_value1642 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRINT_in_value1654 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_LPAR_in_value1656 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1662 = new BitSet(new long[]{0x0000004000000000L});
+	public static final BitSet FOLLOW_RPAR_in_value1664 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_value1680 = new BitSet(new long[]{0x0000000040008002L});
+	public static final BitSet FOLLOW_LPAR_in_value1693 = new BitSet(new long[]{0x0000046749900000L});
+	public static final BitSet FOLLOW_exp_in_value1712 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_COMMA_in_value1716 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1722 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_RPAR_in_value1745 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DOT_in_value1761 = new BitSet(new long[]{0x0000000000800000L});
+	public static final BitSet FOLLOW_ID_in_value1767 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_LPAR_in_value1771 = new BitSet(new long[]{0x0000046749900000L});
+	public static final BitSet FOLLOW_exp_in_value1789 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_COMMA_in_value1794 = new BitSet(new long[]{0x0000042749900000L});
+	public static final BitSet FOLLOW_exp_in_value1800 = new BitSet(new long[]{0x0000004000000800L});
+	public static final BitSet FOLLOW_RPAR_in_value1818 = new BitSet(new long[]{0x0000000000000002L});
 }
