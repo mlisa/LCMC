@@ -15,10 +15,17 @@ public class NewNode implements Node {
 		this.fieldList = fieldList; 
 		this.classEntry = classEntry;
 	}
+	
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String fields = "";
+		
+		for (Node n : fieldList){
+			fields += n.toPrint(indent + "	");
+		}
+		
+		return "Class ID: " + this.className + "\n" + fields;
 	}
 
 	@Override

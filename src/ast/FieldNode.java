@@ -10,11 +10,14 @@ public class FieldNode implements DecNode {
 		this.id = i;
 		this.symType = t;
 	}
+	
+	public String getFieldID(){
+		return this.id;
+	}
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		return "Field ID: " + this.getFieldID() + "\n";
 	}
 
 	@Override

@@ -37,8 +37,20 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		indent += "	";
+		
+		String print = "Type: " + type.toPrint(indent);
+		
+		for (Node n : fieldList){
+			print += n.toPrint(indent);
+		}
+		
+		for (Node n : methodList){
+			print += n.toPrint(indent);
+		}
+		
+		
+		return print;
 	}
 
 	@Override

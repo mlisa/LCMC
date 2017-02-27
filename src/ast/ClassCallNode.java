@@ -22,11 +22,11 @@ public class ClassCallNode implements Node {
 		this.nestingLevel = nestingLevel; 
 	}
 	
-	public String getClassId() {
+	public String getClassID() {
 		return classId;
 	}
 
-	public String getMethodId() {
+	public String getMethodID() {
 		return methodId;
 	}
 
@@ -40,8 +40,17 @@ public class ClassCallNode implements Node {
 	
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String parameters = "";
+		
+		for(Node n : parlist){
+			parameters += n.toPrint(indent + "	"); 			
+		}
+		
+		return "Class ID: " + this.getClassID() + "\n" +
+				"CalledMethod ID: " + this.getMethodID() + "\n" +
+				parameters +
+				"NestingLevel: " + this.getNestingLevel() + "\n";
 	}
 
 	@Override

@@ -1,11 +1,15 @@
 package ast;
 
 public class EmptyTypeNode implements Node {
-
+	
+	public EmptyTypeNode() {
+		
+	}
+	
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "EmptyTypeNode:Null\n";
 	}
 
 	@Override

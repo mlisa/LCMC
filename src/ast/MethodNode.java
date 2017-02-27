@@ -40,7 +40,7 @@ public class MethodNode implements DecNode {
 		return parlist;
 	}
 
-	public String getId() {
+	public String getMethodID() {
 		return id;
 	}
 
@@ -55,8 +55,7 @@ public class MethodNode implements DecNode {
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		return "Method ID: " + this.getMethodID() + "\n";
 	}
 
 	@Override

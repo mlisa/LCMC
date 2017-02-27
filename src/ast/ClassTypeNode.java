@@ -14,8 +14,8 @@ public class ClassTypeNode implements Node {
 	
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "Class ID: " + this.getClassID() +"\n";
 	}
 
 	@Override
