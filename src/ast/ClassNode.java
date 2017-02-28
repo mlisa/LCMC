@@ -1,7 +1,6 @@
 package ast;
 
 import java.util.ArrayList;
-
 import lib.FOOLlib;
 
 public class ClassNode implements DecNode {
@@ -54,29 +53,39 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public Node typeCheck() {
-		//Controllo tipo per i campi 
-		for(int i=0; i < superEntry.getAllFields().size(); i++){
-			Node superFieldType = ((FieldNode)superEntry.getAllFields().get(i)).getSymType();
-			Node classFieldType = ((FieldNode)classEntry.getAllFields().get(i)).getSymType();
-			
-			if(!FOOLlib.isSubtype(classFieldType, superFieldType)){
-				System.out.println("Errore");
-				System.exit(1);
-			}
+		
+		for (Node m : methodList){
+			m.typeCheck();
 		}
 		
-		//Controllo i tipi per i metodi
-		for(int i=0; i < superEntry.getAllMethods().size(); i++){
-			Node superMethodType = ((MethodNode)superEntry.getAllMethods().get(i)).getSymType();
-			Node classMethodType = ((MethodNode)classEntry.getAllMethods().get(i)).getSymType();
+		//
+		
+		// CONTROLLO OVERRIDE
+		if (superEntry != null){
+			// Controllo tipo per i campi 
+			for(int i = 0; i < superEntry.getAllFields().size(); i++){
+				Node superFieldType = ((FieldNode)superEntry.getAllFields().get(i)).getSymType();
+				Node classFieldType = ((FieldNode)classEntry.getAllFields().get(i)).getSymType();
+				
+				if(!FOOLlib.isSubtype(classFieldType, superFieldType)){
+					System.out.println("Errore");
+					System.exit(1);
+				}
+			}
 			
-			if(!FOOLlib.isSubtype(classMethodType, superMethodType)){
-				System.out.println("Errore");
-				System.exit(1);
+			// Controllo i tipi per i metodi
+			for(int i = 0; i < superEntry.getAllMethods().size(); i++){
+				Node superMethodType = ((MethodNode)superEntry.getAllMethods().get(i)).getSymType();
+				Node classMethodType = ((MethodNode)classEntry.getAllMethods().get(i)).getSymType();
+				
+				if(!FOOLlib.isSubtype(classMethodType, superMethodType)){
+					System.out.println("Errore");
+					System.exit(1);
+				}
 			}
 		}
-		
-		//Valore di ritorno non utilizzato
+
+		// Valore di ritorno non utilizzato
 		return null;
 	}
 

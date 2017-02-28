@@ -82,8 +82,40 @@ public class ClassCallNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String code = new String("lfp\n");
+		// Genero il codice per ogni parametro
+		for (Node arg : parlist){
+			code.concat(arg.codeGeneration());
+		}
+		
+		String jumpsToAR = new String("");
+		
+		// Per prendere il codice dell'AR relativo alla classe in cui è dichiarato il metodo
+		// devo fare tanti salti quanti sono i nestinglevel di differenza
+		// AKA Risalita Catena Statica
+		for (int jump = 0; jump < nestingLevel - classEntry.getNestinglevel(); jump ++){
+			jumpsToAR.concat("lw\n");
+		}
+		
+		// Prendo l'indirizzo dell'AL = Indirizzo dell'Object Pointer
+		code.concat("lfp\n")
+			.concat(jumpsToAR)
+			.concat("push " + classEntry.getOffset() + "\n")
+			.concat("add\n")
+			.concat("lw\n");
+		
+		// Recupero l'indirizzo del metodo richiamato dalla classe
+		code.concat("lfp\n")
+			.concat(jumpsToAR)
+			.concat("push " + classEntry.getOffset() + "\n")
+			.concat("add\n")
+			.concat("lw\n")
+			.concat("push " + methodEntry.getOffset() + "\n")
+			.concat("add\n")
+			.concat("lw\n");
+		
+		return code.concat("js\n");
 	}
 
 }
