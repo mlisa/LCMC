@@ -17,7 +17,7 @@ public class FieldNode implements DecNode {
 
 	@Override
 	public String toPrint(String indent) {
-		return "Field ID: " + this.getFieldID() + "\n";
+		return indent + "Field ID: " + this.getFieldID() + "\n";
 	}
 
 	@Override

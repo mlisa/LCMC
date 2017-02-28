@@ -55,7 +55,7 @@ public class MethodNode implements DecNode {
 
 	@Override
 	public String toPrint(String indent) {
-		return "Method ID: " + this.getMethodID() + "\n";
+		return indent + "Method ID: " + this.getMethodID() + "\n";
 	}
 
 	@Override

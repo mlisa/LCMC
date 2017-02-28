@@ -25,7 +25,7 @@ public class NewNode implements Node {
 			fields += n.toPrint(indent + "	");
 		}
 		
-		return "Class ID: " + this.className + "\n" + fields;
+		return indent + "Class ID: " + this.className + "\n" + fields;
 	}
 
 	@Override

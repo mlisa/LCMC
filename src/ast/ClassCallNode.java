@@ -47,10 +47,10 @@ public class ClassCallNode implements Node {
 			parameters += n.toPrint(indent + "	"); 			
 		}
 		
-		return "Class ID: " + this.getClassID() + "\n" +
-				"CalledMethod ID: " + this.getMethodID() + "\n" +
+		return indent + "Class ID: " + this.getClassID() + "\n" +
+				indent + "CalledMethod ID: " + this.getMethodID() + "\n" +
 				parameters +
-				"NestingLevel: " + this.getNestingLevel() + "\n";
+				indent +"NestingLevel: " + this.getNestingLevel() + "\n";
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class ClassTypeNode implements Node {
 	@Override
 	public String toPrint(String indent) {
 		
-		return "Class ID: " + this.getClassID() +"\n";
+		return indent + "Class ID: " + this.getClassID() +"\n";
 	}
 
 	@Override

@@ -37,16 +37,15 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public String toPrint(String indent) {
-		indent += "	";
 		
-		String print = "Type: " + type.toPrint(indent);
+		String print = indent + "Type: " + type.toPrint(indent + "	");
 		
 		for (Node n : fieldList){
-			print += n.toPrint(indent);
+			print += n.toPrint(indent + "	");
 		}
 		
 		for (Node n : methodList){
-			print += n.toPrint(indent);
+			print += n.toPrint(indent + "	");
 		}
 		
 		
