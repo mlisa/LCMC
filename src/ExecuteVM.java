@@ -65,13 +65,17 @@ public class ExecuteVM {
             address = code[ip++];
             v1=pop();
             v2=pop();
-            if (v2 == v1) ip = address;
+            if (v2 == v1) {
+            	ip = address;
+            }
             break;
           case SVMParser.BRANCHLESSEQ :
             address = code[ip++];
             v1=pop();
             v2=pop();
-            if (v2 <= v1) ip = address;
+            if (v2 <= v1) {
+            	ip = address;
+            }
             break;
           case SVMParser.JS : //
             address = pop();

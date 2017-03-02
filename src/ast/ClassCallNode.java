@@ -84,9 +84,10 @@ public class ClassCallNode implements Node {
 	public String codeGeneration() {
 		
 		String code = new String("lfp\n");
+		
 		// Genero il codice per ogni parametro
 		for (Node arg : parlist){
-			code.concat(arg.codeGeneration());
+			code = code.concat(arg.codeGeneration());
 		}
 		
 		String jumpsToAR = new String("");
@@ -95,20 +96,20 @@ public class ClassCallNode implements Node {
 		// devo fare tanti salti quanti sono i nestinglevel di differenza
 		// AKA Risalita Catena Statica
 		for (int jump = 0; jump < nestingLevel - classEntry.getNestinglevel(); jump ++){
-			jumpsToAR.concat("lw\n");
+			jumpsToAR = jumpsToAR.concat("lw\n");
 		}
 		
 		// Prendo l'indirizzo dell'AL = Indirizzo dell'Object Pointer
-		code.concat("lfp\n")
-			.concat(jumpsToAR)
-			.concat("push " + classEntry.getOffset() + "\n")
+		code = code.concat("push " + classEntry.getOffset() + "\n")
+			.concat("lfp\n")
+			.concat(jumpsToAR)	
 			.concat("add\n")
 			.concat("lw\n");
 		
 		// Recupero l'indirizzo del metodo richiamato dalla classe
-		code.concat("lfp\n")
-			.concat(jumpsToAR)
-			.concat("push " + classEntry.getOffset() + "\n")
+		code = code.concat("push " + classEntry.getOffset() + "\n")
+			.concat("lfp\n")
+			.concat(jumpsToAR)				
 			.concat("add\n")
 			.concat("lw\n")
 			.concat("push " + methodEntry.getOffset() + "\n")

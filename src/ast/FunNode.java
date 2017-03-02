@@ -31,13 +31,21 @@ public class FunNode implements DecNode {
   }
   
   public String toPrint(String s) {
+	  
 	String parlstr="";
-	for (Node par:parlist)
-	  parlstr+=par.toPrint(s+"  ");
+	
+	for (Node par:parlist){
+		parlstr+=par.toPrint(s+"  ");
+	}
+	  
 	String declstr="";
-	if (declist!=null) 
-	  for (Node dec:declist)
-	    declstr+=dec.toPrint(s+"  ");
+	
+	if (declist!=null){
+		for (Node dec:declist) {
+			declstr+=dec.toPrint(s+"  ");
+		}
+	}
+	  
     return s+"Fun:" + id +"\n"
 		   +retType.toPrint(s+"  ")
 		   +parlstr
@@ -87,7 +95,7 @@ due cose sono messe nello stack:
 	    	popParl+="pop\n";
 	    }
 	    
-	    String funl=FOOLlib.freshFunLabel(); 
+	    String funl = FOOLlib.freshFunLabel(); 
 	    
 	    FOOLlib.putCode(funl+":\n"+
 	            "cfp\n"+ //setta $fp a $sp

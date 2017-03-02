@@ -28,7 +28,7 @@ public class FieldNode implements DecNode {
 
 	@Override
 	public String codeGeneration() {
-		return null;
+		return "";
 	}
 
 	@Override

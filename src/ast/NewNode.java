@@ -57,12 +57,12 @@ public class NewNode implements Node {
 		
 		// Esecuzione CodeGen di tutti gli argomenti
 		for (Node f : fieldList){
-			code.concat(f.codeGeneration());
+			code = code.concat(f.codeGeneration());
 		}
 		
 		// Caricamento argomenti sull'heap secondo il layout degli oggetti 
 		for (int index = 0; index < this.fieldList.size(); index++){
-			code.concat("lhp\n")	// Alloco spazio per l'heap = Pusho nello stack l'indirizzo dell'heap pointer
+			code = code.concat("lhp\n")	// Alloco spazio per l'heap = Pusho nello stack l'indirizzo dell'heap pointer
 				.concat("sw\n")		// Poppo dallo stack l'indirizzo dell'hp e il valore del argomento 
 									// => Carico l'argomento nell'indirizzo del primo valore poppato (HP address) 
 				.concat("lhp\n")	// Pusho nuovamente l'indirizzo dell'HP nello stack 
@@ -71,11 +71,11 @@ public class NewNode implements Node {
 				.concat("shp\n");	// Aggiorno effettivamente il valore dell'HP, salvandolo nell'HP register
 		}
 		
-		code.concat("lhp\n");		// Faccio coincidere Object Pointer e HP -> Salvo OP sullo stack
+		code = code.concat("lhp\n");		// Faccio coincidere Object Pointer e HP -> Salvo OP sullo stack
 		
 		// Pusho sull'heap le label dei metodi sempre secondo l'Obj Layout 
 		for (Node m : classEntry.allMethods){
-			code.concat("push" + ((MethodNode)m).getLabel() + "\n")
+			code = code.concat("push" + ((MethodNode)m).getLabel() + "\n")
 				.concat("lhp\n")
 				.concat("sw\n")
 				.concat("lhp\n")
@@ -86,7 +86,7 @@ public class NewNode implements Node {
 		
 		if (classEntry.allMethods.isEmpty()){
 			// Devo gestire le classi che non possiedono metodi!
-			code.concat("lhp\n")
+			code = code.concat("lhp\n")
 				.concat("push 1\n")
 				.concat("add")
 				.concat("shp\n");

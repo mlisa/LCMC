@@ -47,45 +47,50 @@ public class CallNode implements Node {
 	}
 
 	public String codeGeneration() {
-		String parCode = "";
+
+		String code = "lfp\n";
+
 		for (int i = parlist.size() - 1; i >= 0; i--)
-			parCode += parlist.get(i).codeGeneration();
+			code += parlist.get(i).codeGeneration();
 
 		String getAR = "";
 		for (int i = 0; i < nestinglevel - entry.getNestinglevel(); i++)
 			getAR += "lw\n";
-		
-		if(entry.isMethod()){
-			
-			return "lfp\n"+ 			//CL
-		           parCode+
-		           "lfp\n" + getAR + 	//setto AL risalendo la catena statica
-		               					// ora recupero l'indirizzo a cui saltare e lo metto sullo stack
-		           "push " + entry.getOffset() + "\n"+ //metto offset sullo stack
-		           "lfp\n" + getAR + 	//risalgo la catena statica
-		           "add\n" + 
-		           "lw\n" + 			//carico sullo stack il valore all'indirizzo ottenuto
-		           "js\n";
-			
-		} else {
-			return "lfp\n" + // CL
-					parCode + "lfp\n" + getAR + // setto AL risalendo la catena
-												// statica
-					// ora recupero l'indirizzo a cui saltare e lo metto sullo stack
-					"push " + entry.getOffset() + "\n" + // metto offset sullo stack
-															// (per il nuovo access
-															// link)
-					"lfp\n" + getAR + // risalgo la catena statica
-					"add\n" + "lw\n" + // carico sullo stack il valore all'indirizzo
-										// ottenuto
-					"push " + (entry.getOffset() - 1) + "\n" + // metto offset-1
-																// sullo stack
-					"lfp\n" + getAR + // risalgo la catena statica
-					"add\n" + "lw\n" + // carico sullo stack il valore all'indirizzo
-										// ottenuto
-					"js\n";
-		}
 
+		if (entry.isMethod()) {
+
+			code += // CL
+					"lfp\n" +
+					// setto AL risalendo la catena statica
+					// ora recupero l'indirizzo a cui
+					// saltare e lo metto sullo stack
+					getAR +
+					// metto offset sullo stack
+					"push " + entry.getOffset() + "\n" + 
+					"lfp\n" +
+					// risalgo la catena statica
+					getAR + 
+					"add\n" +
+					// carico sullo stack il valore all'indirizzo ottenuto
+					"lw\n";	
+		} else {
+			code += // metto offset sullo stack (per il nuovo access link)
+					"push " + entry.getOffset() + "\n" + 
+					"lfp\n" + 
+					// risalgo la catena statica
+					getAR + 
+					"add\n" +
+					// carico sullo stack il valore all'indirizzo ottenuto 
+					"lw\n" + 
+					// metto offset-1 sullo stack
+					"push " + (entry.getOffset() - 1) + "\n" + 
+					"lfp\n" + 
+					getAR + // risalgo la catena statica
+					"add\n" + 
+					"lw\n"; // carico sullo stack il valore all'indirizzo ottenuto
+		}
+		
+		return code + "js\n";
 		
 	}
 

@@ -81,26 +81,33 @@ public class MethodNode implements DecNode {
 		(torna codice vuoto)*/
 		
 		
-		String declCode="";
-	    if (declist!=null) for (Node dec:declist) 
-		    declCode+=dec.codeGeneration();
-	    
-	    String popDecl="";
-	    if (declist!=null) for (Node dec:declist){
-	    	//Controlla che sia di tipo funzionale, se lo è pop due volte 
-	    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
-		    	popDecl+="pop\n";
+		String declCode = "";
+	    if (declist != null){
+	    	for (Node dec : declist){
+	    		declCode += dec.codeGeneration();
 	    	}
-	    	popDecl+="pop\n";
+	    }
+		    
+	    // Allocazione elementi dichiarati nel corpo del metodo
+	    String popDecl = "";
+	    if (declist != null){
+	    	for (Node dec : declist){
+	    		//Controlla che sia di tipo funzionale, se lo è pop due volte 
+		    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
+			    	popDecl += "pop\n";
+		    	}
+		    	popDecl += "pop\n";
+	    	}
 	    }
 	    
-	    String popParl="";
-	    for (Node dec:parlist){ 
-	    	//Controlla che sia di tipo funzionale, se lo è pop due volte 
+	    // Allocazione Parametri passati al metodo
+	    String popParl = "";
+	    for (Node dec : parlist){ 
+	    	// Se i parametri sono di tipo funzionale, se lo è pop due volte 
 	    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
-		    	popParl+="pop\n";
+		    	popParl += "pop\n";
 	    	}
-	    	popParl+="pop\n";
+	    	popParl += "pop\n";
 	    }
 	    
 	    

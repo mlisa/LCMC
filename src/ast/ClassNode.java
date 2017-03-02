@@ -91,6 +91,7 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public String codeGeneration() {
+		System.out.println("");
 		for(Node n : this.methodList){
 			((MethodNode)n).setLabel(FOOLlib.freshLabel());
 		}

@@ -111,7 +111,7 @@ public class CTentry {
 			
 			// inserisco l'entry nella virtual table
 			this.vTable.put(name, newEntry);
-			System.out.println("field: " + name + "offset: " + offset);
+			
 			//Controllo che non ci siano già dichiarati dei campi all'offset indicato, altrimenti lo aggiungo 		
 			if(!this.locals.add(offset)){
 				// ritorna true se non era presente
@@ -149,7 +149,7 @@ public class CTentry {
 		// inserisco l'entry nella virtual table come metodo
 		newEntry.setAsMethod();
 		this.vTable.put(name, newEntry);
-		System.out.println("method: " + name + "offset: " + offset);
+		
 		//Controllo che non ci siano già dichiarati dei metodi all'offset indicato, altrimenti lo aggiungo 
 		if(!this.locals.add(offset)){		
 			// ritorna true se non era presente

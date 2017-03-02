@@ -1,4 +1,5 @@
 push 0
+
 lfp
  push function0
 lfp
@@ -11,16 +12,19 @@ lfp
 lfp
  push function10
 lfp
+push -2
+lfp
+add
+lw
 push -3
 lfp
 add
 lw
-lfp
-push -7
+push -11
 lfp
 add
 lw
-push -8
+push -12
 lfp
 add
 lw
@@ -31,13 +35,16 @@ halt
 function0:
 cfp
 lra
+push 2
+lfp
+add
+lw
 push 1
 lfp
 add
 lw
 lfp
 push 4
-lfp
 push 1
 lfp
 add
@@ -49,7 +56,6 @@ lw
 js
 lfp
 push 6
-lfp
 push -2
 lfp
 add
@@ -77,6 +83,10 @@ js
 function1:
 cfp
 lra
+push 2
+lfp
+add
+lw
 push 1
 lfp
 add
@@ -124,8 +134,6 @@ push 1
 lfp
 add
 lw
-lfp
-lw
 push -2
 lfp
 lw
@@ -160,12 +168,11 @@ push 1
 lfp
 add
 lw
-lfp
-push -3
+push -4
 lfp
 add
 lw
-push -4
+push -5
 lfp
 add
 lw
@@ -211,8 +218,6 @@ push 1
 lfp
 add
 lw
-lfp
-lw
 push -2
 lfp
 lw
@@ -242,7 +247,7 @@ lfp
  push function5
 lfp
  push function6
-push -5
+push -8
 lfp
 lw
 add
@@ -285,8 +290,6 @@ push 1
 lfp
 add
 lw
-lfp
-lw
 push -2
 lfp
 lw
@@ -327,7 +330,16 @@ lfp
 lw
 add
 lw
+push -6
 lfp
+lw
+add
+lw
+push -7
+lfp
+lw
+add
+lw
 push 1
 lfp
 add

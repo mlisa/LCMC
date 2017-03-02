@@ -9,7 +9,7 @@ public class EmptyNode implements Node {
 	@Override
 	public String toPrint(String indent) {
 		
-		return "EmptyNode:Null\n";
+		return indent+"EmptyNode:Null\n";
 	}
 
 	@Override

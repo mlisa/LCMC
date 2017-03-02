@@ -26,7 +26,7 @@ grammar FOOL;
  * PARSER RULES
  *------------------------------------------------------------------*/
 prog returns [Node ast] :
-	    e=exp SEMIC {
+	    e = exp SEMIC {
 	        $ast = new ProgNode($e.ast);
 	    } | 
 	    
@@ -38,11 +38,11 @@ prog returns [Node ast] :
 			
 	    }
 	    // Posso avere una lista di classi o di dichiarazioni (func o var) 
-	    c=cllist d=declist 
-	    IN e=exp SEMIC {
+	    c = cllist d = declist 
+	    IN e = exp SEMIC {
 	    
 		    symTable.remove(nestingLevel--);
-		    $ast = new ProgLetInNode($d.astlist,$e.ast);
+		    $ast = new ProgLetInNode($c.astlist, $d.astlist, $e.ast);
 		    
 	    }
     ;
@@ -207,7 +207,7 @@ declist returns [ArrayList<Node> astlist] : {
 		    
 		    // Global AR -> RetAddr (RA) at -1
 		    // Layout AR -> AccLink (AL) at 0 && RA at -1
-		    int offset=-2; 
+		    int offset = -2; 
 	    } ( // Deve esistere almeno 1 tra una funzione o una variabile dichiarate
 	        (  // Nel Let posso dichiarare Variabili o Funzioni, in qualsiasi ordine
 	            //----------> Variables Declaration (0 o +)
@@ -234,9 +234,9 @@ declist returns [ArrayList<Node> astlist] : {
 						//Prendo la symbol table attuale
 						HashMap<String,STentry> hm = symTable.get(nestingLevel);
 						//Creo una nuova entry
-						STentry entry = new STentry(nestingLevel, offset--); //separo introducendo "entry"
+						STentry entry = new STentry(nestingLevel, offset); //separo introducendo "entry"
 						
-						offset--; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
+						offset -= 2; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
 						
 						//Controllo che non sia già dichiarata una funzione con lo stesso nome 
 						if (hm.put($funID.text,entry) != null){ 
@@ -259,8 +259,6 @@ declist returns [ArrayList<Node> astlist] : {
 							//Aggiungo il primo parametro
 							parTypes.add($parfType.ast); 
 							f.addPar(new ParNode($parfID.text, $parfType.ast));
-							
-							//f.addSymType($parfType.ast);
 							
 							// Occorre controllare che il tipo della funzione sia ArrowTypeNode 
                             // poichè il tal caso devo riservare 2 spazi!
@@ -460,12 +458,10 @@ value returns [Node ast] :
 			
 			//cercare la dichiarazione
 		    int j = nestingLevel;
-		    System.out.println("Nestinglevel " + nestingLevel);
 		    STentry calledEntry = null; 
 		    
 		    while (j >= 0 && calledEntry == null) {
 				calledEntry = (symTable.get(j--)).get($callID.text);
-				System.out.println(calledEntry);
 		    }
 		    
 		    if (calledEntry == null) {

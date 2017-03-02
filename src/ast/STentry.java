@@ -45,7 +45,9 @@ public class STentry {
 	}
 
 	public String toPrint(String s) { //
-		return s + "STentry: nestlev " + Integer.toString(nl) + "\n" + s + "STentry: type\n" + type.toPrint(s + "  ")
-				+ s + "STentry: offset " + Integer.toString(offset) + "\n";
+		return s + "STentry: nestlev " + Integer.toString(nl) + "\n" + 
+			s + "STentry: type\n" + type.toPrint(s + "  ") + 
+			s + "STentry: offset " + Integer.toString(offset) + "\n" +
+			s + "STentry: isMethod " + this.isMethod() + "\n";
 	}
 }
