@@ -23,17 +23,19 @@ public class NotNode implements Node {
 	}
 
 	public String codeGeneration() {
-		String l1 = FOOLlib.freshLabel();
-		String l2 = FOOLlib.freshLabel();
+		
+		String labelIsOneThenZero = FOOLlib.freshLabel();
+		String labelIsZeroThenOne = FOOLlib.freshLabel();
+		
 		return x.codeGeneration() + "push 1\n" + 
-				"beq " + l1 + "\n" +
+				"beq " + labelIsOneThenZero + "\n" +
 				// se sono diversi (quindi era 0)
 				"push 1 \n" + 
-				"b " + l2 + "\n" + 
-				l1 + ":\n" +
+				"b " + labelIsZeroThenOne + "\n" + 
+				labelIsOneThenZero + ":\n" +
 				// se sono uguali (quindi era 1)
 				"push 0 \n" + 
-				l2 + ":\n";
+				labelIsZeroThenOne + ":\n";
 	}
 
 }

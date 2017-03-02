@@ -26,7 +26,20 @@ public class OrNode implements Node {
 	}
 
 	public String codeGeneration() {
-		return left.codeGeneration() + right.codeGeneration() + "or \n";
+		
+		String labelTrue = FOOLlib.freshLabel();
+		String labelFalse = FOOLlib.freshLabel();
+		
+		return left.codeGeneration() + 
+				right.codeGeneration() + 
+				"add\n" +
+				"push 0\n" +
+				"beq " + labelFalse + "\n" +
+				"push 1\n" +
+				"b " + labelTrue + "\n" +
+				labelFalse + ":\n" + 
+				"push 0\n" +
+				labelTrue + ":\n";
 	}
 
 }

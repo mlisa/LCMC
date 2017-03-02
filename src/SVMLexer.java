@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g 2017-03-01 07:58:12
+// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g 2017-03-02 11:57:33
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -64,8 +64,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = PUSH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:69:9: ( 'push' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:69:11: 'push'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:74:9: ( 'push' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:74:11: 'push'
 			{
 			match("push"); 
 
@@ -85,8 +85,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = POP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:70:6: ( 'pop' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:70:8: 'pop'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:75:6: ( 'pop' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:75:8: 'pop'
 			{
 			match("pop"); 
 
@@ -106,8 +106,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = ADD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:71:6: ( 'add' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:71:8: 'add'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:76:6: ( 'add' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:76:8: 'add'
 			{
 			match("add"); 
 
@@ -127,8 +127,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = SUB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:72:6: ( 'sub' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:72:8: 'sub'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:77:6: ( 'sub' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:77:8: 'sub'
 			{
 			match("sub"); 
 
@@ -148,8 +148,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = MULT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:73:7: ( 'mult' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:73:9: 'mult'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:78:7: ( 'mult' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:78:9: 'mult'
 			{
 			match("mult"); 
 
@@ -169,8 +169,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:74:6: ( 'div' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:74:8: 'div'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:79:6: ( 'div' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:79:8: 'div'
 			{
 			match("div"); 
 
@@ -190,8 +190,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:75:6: ( 'and' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:75:8: 'and'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:80:6: ( 'and' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:80:8: 'and'
 			{
 			match("and"); 
 
@@ -211,8 +211,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:76:5: ( 'or' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:76:7: 'or'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:81:5: ( 'or' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:81:7: 'or'
 			{
 			match("or"); 
 
@@ -232,8 +232,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:77:6: ( 'not' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:77:8: 'not'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:82:6: ( 'not' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:82:8: 'not'
 			{
 			match("not"); 
 
@@ -253,8 +253,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:78:9: ( 'sw' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:78:11: 'sw'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:83:9: ( 'sw' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:83:11: 'sw'
 			{
 			match("sw"); 
 
@@ -274,8 +274,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:79:8: ( 'lw' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:79:10: 'lw'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:84:8: ( 'lw' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:84:10: 'lw'
 			{
 			match("lw"); 
 
@@ -295,8 +295,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:80:9: ( 'b' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:80:11: 'b'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:85:9: ( 'b' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:85:11: 'b'
 			{
 			match('b'); 
 			}
@@ -315,8 +315,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCHEQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:81:10: ( 'beq' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:81:12: 'beq'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:86:10: ( 'beq' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:86:12: 'beq'
 			{
 			match("beq"); 
 
@@ -336,8 +336,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCHLESSEQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:82:13: ( 'bleq' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:82:14: 'bleq'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:87:13: ( 'bleq' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:87:14: 'bleq'
 			{
 			match("bleq"); 
 
@@ -357,8 +357,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCHGEQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:83:10: ( 'bgeq' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:83:11: 'bgeq'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:88:10: ( 'bgeq' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:88:11: 'bgeq'
 			{
 			match("bgeq"); 
 
@@ -378,8 +378,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = JS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:84:5: ( 'js' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:84:7: 'js'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:89:5: ( 'js' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:89:7: 'js'
 			{
 			match("js"); 
 
@@ -399,8 +399,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADRA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:85:9: ( 'lra' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:85:11: 'lra'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:90:9: ( 'lra' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:90:11: 'lra'
 			{
 			match("lra"); 
 
@@ -420,8 +420,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STORERA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:86:10: ( 'sra' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:86:12: 'sra'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:91:10: ( 'sra' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:91:12: 'sra'
 			{
 			match("sra"); 
 
@@ -441,8 +441,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADRV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:87:9: ( 'lrv' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:87:11: 'lrv'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:92:9: ( 'lrv' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:92:11: 'lrv'
 			{
 			match("lrv"); 
 
@@ -462,8 +462,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STORERV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:88:10: ( 'srv' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:88:12: 'srv'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:93:10: ( 'srv' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:93:12: 'srv'
 			{
 			match("srv"); 
 
@@ -483,8 +483,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:89:9: ( 'lfp' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:89:11: 'lfp'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:94:9: ( 'lfp' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:94:11: 'lfp'
 			{
 			match("lfp"); 
 
@@ -504,8 +504,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:90:10: ( 'sfp' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:90:12: 'sfp'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:95:10: ( 'sfp' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:95:12: 'sfp'
 			{
 			match("sfp"); 
 
@@ -525,8 +525,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = COPYFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:91:10: ( 'cfp' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:91:12: 'cfp'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:96:10: ( 'cfp' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:96:12: 'cfp'
 			{
 			match("cfp"); 
 
@@ -546,8 +546,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADHP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:92:9: ( 'lhp' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:92:11: 'lhp'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:97:9: ( 'lhp' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:97:11: 'lhp'
 			{
 			match("lhp"); 
 
@@ -567,8 +567,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREHP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:93:10: ( 'shp' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:93:12: 'shp'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:98:10: ( 'shp' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:98:12: 'shp'
 			{
 			match("shp"); 
 
@@ -588,8 +588,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:94:8: ( 'print' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:94:10: 'print'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:8: ( 'print' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:10: 'print'
 			{
 			match("print"); 
 
@@ -609,8 +609,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = HALT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:95:7: ( 'halt' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:95:9: 'halt'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:100:7: ( 'halt' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:100:9: 'halt'
 			{
 			match("halt"); 
 
@@ -630,8 +630,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = COL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:97:6: ( ':' )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:97:8: ':'
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:102:6: ( ':' )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:102:8: ':'
 			{
 			match(':'); 
 			}
@@ -650,8 +650,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LABEL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:98:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:98:10: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:103:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:103:10: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -661,7 +661,7 @@ public class SVMLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:98:29: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:103:29: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -706,7 +706,7 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='0') ) {
@@ -724,15 +724,15 @@ public class SVMLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:11: '0'
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:11: '0'
 					{
 					match('0'); 
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
 					{
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:17: ( '-' )?
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:17: ( '-' )?
 					int alt2=2;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0=='-') ) {
@@ -740,7 +740,7 @@ public class SVMLexer extends Lexer {
 					}
 					switch (alt2) {
 						case 1 :
-							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:18: '-'
+							// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:18: '-'
 							{
 							match('-'); 
 							}
@@ -748,8 +748,8 @@ public class SVMLexer extends Lexer {
 
 					}
 
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:24: ( '1' .. '9' ) ( '0' .. '9' )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:24: ( '1' .. '9' ) ( '0' .. '9' )*
 					{
 					if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -759,7 +759,7 @@ public class SVMLexer extends Lexer {
 						recover(mse);
 						throw mse;
 					}
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:99:34: ( '0' .. '9' )*
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:104:34: ( '0' .. '9' )*
 					loop3:
 					while (true) {
 						int alt3=2;
@@ -808,10 +808,10 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = WHITESP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:101:10: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:101:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:106:10: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:106:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			{
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:101:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:106:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			int cnt5=0;
 			loop5:
 			while (true) {
@@ -861,8 +861,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = ERR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:103:9: ( . )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:103:11: .
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:110:9: ( . )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\SVM.g:110:11: .
 			{
 			matchAny(); 
 			 System.err.println("Invalid char: "+getText()); lexicalErrors++; _channel=HIDDEN; 

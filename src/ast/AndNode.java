@@ -26,7 +26,19 @@ public class AndNode implements Node {
 	}
 
 	public String codeGeneration() {
-		return left.codeGeneration() + right.codeGeneration() + "and \n";
+		String labelTrue = FOOLlib.freshLabel();
+		String labelFalse = FOOLlib.freshLabel();
+		
+		return left.codeGeneration() + 
+				right.codeGeneration() + 
+				"add \n" +
+				"push 2\n" +
+				"beq " + labelTrue + "\n" +
+				"push 0\n" +
+				"b " + labelFalse + "\n"+
+				labelTrue + ":\n" + 
+				"push 1\n" +
+				labelFalse + ":\n";
 	}
 
 }
