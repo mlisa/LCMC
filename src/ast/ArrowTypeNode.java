@@ -33,7 +33,7 @@ public class ArrowTypeNode implements Node {
 
   //non utilizzato
   public String codeGeneration() {
-		return "";
+		return null;
   }
 
 }  

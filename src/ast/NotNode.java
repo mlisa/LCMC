@@ -4,21 +4,29 @@ import lib.FOOLlib;
 
 public class NotNode implements Node {
 
-	private Node x;
+	private Node term;
 
 	public NotNode(Node x) {
-		this.x = x;
+		this.term = x;
 	}
 
 	public String toPrint(String s) {
-		return s + "Not \n" + x.toPrint(s + "  ");
+		return s + "Not \n" + term.toPrint(s + "  ");
 	}
 
 	public Node typeCheck() {
-		if (!(FOOLlib.isSubtype(x.typeCheck(), new BoolTypeNode()))) {
+		
+		if (term instanceof IntNode && 
+				(((IntNode) term).getValue() == 1 || ((IntNode) term).getValue() == 0)) {
+
+					return new BoolTypeNode();
+		}
+		
+		if (!(FOOLlib.isSubtype(term.typeCheck(), new BoolTypeNode()))) {
 			System.out.println("Non bool in  not");
 			System.exit(0);
 		}
+		
 		return new BoolTypeNode();
 	}
 
@@ -27,7 +35,7 @@ public class NotNode implements Node {
 		String labelIsOneThenZero = FOOLlib.freshLabel();
 		String labelIsZeroThenOne = FOOLlib.freshLabel();
 		
-		return x.codeGeneration() + "push 1\n" + 
+		return term.codeGeneration() + "push 1\n" + 
 				"beq " + labelIsOneThenZero + "\n" +
 				// se sono diversi (quindi era 0)
 				"push 1 \n" + 

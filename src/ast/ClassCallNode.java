@@ -87,7 +87,7 @@ public class ClassCallNode implements Node {
 		
 		// Genero il codice per ogni parametro
 		for (Node arg : parlist){
-			code = code.concat(arg.codeGeneration());
+			code += arg.codeGeneration();
 		}
 		
 		String jumpsToAR = new String("");
@@ -96,27 +96,27 @@ public class ClassCallNode implements Node {
 		// devo fare tanti salti quanti sono i nestinglevel di differenza
 		// AKA Risalita Catena Statica
 		for (int jump = 0; jump < nestingLevel - classEntry.getNestinglevel(); jump ++){
-			jumpsToAR = jumpsToAR.concat("lw\n");
+			jumpsToAR += "lw\n";
 		}
 		
 		// Prendo l'indirizzo dell'AL = Indirizzo dell'Object Pointer
-		code = code.concat("push " + classEntry.getOffset() + "\n")
-			.concat("lfp\n")
-			.concat(jumpsToAR)	
-			.concat("add\n")
-			.concat("lw\n");
+		code += "push " + classEntry.getOffset() + "\n"+
+				"lfp\n" +
+				jumpsToAR +	
+				"add\n" +
+				"lw\n";
 		
 		// Recupero l'indirizzo del metodo richiamato dalla classe
-		code = code.concat("push " + classEntry.getOffset() + "\n")
-			.concat("lfp\n")
-			.concat(jumpsToAR)				
-			.concat("add\n")
-			.concat("lw\n")
-			.concat("push " + methodEntry.getOffset() + "\n")
-			.concat("add\n")
-			.concat("lw\n");
+		code += "push " + classEntry.getOffset() + "\n" +
+				"lfp\n" +
+				jumpsToAR +				
+				"add\n" +
+				"lw\n" +
+				"push " + methodEntry.getOffset() + "\n" +
+				"add\n" +
+				"lw\n";
 		
-		return code.concat("js\n");
+		return code +"js\n";
 	}
 
 }

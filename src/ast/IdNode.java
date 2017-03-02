@@ -43,7 +43,9 @@ public class IdNode implements Node {
 			// raggiungere il codice)
 			funCode += "push " + (entry.getOffset() - 1) + "\n" +
 					// risalgo la catena statica
-					"lfp\n" + getAR + "add\n" +
+					"lfp\n" + 
+					getAR + 
+					"add\n" +
 					// carico sullo stack il valore all'indirizzo ottenuto
 					"lw\n";
 		}
@@ -51,9 +53,11 @@ public class IdNode implements Node {
 		// metto offset sullo stack
 		return code + "push " + entry.getOffset() + "\n" + 
 				// risalgo la catena statica	
-				"lfp\n" + getAR + 
+				"lfp\n" + 
+				getAR + 
 				// carico sullo stack il valore all'indirizzo ottenuto
-				"add\n" + "lw\n" + 
+				"add\n" + 
+				"lw\n" + 
 				funCode;
 
 	}

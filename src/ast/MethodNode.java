@@ -123,7 +123,8 @@ public class MethodNode implements DecNode {
 	    		popParl+
 	    		"sfp\n"+  // setto $fp a valore del CL
 	    		"lrv\n"+ // risultato della funzione sullo stack
-	    		"lra\n"+"js\n" // salta a $ra
+	    		"lra\n"+
+	    		"js\n" // salta a $ra
 	    		);
 	    
 		return "";

@@ -1,3 +1,4 @@
+
 let 	  
   fun g:int (x:(int)->int, j:(int)->int)
   let
@@ -23,6 +24,8 @@ let
     m(f,k);
 in
   print (a(g));
+  print(10 || false);
+
 
 /*
 

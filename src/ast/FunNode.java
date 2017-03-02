@@ -74,8 +74,11 @@ due cose sono messe nello stack:
   public String codeGeneration() {
 	  
 	    String declCode="";
-	    if (declist!=null) for (Node dec:declist) 
-		    declCode+=dec.codeGeneration();
+	    if (declist!=null) {
+	    	for (Node dec:declist) {
+	    	declCode+=dec.codeGeneration();
+	    	}
+	    }
 	    
 	    String popDecl="";
 	    if (declist!=null) for (Node dec:declist){

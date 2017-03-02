@@ -59,8 +59,7 @@ public class CallNode implements Node {
 
 		if (entry.isMethod()) {
 
-			code += // CL
-					"lfp\n" +
+			code += "lfp\n" +
 					// setto AL risalendo la catena statica
 					// ora recupero l'indirizzo a cui
 					// saltare e lo metto sullo stack

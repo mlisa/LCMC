@@ -7,6 +7,10 @@ public class BoolNode implements Node {
 	public BoolNode(boolean n) {
 		val = n;
 	}
+	
+	public boolean getValue(){
+		return this.val;
+	}
 
 	public String toPrint(String s) {
 		if (val)

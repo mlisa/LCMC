@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g 2017-03-01 18:53:09
+// $ANTLR 3.5.2 D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g 2017-03-02 12:21:24
 
 		import java.util.ArrayList;
 		import java.util.HashMap;
@@ -1114,26 +1114,28 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "exp"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:340:1: exp returns [Node ast] : f= term ( PLUS l= term | MINUS l= term | OR l= term )* ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:340:1: exp returns [Node ast] : left= term ( PLUS rightP= term | MINUS rightM= term | OR rightO= term )* ;
 	public final Node exp() throws RecognitionException {
 		Node ast = null;
 
 
-		Node f =null;
-		Node l =null;
+		Node left =null;
+		Node rightP =null;
+		Node rightM =null;
+		Node rightO =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:340:24: (f= term ( PLUS l= term | MINUS l= term | OR l= term )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:341:9: f= term ( PLUS l= term | MINUS l= term | OR l= term )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:340:24: (left= term ( PLUS rightP= term | MINUS rightM= term | OR rightO= term )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:341:9: left= term ( PLUS rightP= term | MINUS rightM= term | OR rightO= term )*
 			{
 			pushFollow(FOLLOW_term_in_exp979);
-			f=term();
+			left=term();
 			state._fsp--;
 
 
-			            ast = f;    
+			            ast = left;    
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:343:11: ( PLUS l= term | MINUS l= term | OR l= term )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:343:11: ( PLUS rightP= term | MINUS rightM= term | OR rightO= term )*
 			loop20:
 			while (true) {
 				int alt20=4;
@@ -1156,41 +1158,41 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt20) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:345:10: PLUS l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:345:10: PLUS rightP= term
 					{
 					match(input,PLUS,FOLLOW_PLUS_in_exp1003); 
 					pushFollow(FOLLOW_term_in_exp1009);
-					l=term();
+					rightP=term();
 					state._fsp--;
 
 
-						            ast = new PlusNode (ast,l);
+						            ast = new PlusNode (ast, rightP);
 						        
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:349:10: MINUS l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:349:10: MINUS rightM= term
 					{
 					match(input,MINUS,FOLLOW_MINUS_in_exp1035); 
 					pushFollow(FOLLOW_term_in_exp1041);
-					l=term();
+					rightM=term();
 					state._fsp--;
 
 
-						            ast = new MinusNode (ast,l);
+						            ast = new MinusNode (ast, rightM);
 						        
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:353:10: OR l= term
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:353:10: OR rightO= term
 					{
 					match(input,OR,FOLLOW_OR_in_exp1066); 
 					pushFollow(FOLLOW_term_in_exp1072);
-					l=term();
+					rightO=term();
 					state._fsp--;
 
 
-						            ast = new OrNode (ast,l);
+						            ast = new OrNode (ast, rightO);
 						        
 					}
 					break;
@@ -1217,26 +1219,28 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:359:1: term returns [Node ast] : f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* ;
+	// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:359:1: term returns [Node ast] : left= factor ( TIMES rightT= factor | DIV rightD= factor | AND rightA= factor )* ;
 	public final Node term() throws RecognitionException {
 		Node ast = null;
 
 
-		Node f =null;
-		Node l =null;
+		Node left =null;
+		Node rightT =null;
+		Node rightD =null;
+		Node rightA =null;
 
 		try {
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:359:26: (f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* )
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:360:9: f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:359:26: (left= factor ( TIMES rightT= factor | DIV rightD= factor | AND rightA= factor )* )
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:360:9: left= factor ( TIMES rightT= factor | DIV rightD= factor | AND rightA= factor )*
 			{
 			pushFollow(FOLLOW_factor_in_term1115);
-			f=factor();
+			left=factor();
 			state._fsp--;
 
 
-			            ast = f;
+			            ast = left;
 			        
-			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:362:11: ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:362:11: ( TIMES rightT= factor | DIV rightD= factor | AND rightA= factor )*
 			loop21:
 			while (true) {
 				int alt21=4;
@@ -1259,41 +1263,41 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt21) {
 				case 1 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:364:10: TIMES l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:364:10: TIMES rightT= factor
 					{
 					match(input,TIMES,FOLLOW_TIMES_in_term1139); 
 					pushFollow(FOLLOW_factor_in_term1145);
-					l=factor();
+					rightT=factor();
 					state._fsp--;
 
 
-						            ast = new MultNode (ast,l);
+						            ast = new MultNode (ast, rightT);
 						        
 					}
 					break;
 				case 2 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:368:10: DIV l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:368:10: DIV rightD= factor
 					{
 					match(input,DIV,FOLLOW_DIV_in_term1170); 
 					pushFollow(FOLLOW_factor_in_term1176);
-					l=factor();
+					rightD=factor();
 					state._fsp--;
 
 
-						            ast = new DivNode (ast,l);
+						            ast = new DivNode (ast, rightD);
 						        
 					}
 					break;
 				case 3 :
-					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:372:10: AND l= factor
+					// D:\\Xander_C\\Documents\\Projects\\FoolProject\\FOOL.g:372:10: AND rightA= factor
 					{
 					match(input,AND,FOLLOW_AND_in_term1201); 
 					pushFollow(FOLLOW_factor_in_term1207);
-					l=factor();
+					rightA=factor();
 					state._fsp--;
 
 
-						            ast = new AndNode (ast,l);
+						            ast = new AndNode (ast, rightA);
 						        
 					}
 					break;

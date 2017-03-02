@@ -17,18 +17,29 @@ public class ProgLetInNode implements Node {
 
 	public String toPrint(String s) {
 		String declstr = "";
-		for (Node dec : declist)
+		String classStr = new String("");
+		
+		for (Node cl : classList){
+			classStr += cl.toPrint(s +"	");
+		}
+		
+		for (Node dec : declist){
 			declstr += dec.toPrint(s + "  ");
-		return s + "ProgLetIn\n" + declstr + exp.toPrint(s + "  ");
+		}
+		return s + "ProgLetIn\n" + 
+			classStr + 
+			declstr + 
+			exp.toPrint(s + "  ");
 	}
 
 	public Node typeCheck() {
-		for (Node dec : declist){
-			dec.typeCheck();
-		}
 		
 		for (Node cl : classList){
 			cl.typeCheck();
+		}
+		
+		for (Node dec : declist){
+			dec.typeCheck();
 		}
 		
 		return exp.typeCheck();

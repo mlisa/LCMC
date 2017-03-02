@@ -338,39 +338,39 @@ arrow returns [Node ast] :
     ;          
 
 exp returns [Node ast] :
-        f = term {
-            $ast = $f.ast;    
+        left = term {
+            $ast = $left.ast;    
         } (
         
-	        PLUS l = term {
-	            $ast = new PlusNode ($ast,$l.ast);
+	        PLUS rightP = term {
+	            $ast = new PlusNode ($ast, $rightP.ast);
 	        } |
 	         
-	        MINUS l = term {
-	            $ast = new MinusNode ($ast,$l.ast);
+	        MINUS rightM = term {
+	            $ast = new MinusNode ($ast, $rightM.ast);
 	        } |
 	        
-	        OR l = term {
-	            $ast = new OrNode ($ast,$l.ast);
+	        OR rightO = term {
+	            $ast = new OrNode ($ast, $rightO.ast);
 	        }
 	    )*
     ;
   
 term  returns [Node ast] : 
-        f = factor {
-            $ast = $f.ast;
+        left = factor {
+            $ast = $left.ast;
         } (
         
-	        TIMES l = factor {
-	            $ast = new MultNode ($ast,$l.ast);
+	        TIMES rightT = factor {
+	            $ast = new MultNode ($ast, $rightT.ast);
 	        } |
 	        
-	        DIV l = factor {
-	            $ast = new DivNode ($ast,$l.ast);
+	        DIV rightD = factor {
+	            $ast = new DivNode ($ast, $rightD.ast);
 	        } |
 	        
-	        AND l = factor {
-	            $ast = new AndNode ($ast,$l.ast);
+	        AND rightA = factor {
+	            $ast = new AndNode ($ast, $rightA.ast);
 	        }
         )*
     ;

@@ -15,7 +15,7 @@ public class ClassTypeNode implements Node {
 	@Override
 	public String toPrint(String indent) {
 		
-		return indent + id +":ClassType\n";
+		return indent + "ClassType:" + id +"\n";
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class ClassTypeNode implements Node {
 	@Override
 	public String codeGeneration() {
 		// TODO Auto-generated method stub
-		return "";
+		return null;
 	}
 
 }
