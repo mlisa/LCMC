@@ -6,13 +6,13 @@ import lib.FOOLlib;
 
 public class NewNode implements Node {
 
-	private ArrayList<Node> fieldList;
+	private ArrayList<Node> paramList;
 	private String className; 
 	private CTentry classEntry;
 	
-	public NewNode(String className, ArrayList<Node> fieldList, CTentry classEntry){
+	public NewNode(String className, ArrayList<Node> paramList, CTentry classEntry){
 		this.className = className; 
-		this.fieldList = fieldList; 
+		this.paramList = paramList; 
 		this.classEntry = classEntry;
 	}
 	
@@ -21,7 +21,7 @@ public class NewNode implements Node {
 		
 		String fields = "";
 		
-		for (Node n : fieldList){
+		for (Node n : paramList){
 			fields += n.toPrint(indent + "	");
 		}
 		
@@ -32,11 +32,11 @@ public class NewNode implements Node {
 	public Node typeCheck() {
 		
 		//I campi devono essere in egual numero
-		if(classEntry.getAllFields().size() == fieldList.size()){
+		if(classEntry.getAllFields().size() == paramList.size()){
 			//Controllo che i tipi siano giusti
-			for(int i=0; i < fieldList.size(); i++){
+			for(int i=0; i < paramList.size(); i++){
 				Node fieldType = ((FieldNode)classEntry.getAllFields().get(i)).getSymType();
-				Node calledFieldType = ((FieldNode)fieldList.get(i)).getSymType();
+				Node calledFieldType = paramList.get(i).typeCheck();
 				
 				if(!FOOLlib.isSubtype(calledFieldType, fieldType)){
 					System.out.println("ERRORE");
@@ -47,7 +47,7 @@ public class NewNode implements Node {
 			System.out.println("ERRORE");
 			System.exit(1);
 		}
-		return null;
+		return new ClassTypeNode(className);
 	}
 
 	@Override
@@ -56,12 +56,12 @@ public class NewNode implements Node {
 		String code = new String("");
 		
 		// Esecuzione CodeGen di tutti gli argomenti
-		for (Node f : fieldList){
+		for (Node f : paramList){
 			code += f.codeGeneration();
 		}
 		
 		// Caricamento argomenti sull'heap secondo il layout degli oggetti 
-		for (int index = 0; index < this.fieldList.size(); index++){
+		for (int index = 0; index < this.paramList.size(); index++){
 			code +=	"lhp\n"	+		// Alloco spazio per l'heap = Pusho nello stack l'indirizzo dell'heap pointer
 					"sw\n" +		// Poppo dallo stack l'indirizzo dell'hp e il valore del argomento 
 									// => Carico l'argomento nell'indirizzo del primo valore poppato (HP address) 
@@ -75,12 +75,12 @@ public class NewNode implements Node {
 		
 		// Pusho sull'heap le label dei metodi sempre secondo l'Obj Layout 
 		for (Node m : classEntry.allMethods){
-			code += "push" + ((MethodNode)m).getLabel() + "\n" +
+			code += "push " + ((MethodNode)m).getLabel() + "\n" +
 					"lhp\n" +
 					"sw\n" +
 					"lhp\n" +
 					"push 1\n" +
-					"add" +
+					"add\n" +
 					"shp\n";
 		}
 		
@@ -89,7 +89,7 @@ public class NewNode implements Node {
 			// Devo gestire le classi che non possiedono metodi e campi!
 			code += "lhp\n" +
 					"push 1\n" +
-					"add" +
+					"add\n" +
 					"shp\n";
 		}
 		

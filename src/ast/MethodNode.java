@@ -14,9 +14,9 @@ public class MethodNode implements DecNode {
 	private Node body;
 	private String label;
 
-	public MethodNode(String i, Node t) {
-		this.id = i;
-		this.retType = t;
+	public MethodNode(String identifier, Node retType) {
+		this.id = identifier;
+		this.retType = retType;
 	}
 	
 	public void addPar(ParNode par){
@@ -64,9 +64,11 @@ public class MethodNode implements DecNode {
 			System.out.println("Wrong return type for method "+this.id);
 			System.exit(0);
 		}
-	
-		for(Node node:this.declist){
-			node.typeCheck();
+		
+		if(this.declist != null){
+			for(Node node:this.declist){
+				node.typeCheck();
+			}
 		}
 		
 		return this.retType;

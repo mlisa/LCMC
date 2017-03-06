@@ -27,7 +27,9 @@ public class IfNode implements Node {
 		
 		Node t = thenExp.typeCheck();
 		Node e = elseExp.typeCheck();
-		
+		System.out.println(t + "cio");
+		System.out.println(e + "ciao");
+
 		if (FOOLlib.isSubtype(t, e)){
 			return e;
 		}

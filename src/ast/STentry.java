@@ -12,8 +12,8 @@ public class STentry {
 		offset = os;
 	}
 
-	public STentry(int n, Node t, int os) {
-		nl = n;
+	public STentry(int nestinglevel, Node t, int os) {
+		nl = nestinglevel;
 		type = t;
 		offset = os;
 	}

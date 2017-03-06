@@ -60,24 +60,6 @@ public class CTentry {
 	public ArrayList<Node> getAllMethods() {
 		return allMethods;
 	}
-
-	/*public STentry getMethod(String id, ArrayList<Node> parlist){
-		for(Node n : allMethods){
-			MethodNode m = (MethodNode)n;
-			if(m.getId().equals(id)){
-				for(int i = 0; i < m.getParlist().size(); i++){
-					//Controllo che siano lo stesso tipo 
-					ParNode passedPar = ((ParNode)parlist.get(i));
-					Node nn = m.getParlist().get(i);
-					ParNode officialPar = ((ParNode)nn);
-					
-					if (passedPar.getType() instanceof (officialPar.getType().getClass())) {
-						
-					}
-				}
-			}
-		}
-	}*/
     
 	public HashMap<String, STentry> getVTable() {
 		return vTable;
@@ -120,11 +102,11 @@ public class CTentry {
 			}
 		}
 	
-	public void addMethod(String name, Node type) {
+	public void addMethod(String name, Node method) {
 		
 		STentry oldEntry = this.vTable.get(name);
 		STentry newEntry;
-		MethodNode field = new MethodNode(name, type);
+		//MethodNode method = new MethodNode(name, type);
 		int offset;
 		
 		//Se l'entry era giò presente all'interno della virtual table, se ne fa l'override
@@ -132,18 +114,18 @@ public class CTentry {
 			// prendo l'offset della entry ereditata
 			offset = oldEntry.getOffset();
 			// creo una nuova STentry che sostituisce la precedente, quindi con lo stesso offset (nesting level sempre = 1 ) 
-			newEntry = new STentry(1,type,offset);
+			newEntry = new STentry(1, ((MethodNode)method).getSymType(), offset);
 			// sovrascrivo l'elemento anche all'interno della lista dei metodi
-			this.allMethods.set(offset, field); //Per i metodi uso semplicemente l'offset perchè si muove come gli indici della lista 
+			this.allMethods.set(offset, method); //Per i metodi uso semplicemente l'offset perchè si muove come gli indici della lista 
 		} else {
 			//Se è un metodo nuovo, creo una nuova entry all'offset a cui si è arrivati (nesting level sempre = 1 ) 
-			newEntry = new STentry(1, type, this.offsetMethods);
+			newEntry = new STentry(1, ((MethodNode)method).getSymType(), this.offsetMethods);
 			//Mi salvo l'offset per controllare all'interno delle variabili locali
 			offset = this.offsetMethods;
 			// Aumento l'offset che indica il prossimo spazio libero
 			this.offsetMethods++;
 			//Aggiungo il metodo alla lista dei metodi
-			this.allMethods.add(field);
+			this.allMethods.add(method);
 		}
 
 		// inserisco l'entry nella virtual table come metodo

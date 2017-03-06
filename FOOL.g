@@ -119,12 +119,12 @@ cllist returns [ArrayList<Node> astlist] : {
 				} )* //chiudo la parentesi del comma 
 		    )? RPAR
 		    
-			//---------------------------> INIZIO CORPO DELLA CLASSE
-			//-----------------------------> INIZIO METODI (0 o +)
+			// ---------------------------> INIZIO CORPO DELLA CLASSE
+			// -----------------------------> INIZIO METODI (0 o +)
 			CLPAR (
 			    FUN funID = ID COLON retType = basic { 
 			        //Creo un method node 
-                    MethodNode mNode = new MethodNode($funID.text, $retType.ast);
+              MethodNode mNode = new MethodNode($funID.text, $retType.ast);
 			        //Creo la Symbol Table per il metodo
 			        HashMap<String, STentry> methodSymTable = new HashMap<>();
 			        //Creo la lista per i tipi dei parametri
@@ -140,7 +140,7 @@ cllist returns [ArrayList<Node> astlist] : {
 			        //Lo aggiungo alla methodList
 			        methodList.add(mNode);
 			        
-			    } LPAR ( //-------------> Parametri Metodo (0 o +)
+			    } LPAR ( // -------------> Parametri Metodo (0 o +)
 			        mparfID = ID COLON mparfType = type { 
 						
 						//Aggiungo il parametro al method node
@@ -178,10 +178,12 @@ cllist returns [ArrayList<Node> astlist] : {
 						} 
 					)* IN
 				)? {
-				    //Lo aggiungo alla alla virtual table
-                    ctEntry.addMethod($funID.text, mNode);
-                    //Aggiungo il tipo della symbol table
-                    mNode.addSymType(new ArrowTypeNode(parTypes, retType));
+				    
+				      //Aggiungo il tipo della symbol table
+              mNode.addSymType(new ArrowTypeNode(parTypes, $retType.ast));
+              //Lo aggiungo alla alla virtual table
+              ctEntry.addMethod($funID.text, mNode);
+                    
                     
 				} //-------------------> INIZIO CORPO METODO
 				body = exp {
@@ -292,9 +294,9 @@ declist returns [ArrayList<Node> astlist] : {
 						f.addSymType(new ArrowTypeNode(parTypes, $funType.ast));
 						
 					} (LET d = declist IN)? e = exp {
-						//chiudere scope
-						symTable.remove(nestingLevel--);
-						f.addDecBody($d.astlist, $e.ast);
+							//chiudere scope
+							symTable.remove(nestingLevel--);
+							f.addDecBody($d.astlist, $e.ast);
 						
 				    } 
 		    ) SEMIC 
@@ -426,7 +428,7 @@ value returns [Node ast] :
 		    }
 		    
 		    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
-		    NewNode newNode = new NewNode($newClassID.text, fieldList, classEntry);
+		    $ast =  new NewNode($newClassID.text, fieldList, classEntry);
 		    
 		    } LPAR (
 		        newfExpr = exp {
@@ -444,6 +446,7 @@ value returns [Node ast] :
 		
 		IF x = exp THEN CLPAR y = exp CRPAR ELSE CLPAR z = exp CRPAR {
 		    $ast = new IfNode($x.ast,$y.ast,$z.ast);
+		    System.out.println(nestingLevel);
 		} |  
 		
 		NOT LPAR t = term RPAR {
@@ -461,8 +464,10 @@ value returns [Node ast] :
 		    STentry calledEntry = null; 
 		    
 		    while (j >= 0 && calledEntry == null) {
-				calledEntry = (symTable.get(j--)).get($callID.text);
+		        calledEntry = (symTable.get(j--)).get($callID.text);
 		    }
+		    
+		    System.out.println("Ciao ID: "+ calledEntry.getType());
 		    
 		    if (calledEntry == null) {
 				System.out.println("ID "+$callID.text+" at line "+$callID.line+" not declared");
@@ -485,6 +490,7 @@ value returns [Node ast] :
 		    } | 
 		
 		    DOT methodID = ID {
+		    
 		        ClassTypeNode classCallType = (ClassTypeNode)calledEntry.getType();
 		        // Cerco se esiste una classe del tipo dell'oggetto che fa la call del metodo 
 		        CTentry classCTEntry = classTable.get(classCallType.getClassID());
@@ -500,7 +506,9 @@ value returns [Node ast] :
 		        //Prendo dalla ctentry la virtual table da cui poi risalgo al metodo
 		        STentry methodSTEntry = classCTEntry.getVTable().get($methodID.text);
 		        
-		        STentry classSTEntry = symTable.get(0).get($callID.text);
+		        //STentry classSTEntry = symTable.get(0).get(classCallType.getClassID());
+		        
+		        System.out.println($callID.text + " sei tu?");
 		        
 		        //Controllo che il metodo esista 
 		        if(methodSTEntry == null) {
@@ -517,7 +525,7 @@ value returns [Node ast] :
 		            methodParlist.add($callnExpr.ast);
 		        })* 
 		    )? { 
-		        $ast = new ClassCallNode($callID.text, $methodID.text, classSTEntry, methodSTEntry, methodParlist, nestingLevel); 
+		        $ast = new ClassCallNode($callID.text, $methodID.text, calledEntry, methodSTEntry, methodParlist, nestingLevel); 
 		    } RPAR 
 	    )?      
     ; 
