@@ -1,3 +1,9 @@
 /FOOL.tokens
 /SVM.tokens
 /.gitignore
+/*.class
+/bin
+/FOOLParser.java
+/FOOLLexer.java
+/SVMLexer.java
+/SVMParser.java
