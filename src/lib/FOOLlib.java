@@ -1,6 +1,8 @@
 package lib;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import ast.*;
 
@@ -64,6 +66,64 @@ public class FOOLlib {
 		}
 
 		return a.getClass().equals(b.getClass()) || ((a instanceof BoolTypeNode) && (b instanceof IntTypeNode)); //
+	}
+	
+	public static Node lowestCommonAncestor(Node a, Node b){
+		
+		System.out.println("ciao");
+
+		if (a instanceof EmptyTypeNode){
+			return b;
+		}
+		
+		if (b instanceof EmptyTypeNode){
+			return a;
+		}
+		
+		if(a instanceof ClassTypeNode && b instanceof ClassTypeNode){
+			
+			String superClassID = ( (ClassTypeNode) a ).getClassID();
+			
+			Node superNode = new ClassTypeNode(superClassID);
+			do {
+				
+				if (FOOLlib.isSubtype(b, superNode)){
+					return superNode;
+				}
+				
+				superClassID = FOOLlib.superTypeMap.get(superClassID);
+				
+			} while(superClassID != null);
+		} else if (a instanceof ArrowTypeNode && b instanceof ArrowTypeNode &&
+				((ArrowTypeNode)a).getParList().size() == ((ArrowTypeNode)b).getParList().size()){
+			
+			ArrowTypeNode ar = (ArrowTypeNode) a;
+			ArrowTypeNode br = (ArrowTypeNode) b;
+			Node retType = FOOLlib.lowestCommonAncestor( ar.getRet(), br.getRet());
+			ArrayList<Node> parList = new ArrayList<>();
+			
+			if (retType != null ){
+				for (int index = 0; index < ar.getParList().size(); index++){
+					if(FOOLlib.isSubtype(ar.getParList().get(index), br.getParList().get(index))){
+						parList.add(index, ar.getParList().get(index));
+					} else if(FOOLlib.isSubtype(br.getParList().get(index), ar.getParList().get(index))){
+						parList.add(index, br.getParList().get(index));
+					} else {
+						return null; 
+					} 
+				}
+				return new ArrowTypeNode(parList, retType);
+			} 
+			
+		} else if((a instanceof IntTypeNode && b instanceof IntTypeNode) || 
+				(a instanceof IntTypeNode && b instanceof BoolTypeNode) ||
+				(a instanceof BoolTypeNode && b instanceof IntTypeNode)){
+			return new IntTypeNode();
+		} else if((a instanceof BoolTypeNode && b instanceof BoolTypeNode)) {
+			return new BoolTypeNode();
+		}
+		
+		return null;
 	}
 
 	public static String freshLabel() {

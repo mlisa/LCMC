@@ -27,14 +27,12 @@ public class IfNode implements Node {
 		
 		Node t = thenExp.typeCheck();
 		Node e = elseExp.typeCheck();
-		System.out.println(t + "cio");
-		System.out.println(e + "ciao");
 
-		if (FOOLlib.isSubtype(t, e)){
-			return e;
+		if (FOOLlib.lowestCommonAncestor(t, e) != null){
+			return FOOLlib.lowestCommonAncestor(t, e);
 		}
 			
-		if (FOOLlib.isSubtype(e, t)) {
+		if (FOOLlib.lowestCommonAncestor(e, t) != null) {
 			return t;
 		}
 		
