@@ -227,15 +227,16 @@ declist returns [ArrayList<Node> astlist] : {
 			    } | 
 			    //------------> Function Definitions (0 o +)
 			    FUN 
-			        funID = ID COLON funType = type {
+			        funID = ID COLON funRetType = type {
 			    
 						//Dichiaro una funzione - inserimento di ID nella symtable 
-						FunNode f = new FunNode($funID.text, $funType.ast);
+						FunNode f = new FunNode($funID.text, $funRetType.ast);
 						// QUI LO AGGIUNGE ALLA LISTA DI COSE DICHIARATE 
 						$astlist.add(f);
 						//Prendo la symbol table attuale
 						HashMap<String,STentry> hm = symTable.get(nestingLevel);
 						//Creo una nuova entry
+						
 						STentry entry = new STentry(nestingLevel, offset); //separo introducendo "entry"
 						
 						offset -= 2; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
@@ -264,7 +265,7 @@ declist returns [ArrayList<Node> astlist] : {
 							
 							// Occorre controllare che il tipo della funzione sia ArrowTypeNode 
                             // poichè il tal caso devo riservare 2 spazi!
-							paroffset = $parfType.ast instanceof ArrowTypeNode ? paroffset++ : paroffset;
+							paroffset = $parfType.ast instanceof ArrowTypeNode ? paroffset+1 : paroffset;
 							if (hmn.put($parfID.text, new STentry(nestingLevel, $parfType.ast, paroffset++)) != null){
 							    System.out.println("Parameter id "+$parfID.text+" at line "+$parfID.line+" already declared");
 							    System.exit(0);
@@ -280,7 +281,8 @@ declist returns [ArrayList<Node> astlist] : {
                             
                             // Occorre controllare che il tipo della funzione sia ArrowTypeNode 
                             // poichè il tal caso devo riservare 2 spazi!
-                            paroffset = $parnType.ast instanceof ArrowTypeNode ? paroffset++ : paroffset;
+                            paroffset = $parnType.ast instanceof ArrowTypeNode ? paroffset+1 : paroffset;
+                            
                             if (hmn.put($parnID.text, new STentry(nestingLevel, $parnType.ast, paroffset++)) != null){
                                 System.out.println("Parameter id "+$parnID.text+" at line "+$parnID.line+" already declared");
                                 System.exit(0);
@@ -290,8 +292,8 @@ declist returns [ArrayList<Node> astlist] : {
 						
 					)? RPAR {
 					    // ArrowType Duplicato 
-						entry.addType(new ArrowTypeNode(parTypes, $funType.ast));
-						f.addSymType(new ArrowTypeNode(parTypes, $funType.ast));
+						entry.addType(new ArrowTypeNode(parTypes, $funRetType.ast));
+						f.addSymType(new ArrowTypeNode(parTypes, $funRetType.ast));
 						
 					} (LET d = declist IN)? e = exp {
 							//chiudere scope
@@ -428,7 +430,6 @@ value returns [Node ast] :
 		    }
 		    
 		    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
-		    $ast =  new NewNode($newClassID.text, fieldList, classEntry);
 		    
 		    } LPAR (
 		        newfExpr = exp {
@@ -438,7 +439,11 @@ value returns [Node ast] :
 		            //Aggiungo i parametri
 		            fieldList.add($newnExpr.ast);
 		        } )* 
-		    )? RPAR | 
+		    )? RPAR 
+		    {
+		        $ast =  new NewNode($newClassID.text, fieldList, classEntry);
+		    }
+		    | 
 	
 		LPAR e = exp RPAR {
 		    $ast = $e.ast;
@@ -446,7 +451,6 @@ value returns [Node ast] :
 		
 		IF x = exp THEN CLPAR y = exp CRPAR ELSE CLPAR z = exp CRPAR {
 		    $ast = new IfNode($x.ast,$y.ast,$z.ast);
-		    System.out.println(nestingLevel);
 		} |  
 		
 		NOT LPAR t = term RPAR {
@@ -467,7 +471,7 @@ value returns [Node ast] :
 		        calledEntry = (symTable.get(j--)).get($callID.text);
 		    }
 		    
-		    System.out.println("Ciao ID: "+ calledEntry.getType());
+		    //System.out.println("Ciao ID: "+ calledEntry.getType());
 		    
 		    if (calledEntry == null) {
 				System.out.println("ID "+$callID.text+" at line "+$callID.line+" not declared");
@@ -508,7 +512,7 @@ value returns [Node ast] :
 		        
 		        //STentry classSTEntry = symTable.get(0).get(classCallType.getClassID());
 		        
-		        System.out.println($callID.text + " sei tu?");
+		        //System.out.println($callID.text + " sei tu?");
 		        
 		        //Controllo che il metodo esista 
 		        if(methodSTEntry == null) {

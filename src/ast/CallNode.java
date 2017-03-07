@@ -56,6 +56,9 @@ public class CallNode implements Node {
 		String getAR = "";
 		for (int i = 0; i < nestinglevel - entry.getNestinglevel(); i++)
 			getAR += "lw\n";
+		
+		System.out.println(this.id + " -------------offset: " + this.entry.getOffset());
+
 
 		if (entry.isMethod()) {
 

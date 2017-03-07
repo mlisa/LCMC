@@ -13,7 +13,7 @@ public class ClassNode implements DecNode {
 	private CTentry superEntry; 
 	
 	public ClassNode(Node type, ArrayList<Node> fList, ArrayList<Node> mList, CTentry classEntry, CTentry superEntry) {
-		//this.id = i; // Il nome della Classe è contenuto in Type!!!
+		//this.id = i; // Il nome della Classe ï¿½ contenuto in Type!!!
 		this.type = type;
 		this.fieldList = fList;
 		this.methodList = mList;
@@ -91,11 +91,12 @@ public class ClassNode implements DecNode {
 
 	@Override
 	public String codeGeneration() {
-		System.out.println("");
+		//Prima setto tutte le label dei metodi
 		for(Node n : this.methodList){
-			((MethodNode)n).setLabel(FOOLlib.freshLabel());
+			((MethodNode)n).setLabel(FOOLlib.freshFunLabel());
 		}
 		
+		//Poi chiamo la code generation di ogni metodo
 		for(Node n : this.methodList){
 			n.codeGeneration();
 		}

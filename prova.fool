@@ -1,4 +1,12 @@
-let
+
+let 
+  fun x:int(i:int, j:int) i-j;
+  fun f:int (i:int, j:int, x:(int, int)->int) x(i, j) + j;
+in
+	if(3 == 3) then { print (f(3,5,x)) }
+	else { print(2) };
+
+/*let
   class List (f:int, r:List) {
     fun first:int() f;
     fun rest:List() r; 
@@ -50,17 +58,34 @@ let
                                     new List(5,null))))));
   
 in printList(decreasing(l));
-
-
-/*let 
-  fun x:int(i:int, j:int) i-j;
-  fun f:int (i:int, j:int, x:(int, int)->int) x(i, j) + j;
-in
-	if(3 == 3) then { print (f(3,5,x)) }
-	else { print(2) };
-
-
 /*let
+  
+  class A (x:int, y:int) {
+	fun getX:int() x;
+  	fun getY:int() y;
+  }
+
+  fun f:int(x:A, rel:(A)->bool) 
+  	if(rel(x))
+  	 then {x.getX()}
+	 else {x.getY()};
+
+  fun r:bool(x:A)
+  	if(x.getX() == x.getY())
+  	 then {true}
+  	 else {false};
+
+  fun make:A(a:A)
+  	if(a == null)
+  	 then {new A(1,1)}	
+	 else {a};
+	 
+var x:A = null;
+
+in
+	print(f(make(x),r));
+
+ /*let
 
   class Account (money:int) {
     fun getMon:int () money;
@@ -89,6 +114,16 @@ in
   var myLoan:Account = bl.openLoan(myTradingAcc);
       
 in print(if (myLoan==null) then {0} else {myLoan.getMon()}); 
+ 
+/*let 
+  fun x:int(i:int, j:int) i-j;
+  fun f:int (i:int, j:int, x:(int, int)->int) x(i, j) + j;
+in
+	if(3 == 3) then { print (f(3,5,x)) }
+	else { print(2) };
+
+
+/*
 
 
 
