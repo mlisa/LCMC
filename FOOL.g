@@ -12,6 +12,7 @@ grammar FOOL;
 }
 
 @members{
+    //La symbol table è implementata come lista di hashmap (ogni hashmap corrisponde a uno scope) 
 		private ArrayList<HashMap<String,STentry>>  symTable = new ArrayList<HashMap<String,STentry>>();
 		private int nestingLevel = -1;
 		//livello ambiente con dichiarazioni piu' esterno è 0 (prima posizione ArrayList) invece che 1 (slides)
@@ -25,8 +26,9 @@ grammar FOOL;
 /*------------------------------------------------------------------
  * PARSER RULES
  *  
- *  Here is defined the CFG used by the ANTLR Parser generated to check the
- *  Sysntax of the tokens created by the lexer.
+ *  Qui è definita la grammatica libera dal contesto usata dal parser di ANTLR 
+ *  (linguaggi liberi, controlla la sintassi e genera l'AST)
+ *   generato per controllare la sintassi dei token creati dal lexer. 
  *------------------------------------------------------------------*/
 
 prog returns [Node ast] :
@@ -35,16 +37,18 @@ prog returns [Node ast] :
 	    } | 
 	    
 	    LET {
-			nestingLevel++;
+			nestingLevel++;  //Parte da -1, quindi lo setto a 0
 			HashMap<String,STentry> hm = new HashMap<String,STentry> ();
 			symTable.add(hm);
+			// Setto la mappa delle coppie sottoclasse-superclasse
 			FOOLlib.putSuperType(superType);
 			
 	    }
 	    // Posso avere una lista di classi o di dichiarazioni (func o var) 
-	    c = cllist d = declist 
+	    c = cllist 
+	    d = declist 
 	    IN e = exp SEMIC {
-	    
+	      //Ho terminato le dichiarazioni, torno al nestinglevel precedente (-1) e rimuovo l'ultima hashmap 
 		    symTable.remove(nestingLevel--);
 		    $ast = new ProgLetInNode($c.astlist, $d.astlist, $e.ast);
 		    
@@ -67,7 +71,7 @@ cllist returns [ArrayList<Node> astlist] : {
 		        //Prendo la Symbol table del livello corrente
 		        HashMap<String, STentry> hm = symTable.get(nestingLevel);
 		
-				//Controllo che la classe non sia già stata dichiarata, altrimenti la aggiungo
+				//Controllo che la classe non sia già stata dichiarata, altrimenti la aggiungo (l'offset è random perchè non serve nelle classi) 
 				if(hm.put($classID.text, new STentry(nestingLevel, null, 777)) != null){
 				    System.out.println("ERROR : Class " + $classID.text + "has been already declared!");
 				    System.exit(1);
@@ -80,7 +84,7 @@ cllist returns [ArrayList<Node> astlist] : {
 					if(superClassEntry != null) {
 						//Se esiste la superclasse utilizzo il costruttore che prende in input una CTentry
 						ctEntry = new CTentry(superClassEntry);
-						//Aggiungo la relazione fra le classi alla SuperType map
+						//Aggiungo la relazione fra le classi alla SuperType map (sottoclasse - superclasse) 
 						superType.put($classID.text, $superClass.text);
 					} else { 
 						//Non esiste la superclasse - errore
@@ -100,7 +104,7 @@ cllist returns [ArrayList<Node> astlist] : {
 				//Aggiungo la ctentry all'interno della class table
 				classTable.put($classID.text, ctEntry);
 				
-				// Sempre il bomber qui aumenta il Nesting Level di inserire nella SymTable
+				// Aumento il nesting level per le dichiarazioni della classe (quindi il suo scope) 
                 nestingLevel++;
                 //Aggiungo alla Symbol Table di questo livello la virtual table della CTentry
                 symTable.add(ctEntry.getVTable());
@@ -131,7 +135,7 @@ cllist returns [ArrayList<Node> astlist] : {
               MethodNode mNode = new MethodNode($funID.text, $retType.ast);
 			        //Creo la Symbol Table per il metodo
 			        HashMap<String, STentry> methodSymTable = new HashMap<>();
-			        //Creo la lista per i tipi dei parametri
+			        //Creo la lista per i tipi dei parametri (mi serviranno poi per il typecheck e l'overriding del metodo)
 			        ArrayList<Node> parTypes = new ArrayList<>();
 			        //Setto gli offset di partenza per i parametri
 			        int parOffset = 1; // qui c'è il primo parametro
@@ -185,7 +189,7 @@ cllist returns [ArrayList<Node> astlist] : {
 				    
 				      //Aggiungo il tipo della symbol table
               mNode.addSymType(new ArrowTypeNode(parTypes, $retType.ast));
-              //Lo aggiungo alla alla virtual table
+              //Lo aggiungo alla virtual table
               ctEntry.addMethod($funID.text, mNode);
                     
                     
@@ -196,12 +200,12 @@ cllist returns [ArrayList<Node> astlist] : {
 										
 			    } SEMIC {
 			        //Rimuovo la symbol table del metodo poichè non mi serve in più (la dichiarazione è finita)
-                    symTable.remove(nestingLevel--);
+                    symTable.remove(nestingLevel--);  //esco dallo scope del metodo
 			    }
 			// Chiudo il body della classe contenente le dichiarazioni delle classi
 			)* CRPAR {
 			    //Rimuovo la symbol table della Classe perch� non mi serve più (la dichiarazione è finita)
-                symTable.remove(nestingLevel--);
+                symTable.remove(nestingLevel--); //esco dallo scope della classe
 			}
 			 
 		)* // Chiudo parentesi principale -> segnala 0 o + dichiarazioni di classi
@@ -235,7 +239,7 @@ declist returns [ArrayList<Node> astlist] : {
 			    
 						//Dichiaro una funzione - inserimento di ID nella symtable 
 						FunNode f = new FunNode($funID.text, $funRetType.ast);
-						// QUI LO AGGIUNGE ALLA LISTA DI COSE DICHIARATE 
+						// QUI LO AGGIUNGE ALLA LISTA DI COSE DICHIARATE
 						$astlist.add(f);
 						//Prendo la symbol table attuale
 						HashMap<String,STentry> hm = symTable.get(nestingLevel);
@@ -243,7 +247,7 @@ declist returns [ArrayList<Node> astlist] : {
 						
 						STentry entry = new STentry(nestingLevel, offset); //separo introducendo "entry"
 						
-						offset -= 2; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti
+						offset -= 2; // Mi sposto in basso di un'altro posto poichè fun occupa 2 posti (indirizzo del padre sintattico - indirizzo del codice) 
 						
 						//Controllo che non sia già dichiarata una funzione con lo stesso nome 
 						if (hm.put($funID.text,entry) != null){ 
@@ -252,13 +256,13 @@ declist returns [ArrayList<Node> astlist] : {
 						}
 						
 						//creare una nuova hashmap per la symTable relativa alla funzione appena dichiarata
-						nestingLevel++;
+						nestingLevel++; //Entro nello scope della funzione 
 						HashMap<String,STentry> hmn = new HashMap<String,STentry> ();
 						symTable.add(hmn);
 						
 						//Lista di parametri della funzione
                         ArrayList<Node> parTypes = new ArrayList<Node>();
-                        int paroffset = 1;
+                        int paroffset = 1;  //perchè i parametri vengono inseriti dal chiamante nel suo spazio di memoria
 						
 					} LPAR (
 					    parfID = ID COLON parfType = type { 
@@ -267,9 +271,9 @@ declist returns [ArrayList<Node> astlist] : {
 							parTypes.add($parfType.ast); 
 							f.addPar(new ParNode($parfID.text, $parfType.ast));
 							
-							// Occorre controllare che il tipo della funzione sia ArrowTypeNode 
-                            // poichè il tal caso devo riservare 2 spazi!
-							paroffset = $parfType.ast instanceof ArrowTypeNode ? paroffset+1 : paroffset;
+							// Occorre controllare che il tipo della funzione sia ArrowTypeNode (high-order)
+                            // poichè il tal caso devo riservare 2 spazi! 
+							paroffset += $parfType.ast instanceof ArrowTypeNode ? 1 : 0;
 							if (hmn.put($parfID.text, new STentry(nestingLevel, $parfType.ast, paroffset++)) != null){
 							    System.out.println("Parameter id "+$parfID.text+" at line "+$parfID.line+" already declared");
 							    System.exit(0);
@@ -295,9 +299,9 @@ declist returns [ArrayList<Node> astlist] : {
 						} )* //chiudo parentesi comma
 						
 					)? RPAR {
-					    // ArrowType Duplicato 
-						entry.addType(new ArrowTypeNode(parTypes, $funRetType.ast));
-						f.addSymType(new ArrowTypeNode(parTypes, $funRetType.ast));
+					  ArrowTypeNode arrowTypeNode =  new ArrowTypeNode(parTypes, $funRetType.ast);
+						entry.addType(arrowTypeNode);
+						f.addSymType(arrowTypeNode);
 						
 					} (LET d = declist IN)? e = exp {
 							//chiudere scope
@@ -433,8 +437,7 @@ value returns [Node ast] :
 				System.exit(0);
 		    }
 		    
-		    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
-		    
+		   
 		    } LPAR (
 		        newfExpr = exp {
 		            //Aggiungo i parametri
@@ -445,6 +448,7 @@ value returns [Node ast] :
 		        } )* 
 		    )? RPAR 
 		    {
+		    //Creo il NewNode con l'id, la lista dei parametri e la ctentry 
 		        $ast =  new NewNode($newClassID.text, fieldList, classEntry);
 		    }
 		    | 
@@ -465,7 +469,7 @@ value returns [Node ast] :
 		    $ast = new PrintNode($e.ast);
 		} | 
 		
-		callID = ID {
+		callID = ID {   //Chiamata di variabile ( x ), di funzione ( fun(x,y,z) ) oppure chiamata di metodo di classe (class.method(x,y) )
 			
 			//cercare la dichiarazione
 		    int j = nestingLevel;
@@ -474,16 +478,15 @@ value returns [Node ast] :
 		    while (j >= 0 && calledEntry == null) {
 		        calledEntry = (symTable.get(j--)).get($callID.text);
 		    }
-		    
-		    //System.out.println("Ciao ID: "+ calledEntry.getType());
-		    
+		    		    
 		    if (calledEntry == null) {
 				System.out.println("ID "+$callID.text+" at line "+$callID.line+" not declared");
 				System.exit(0);
 		    }
 		                   
+		    //Lo userò solo se è una variabile altrimenti verrà sovrascritto               
 		    $ast= new IdNode($callID.text, calledEntry, nestingLevel);
-		} ( // Possibili usi dell'ID -> ID() o ID.ID(x1, x2, ...)
+		} ( // Possibili usi dell'ID -> ID() o ID.ID(x1, x2, ...) (solo funzioni o chiamate di metodo) 
 		    LPAR {
 		        ArrayList<Node> argList = new ArrayList<Node>();
 		    }(
@@ -496,7 +499,7 @@ value returns [Node ast] :
 		    RPAR {
 		        $ast=new CallNode($callID.text, calledEntry, argList, nestingLevel);
 		    } | 
-		
+		    // Chiamata di metodo 
 		    DOT methodID = ID {
 		    
 		        ClassTypeNode classCallType = (ClassTypeNode)calledEntry.getType();
@@ -505,7 +508,7 @@ value returns [Node ast] :
 		        
 		        ArrayList<Node> methodParlist = new ArrayList<>();
 		        
-		        // Se non esiste alcuna classe del tipo dell'oggetto, allora cacio, pepe ed erore
+		        // Se non esiste alcuna classe del tipo dell'oggetto dichiaro errore
 		        if(classCTEntry == null){
 					System.out.println("Class id "+ $callID.text +" at line "+$callID.line+" not declared");
 					System.exit(0);
@@ -513,11 +516,7 @@ value returns [Node ast] :
 		        
 		        //Prendo dalla ctentry la virtual table da cui poi risalgo al metodo
 		        STentry methodSTEntry = classCTEntry.getVTable().get($methodID.text);
-		        
-		        //STentry classSTEntry = symTable.get(0).get(classCallType.getClassID());
-		        
-		        //System.out.println($callID.text + " sei tu?");
-		        
+		        		        		        
 		        //Controllo che il metodo esista 
 		        if(methodSTEntry == null) {
 					System.out.println("Method id "+$methodID.text+" at line "+$methodID.line+" not declared");
@@ -542,9 +541,8 @@ value returns [Node ast] :
 /*------------------------------------------------------------------
  * LEXER RULES
  *
- *  This part of the grammar file describes how the ANTLR Lexer should be generated
- *  and how it should produces lexems/tokens by subdividing the input character stream.
- * 
+ *  Questa parte del file .g descrive come il lexer di ANTLR deve essere generato e come deve produrre i lessemi/token 
+ *  (tramite caratteri o espressioni regolari) suddividendo lo stream di caratteri in input. 
  *------------------------------------------------------------------*/
  
 // TOKEN : 'LEXEM';
