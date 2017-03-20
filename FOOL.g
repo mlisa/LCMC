@@ -24,7 +24,11 @@ grammar FOOL;
 
 /*------------------------------------------------------------------
  * PARSER RULES
+ *  
+ *  Here is defined the CFG used by the ANTLR Parser generated to check the
+ *  Sysntax of the tokens created by the lexer.
  *------------------------------------------------------------------*/
+
 prog returns [Node ast] :
 	    e = exp SEMIC {
 	        $ast = new ProgNode($e.ast);
@@ -537,7 +541,13 @@ value returns [Node ast] :
     
 /*------------------------------------------------------------------
  * LEXER RULES
+ *
+ *  This part of the grammar file describes how the ANTLR Lexer should be generated
+ *  and how it should produces lexems/tokens by subdividing the input character stream.
+ * 
  *------------------------------------------------------------------*/
+ 
+// TOKEN : 'LEXEM';
 
 PLUS    : '+' ;
 MINUS   : '-' ;
