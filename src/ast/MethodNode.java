@@ -3,14 +3,18 @@ package ast;
 import java.util.ArrayList;
 
 import lib.FOOLlib;
-
+/**
+ * Classe che rappresenta la dichiarazione di un metodo
+ * @author lisamazzini
+ *
+ */
 public class MethodNode implements DecNode {
 	
 	private String id;
 	private Node retType; //Valore di ritorno del metodo, è uguale al valore conservato nella STEntry relativa al MethodNode
 	private ArrayList<Node> parlist = new ArrayList<Node>(); 
 	private ArrayList<Node> declist;
-	private Node symType; //Tipo del Nodo MethodNode! Non il valore di ritorno del metodo!
+	private Node symType; //Tipo del Nodo MethodNode!
 	private Node body;
 	private String label;
 
@@ -60,11 +64,13 @@ public class MethodNode implements DecNode {
 
 	@Override
 	public Node typeCheck() {
+		//Controllo della co-varianza del tipo di ritorno
 		if(!FOOLlib.isSubtype(this.body.typeCheck(), retType)){
 			System.out.println("Wrong return type for method "+this.id);
 			System.exit(0);
 		}
 		
+		//Typecheck delle dichiarazioni
 		if(this.declist != null){
 			for(Node node:this.declist){
 				node.typeCheck();
@@ -82,7 +88,7 @@ public class MethodNode implements DecNode {
 		usando l'etichetta nel suo campo "label"
 		(torna codice vuoto)*/
 		
-		
+		//Genero il codice per le dichiarazioni
 		String declCode = "";
 	    if (declist != null){
 	    	for (Node dec : declist){
@@ -90,7 +96,7 @@ public class MethodNode implements DecNode {
 	    	}
 	    }
 		    
-	    // Allocazione elementi dichiarati nel corpo del metodo
+	    // De-allocazione elementi dichiarati nel corpo del metodo
 	    String popDecl = "";
 	    if (declist != null){
 	    	for (Node dec : declist){
@@ -102,7 +108,7 @@ public class MethodNode implements DecNode {
 	    	}
 	    }
 	    
-	    // Allocazione Parametri passati al metodo
+	    // De-allocazione Parametri passati al metodo
 	    String popParl = "";
 	    for (Node dec : parlist){ 
 	    	// Se i parametri sono di tipo funzionale, se lo è pop due volte 

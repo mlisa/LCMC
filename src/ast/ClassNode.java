@@ -2,18 +2,25 @@ package ast;
 
 import java.util.ArrayList;
 import lib.FOOLlib;
-
+/**
+ * Nodo che gestisce la dichiarazione di una classe 
+ * @author lisamazzini
+ *
+ */
 public class ClassNode implements DecNode {
 	
-	//private String id;
+	//Tipo della classe (in cui è contenuto il nome della classe) 
 	private Node type;
+	//Lista dei nodi dei campi 
 	private ArrayList<Node> fieldList = new ArrayList<Node>();
+	//Lista dei nodi dei metodi 
 	private ArrayList<Node> methodList = new ArrayList<Node>();
+	//CTEntry della classe corrente
 	private CTentry classEntry;
+	//CTEntry della sua superclasse (potrebbe non esserci) 
 	private CTentry superEntry; 
 	
 	public ClassNode(Node type, ArrayList<Node> fList, ArrayList<Node> mList, CTentry classEntry, CTentry superEntry) {
-		//this.id = i; // Il nome della Classe � contenuto in Type!!!
 		this.type = type;
 		this.fieldList = fList;
 		this.methodList = mList;
@@ -54,21 +61,20 @@ public class ClassNode implements DecNode {
 	@Override
 	public Node typeCheck() {
 		
+		//Controllo del typecheck per ogni metodo (es. tipo di ritorno e dichiarazioni corrette) 
 		for (Node m : methodList){
 			m.typeCheck();
 		}
 		
-		//
-		
-		// CONTROLLO OVERRIDE
+		// CONTROLLO OVERRIDE se c'è superclasse 
 		if (superEntry != null){
-			// Controllo tipo per i campi 
+			// Controllo tipo per i campi, controllo che siano sottotipo di quelli della superclasse
 			for(int i = 0; i < superEntry.getAllFields().size(); i++){
 				Node superFieldType = ((FieldNode)superEntry.getAllFields().get(i)).getSymType();
 				Node classFieldType = ((FieldNode)classEntry.getAllFields().get(i)).getSymType();
 				
 				if(!FOOLlib.isSubtype(classFieldType, superFieldType)){
-					System.out.println("Errore");
+					System.out.println("Wrong field type declared in subclass" + ((ClassTypeNode)type).getClassID());
 					System.exit(1);
 				}
 			}
@@ -79,7 +85,7 @@ public class ClassNode implements DecNode {
 				Node classMethodType = ((MethodNode)classEntry.getAllMethods().get(i)).getSymType();
 				
 				if(!FOOLlib.isSubtype(classMethodType, superMethodType)){
-					System.out.println("Errore");
+					System.out.println("Wrong method signature in subclass" + ((ClassTypeNode)type).getClassID());
 					System.exit(1);
 				}
 			}

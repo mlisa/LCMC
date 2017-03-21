@@ -17,11 +17,7 @@ public class IdNode implements Node {
 	}
 
 	public Node typeCheck() {
-		/*
-		 * if (entry.getType() instanceof ArrowTypeNode) { //
-		 * System.out.println("Wrong usage of function identifier");
-		 * System.exit(0); }
-		 */
+		
 		if (entry.isMethod() || entry.getType() == null) {
 			System.out.println("Wrong usage of method or class identifier");
 			System.exit(0);
@@ -30,15 +26,17 @@ public class IdNode implements Node {
 	}
 
 	public String codeGeneration() {
-		String code = new String("");
 		String funCode = new String("");
 		String getAR = "";
-
+		
+		//Risalita della catena statica
 		for (int i = 0; i < nestinglevel - entry.getNestinglevel(); i++) {
 			getAR += "lw\n";
 		}
 
+		//Caso in cui è un ID di funzione passato come parametro higher-order
 		if (entry.getType() instanceof ArrowTypeNode) {
+			
 			// metto offset -1 sullo stack ( perchè è una funzione e devo
 			// raggiungere il codice)
 			funCode += "push " + (entry.getOffset() - 1) + "\n" +
@@ -51,14 +49,14 @@ public class IdNode implements Node {
 		}
 		
 		// metto offset sullo stack
-		return code + "push " + entry.getOffset() + "\n" + 
+		return  "push " + entry.getOffset() + "\n" + 
 				// risalgo la catena statica	
 				"lfp\n" + 
 				getAR + 
 				// carico sullo stack il valore all'indirizzo ottenuto
 				"add\n" + 
 				"lw\n" + 
-				funCode;
+				funCode; //Vuoto se è variabile, altrimenti contiene il codice per SALTARE al codice della funzione
 
 	}
 }

@@ -3,14 +3,24 @@ package ast;
 import java.util.ArrayList;
 
 import lib.FOOLlib;
-
+/**
+ * Gestisce la chiamata di un metodo di una classe es: obj.method()
+ * @author lisamazzini
+ *
+ */
 public class ClassCallNode implements Node {
-
+	
+	//Nome della classe
 	private String classId;
+	//Nome del metodo
 	private String methodId;
+	//Entry della classe
 	private STentry classEntry;
+	//Entry del metodo (scope del metodo)
 	private STentry methodEntry;
+	//Parametri passati al metodo
 	private ArrayList<Node> parlist;
+	//Nesting level di dove viene effettuata la chiamata 
 	private int nestingLevel;
 	
 	public ClassCallNode(String classId, String methodId, STentry classEntry, STentry methodEntry, ArrayList<Node> parlist, int nestingLevel) {
@@ -55,29 +65,35 @@ public class ClassCallNode implements Node {
 
 	@Override
 	public Node typeCheck() {
-		Node type = methodEntry.getType();
-		ArrayList<Node> parMethod = ((ArrowTypeNode)type).getParList();
+		ArrowTypeNode methodType = null;
+		//Controllo che sia di tipo corretto
+		if(methodEntry.getType() instanceof ArrowTypeNode){
+			methodType = (ArrowTypeNode)methodEntry.getType();
+		} else {
+			System.out.println("Invocation of a non-method " + methodId);
+			System.exit(0);
+		}
+		
+		ArrayList<Node> parMethod = methodType.getParList();
 				
 		//I parametri devono essere di stessa cardinalità
 		if(parlist.size() == parMethod.size()){
 			//Controllo che i parametri siano del tipo giusto
 			for(int i=0; i <parlist.size(); i++){
 				
-				Node parType = parlist.get(i).typeCheck();
-				Node fieldType = parMethod.get(i);
+				//Prendo il tipo del parametro passato
+				Node passedParType = parlist.get(i).typeCheck();
+				//Prendo il tipo del parametro atteso
+				Node declaredParType = parMethod.get(i);
 				
-				System.out.println(parType + "par");
-				System.out.println(fieldType + "field");
-
-				
-				//Se non è sottotipo lancio errore
-				if(!FOOLlib.isSubtype(parType, fieldType)){
-					System.out.println("ERRORE");
+				//Se non è sottotipo lancio errore (contro-varianza) 
+				if(!FOOLlib.isSubtype(passedParType, declaredParType)){
+					System.out.println("Wrong type for " + (i + 1) + "-th parameter in the invocation of " + methodId);
 					System.exit(1);
 				}
 			}
 		} else {
-			System.out.println("ERRORE");
+			System.out.println("Wrong number of parameters in the invocation of " + methodId);
 			System.exit(1);
 		}
 		
@@ -88,6 +104,7 @@ public class ClassCallNode implements Node {
 	@Override
 	public String codeGeneration() {
 		
+		//Carico il frame pointer
 		String code = new String("lfp\n");
 		
 		// Genero il codice per ogni parametro
@@ -97,15 +114,13 @@ public class ClassCallNode implements Node {
 		
 		String jumpsToAR = new String("");
 		
-		// Per prendere il codice dell'AR relativo alla classe in cui � dichiarato il metodo
+		// Per prendere il codice dell'AR relativo alla classe in cui è dichiarato il metodo
 		// devo fare tanti salti quanti sono i nestinglevel di differenza
 		// AKA Risalita Catena Statica
 		for (int jump = 0; jump < nestingLevel - classEntry.getNestinglevel(); jump ++){
 			jumpsToAR += "lw\n";
 		}
-		
-		System.out.println(classEntry.getOffset());
-		
+				
 		// Prendo l'indirizzo dell'AL = Indirizzo dell'Object Pointer
 		code += "push " + classEntry.getOffset() + "\n"+
 				"lfp\n" +

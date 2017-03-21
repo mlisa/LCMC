@@ -484,7 +484,7 @@ value returns [Node ast] :
 				System.exit(0);
 		    }
 		                   
-		    //Lo userò solo se è una variabile altrimenti verrà sovrascritto               
+		    //Lo userò solo se è una variabile o riferimento di una funzione (solo il nome senza () higher-order)  altrimenti verrà sovrascritto               
 		    $ast= new IdNode($callID.text, calledEntry, nestingLevel);
 		} ( // Possibili usi dell'ID -> ID() o ID.ID(x1, x2, ...) (solo funzioni o chiamate di metodo) 
 		    LPAR {

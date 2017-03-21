@@ -17,10 +17,10 @@ public class AndNode implements Node {
 	}
 
 	public Node typeCheck() {
-
+		//Controllo aggiunto per verificare che i valori Int siano solo 1 o 0, quindi utilizzabili come Boolean 
 		if (left instanceof IntNode && 
 				(((IntNode) left).getValue() == 1 || ((IntNode) left).getValue() == 0)) {
-
+			
 			if (right instanceof IntNode && 
 					(((IntNode) right).getValue() == 1 || ((IntNode) right).getValue() == 0)
 					|| right instanceof BoolNode) {
@@ -49,8 +49,18 @@ public class AndNode implements Node {
 		String labelTrue = FOOLlib.freshLabel();
 		String labelFalse = FOOLlib.freshLabel();
 
-		return left.codeGeneration() + right.codeGeneration() + "add \n" + "push 2\n" + "beq " + labelTrue + "\n"
-				+ "push 0\n" + "b " + labelFalse + "\n" + labelTrue + ":\n" + "push 1\n" + labelFalse + ":\n";
+		//Sommiamo i valori degli operandi e controlliamo che la somma sia 2 (ovvero entrambi a 1, quindi true) 
+		return left.codeGeneration() 
+				+ right.codeGeneration() 
+				+ "add \n" 
+				+ "push 2\n" 
+				+ "beq " 
+				+ labelTrue + "\n"
+				+ "push 0 \n" 
+				+ "b " + labelFalse + "\n" 
+				+ labelTrue + ":\n" 
+				+ "push 1 \n" 
+				+ labelFalse + ":\n";
 	}
 
 }

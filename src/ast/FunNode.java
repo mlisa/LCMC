@@ -2,7 +2,11 @@ package ast;
 import java.util.ArrayList;
 
 import lib.FOOLlib;
-
+/**
+ * Dichiarazione di una funzione 
+ * @author lisamazzini
+ *
+ */
 public class FunNode implements DecNode {
 
   private String id;
@@ -55,10 +59,12 @@ public class FunNode implements DecNode {
   
   //valore di ritorno non utilizzato
   public Node typeCheck () {
-	  System.out.println(this.id);
-	if (declist!=null) 
-	  for (Node dec:declist)
+	if (declist!=null) {
+	  for (Node dec:declist){
 		dec.typeCheck();
+	  }
+	}
+	//Co-varianza sul tipo di ritorno
     if ( !(FOOLlib.isSubtype(body.typeCheck(),retType)) ){
       System.out.println("Wrong return type for function "+id);
       System.exit(0);
@@ -71,9 +77,9 @@ due cose sono messe nello stack:
 1. FP a questo AR (in reg $fp)
 2. (a offset-1) indir di f*/
   
-  
   public String codeGeneration() {
 	  
+	    //Genero il codice delle dichiarazioni
 	    String declCode="";
 	    if (declist!=null) {
 	    	for (Node dec:declist) {
@@ -81,42 +87,47 @@ due cose sono messe nello stack:
 	    	}
 	    }
 	    
-	    String popDecl="";
-	    if (declist!=null) for (Node dec:declist){
-	    	//Controlla che sia di tipo funzionale, se lo è pop due volte 
-	    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
-		    	popDecl+="pop\n";
+	    //Genero le pop per ogni cosa dichiarata (doppia se è una funzione)
+	    String popDecList="";
+	    if (declist!=null) {
+	    	for (Node dec:declist) {
+		    	//Controlla che sia di tipo funzionale, se lo è pop due volte 
+		    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
+			    	popDecList+="pop\n";
+		    	}
+		    	popDecList+="pop\n";
 	    	}
-	    	popDecl+="pop\n";
 	    }
 	    
-	    String popParl="";
+	    //Genero le pop per ogni parametro passato (doppia se è una funzione)
+	    String popParList="";
 	    for (Node dec:parlist){ 
 	    	//Controlla che sia di tipo funzionale, se lo è pop due volte 
 	    	if(dec instanceof DecNode && ((DecNode)dec).getSymType() instanceof ArrowTypeNode){
-		    	popParl+="pop\n";
+		    	popParList+="pop\n";
 	    	}
-	    	popParl+="pop\n";
+	    	popParList+="pop\n";
 	    }
 	    
-	    String funl = FOOLlib.freshFunLabel(); 
+	    String funLabel = FOOLlib.freshFunLabel(); 
 	    
-	    FOOLlib.putCode(funl+":\n"+
+	    //Preparo il codice da inserire alla fine del file .asm 
+	    FOOLlib.putCode(funLabel+":\n"+
 	            "cfp\n"+ //setta $fp a $sp
 				"lra\n"+ //inserimento return address
 	    		declCode+ //inserimento dichiarazioni locali
-	    		body.codeGeneration()+
+	    		body.codeGeneration()+ //genera il codice per il body
 	    		"srv\n"+ //pop del return value
-	    		popDecl+
+	    		popDecList+ 
 	    		"sra\n"+ // pop del return address
 	    		"pop\n"+ // pop di AL
-	    		popParl+
+	    		popParList+
 	    		"sfp\n"+  // setto $fp a valore del CL
 	    		"lrv\n"+ // risultato della funzione sullo stack
 	    		"lra\n"+"js\n" // salta a $ra
 	    		);
 	    
-		return "lfp\n push "+ funl +"\n";
+		return "lfp\n push "+ funLabel +"\n";
   }
 
 @Override

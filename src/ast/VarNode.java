@@ -1,7 +1,11 @@
 package ast;
 
 import lib.FOOLlib;
-
+/**
+ * Dichiarazione di variabile 
+ * @author lisamazzini
+ *
+ */
 public class VarNode implements DecNode {
 
   private String id;

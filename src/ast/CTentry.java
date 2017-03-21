@@ -72,14 +72,16 @@ public class CTentry {
 			FieldNode field = new FieldNode(name, type);
 			int offset;
 			
-			//Se l'entry era giò presente all'interno della virtual table, se ne fa l'override
+			//Se l'entry era già presente all'interno della virtual table, se ne fa l'override
 			if(oldEntry != null){				
 				// prendo l'offset della entry ereditata
 				offset = oldEntry.getOffset();
-				// creo una nuova STentry che sostituisce la precedente, quindi con lo stesso offset (nesting level sempre = 1 ) 
+				// creo una nuova STentry che sostituisce la precedente, quindi con lo stesso offset 
+				// (nesting level sempre = 1 in quanto le classi sono dichiarate sempre a nesting level 0) 
 				newEntry = new STentry(1,type,offset);
 				// sovrascrivo l'elemento anche all'interno della lista dei campi
-				this.allFields.set(-(offset)-1, field); //Dato che i campi vanno da -1, -2, ecc, con questa operazione porto gli indici in relazione alla lista (che va da 0, 1,2..)  -(-3)-1 = 2 
+				this.allFields.set(-(offset)-1, field); // Dato che i campi vanno da -1, -2, ecc, con questa operazione porto gli 
+														// indici in relazione alla lista (che va da 0, 1,2..)  -(-3)-1 = 2 
 			} else {
 				//Se è un campo nuovo, creo una nuova entry all'offset a cui si è arrivati (nesting level sempre = 1 ) 
 				newEntry = new STentry(1,type,this.offsetFields);
@@ -97,7 +99,7 @@ public class CTentry {
 			//Controllo che non ci siano già dichiarati dei campi all'offset indicato, altrimenti lo aggiungo 		
 			if(!this.locals.add(offset)){
 				// ritorna true se non era presente
-				System.out.println("Error: field "+name+ " declared twice!");
+				System.out.println("Error: field "+ name + " declared twice!");
 				System.exit(0);
 			}
 		}
@@ -106,7 +108,6 @@ public class CTentry {
 		
 		STentry oldEntry = this.vTable.get(name);
 		STentry newEntry;
-		//MethodNode method = new MethodNode(name, type);
 		int offset;
 		
 		//Se l'entry era giò presente all'interno della virtual table, se ne fa l'override

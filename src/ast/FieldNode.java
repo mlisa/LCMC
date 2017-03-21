@@ -1,5 +1,9 @@
 package ast;
-
+/**
+ * La dichiarazione di campi all'interno della dichiarazione di una classe  
+ * @author lisamazzini
+ *
+ */
 public class FieldNode implements DecNode {
 	
 	private String id; 
