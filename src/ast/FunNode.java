@@ -52,7 +52,6 @@ public class FunNode implements DecNode {
 
 	// valore di ritorno non utilizzato
 	public Node typeCheck() {
-		System.out.println(this.id);
 		if (declist != null)
 			for (Node dec : declist)
 				dec.typeCheck();

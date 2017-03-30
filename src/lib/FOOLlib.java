@@ -69,8 +69,6 @@ public class FOOLlib {
 	
 	public static Node lowestCommonAncestor(Node a, Node b){
 		
-		System.out.println("ciao");
-
 		if (a instanceof EmptyTypeNode){
 			return b;
 		}
