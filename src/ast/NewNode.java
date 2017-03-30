@@ -35,17 +35,16 @@ public class NewNode implements Node {
 		if(classEntry.getAllFields().size() == paramList.size()){
 			//Controllo che i tipi siano giusti
 			for(int i=0; i < paramList.size(); i++){
-				//Contro-varianza dei campi
 				Node fieldType = ((FieldNode)classEntry.getAllFields().get(i)).getSymType();
 				Node calledFieldType = paramList.get(i).typeCheck();
 				
 				if(!FOOLlib.isSubtype(calledFieldType, fieldType)){
-					System.out.println("Wrong field type in new " + className);
+					System.out.println("ERRORE: given argument doesn't match requested field type, nor it's a subType of it.");
 					System.exit(1);
 				}
 			}
 		} else {
-			System.out.println("Wrong number of parameters in new " + className);
+			System.out.println("ERROR: Wrong number of arguments. Needed: " + classEntry.getAllFields().size() + " given " + paramList.size());
 			System.exit(1);
 		}
 		return new ClassTypeNode(className);
@@ -62,9 +61,10 @@ public class NewNode implements Node {
 		}
 		
 		// Caricamento argomenti sull'heap secondo il layout degli oggetti 
-		// (mette nell'heap i campi dall'ultimo al primo spilandoli dallo stack)
 		for (int index = 0; index < this.paramList.size(); index++){
-			code +=	"lhp\n"	+		// Alloco spazio per l'heap = Pusho nello stack l'indirizzo dell'heap pointer
+			code +=	// Non dovremmo generare qui il codice dei parametri ???
+					
+					"lhp\n"	+		// Alloco spazio per l'heap = Pusho nello stack l'indirizzo dell'heap pointer
 					"sw\n" +		// Poppo dallo stack l'indirizzo dell'hp e il valore del argomento 
 									// => Carico l'argomento nell'indirizzo del primo valore poppato (HP address) 
 					"lhp\n"	+ 		// Pusho nuovamente l'indirizzo dell'HP nello stack 
@@ -75,7 +75,7 @@ public class NewNode implements Node {
 		
 		code += "lhp\n";		// Faccio coincidere Object Pointer e HP -> Salvo OP sullo stack
 		
-		// Pusho sull'heap le label dei metodi sempre secondo l'Obj Layout (mette i metodi dal primo all'ultimo)
+		// Pusho sull'heap le label dei metodi sempre secondo l'Obj Layout 
 		for (Node m : classEntry.allMethods){
 			code += "push " + ((MethodNode)m).getLabel() + "\n" +
 					"lhp\n" +
@@ -86,10 +86,9 @@ public class NewNode implements Node {
 					"shp\n";
 		}
 		
-		//Se la classe non ha ne metodi nè campi, allocare uno spazio di grandezza 1 a cui punta l'object pointer messo sullo stack
-		// (se non si alloca nulla due oggetti creati possono essere == tra loro)
 		if (classEntry.allMethods.isEmpty() &&
 				classEntry.allFields.isEmpty()){
+			// Devo gestire le classi che non possiedono metodi e campi!
 			code += "lhp\n" +
 					"push 1\n" +
 					"add\n" +

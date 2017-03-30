@@ -2,7 +2,6 @@ package lib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import ast.*;
 
@@ -16,61 +15,62 @@ public class FOOLlib {
 
 	private static HashMap<String, String> superTypeMap;
 
-	// valuta se il tipo "a" è <= al tipo "b"
-	public static boolean isSubtype(Node subType, Node superType) {
+	// valuta se il tipo "a" � <= al tipo "b", dove "a" e "b" sono tipi di base:
+	// int o bool
+	public static boolean isSubtype(Node a, Node b) {
 
 		// Se sto confrontando funzioni o metodi
-		if (subType instanceof ArrowTypeNode && superType instanceof ArrowTypeNode) {
+		if (a instanceof ArrowTypeNode && b instanceof ArrowTypeNode) {
 
-			ArrowTypeNode subTypeArrowType = (ArrowTypeNode) subType;
-			ArrowTypeNode superTypeArrowType = (ArrowTypeNode) superType;
+			ArrowTypeNode ar = (ArrowTypeNode) a;
+			ArrowTypeNode br = (ArrowTypeNode) b;
 
-			if (subTypeArrowType.getParList().size() != superTypeArrowType.getParList().size()) {
+			if (ar.getParList().size() != br.getParList().size()) {
 				return false;
 			}
 
 			// Se relazione controvarianza dei parametri
-			for (int i = 0; i < subTypeArrowType.getParList().size(); i++) {
-				//È corretta se il supertipo è uguale o "sovratipo" al sottotipo 
-				if (!isSubtype(superTypeArrowType.getParList().get(i), subTypeArrowType.getParList().get(i))) {
+			for (int i = 0; i < ar.getParList().size(); i++) {
+				if (!isSubtype(br.getParList().get(i), ar.getParList().get(i))) {
 					return false;
 				}
 			}
 
 			// Relazione covarianza tra return
-			return isSubtype(subTypeArrowType.getRet(), superTypeArrowType.getRet());
+			return isSubtype(ar.getRet(), br.getRet());
 
-		} else if (subType instanceof ClassTypeNode && superType instanceof ClassTypeNode){
+		} else if (a instanceof ClassTypeNode && b instanceof ClassTypeNode){
 			
-			String subClassID = ((ClassTypeNode) subType).getClassID();
-			String superClassID = ((ClassTypeNode) superType).getClassID();
+			String subClassID = ((ClassTypeNode) a).getClassID();
+			String superClassID = ((ClassTypeNode) b).getClassID();
 			
 			//Se sono due classi uguali
 			if(subClassID.equals(superClassID)){
 				return true;
 			}
 			
-			//Cerco se esiste relazione di sottoclasse-superclasse nella mappa 
 			do {
 				if (superTypeMap.containsKey(subClassID) && superTypeMap.get(subClassID).equals(superClassID)){
 					return true;
 				}
 				
 				subClassID = superClassID;
-				superClassID = superTypeMap.get(subClassID);
+				superClassID = superTypeMap.get(superClassID);
 			} while(superClassID != null);
 			
 			return false;
 			
-		} else if (subType instanceof EmptyTypeNode && superType instanceof ClassTypeNode){
+		} else if (a instanceof EmptyTypeNode && b instanceof ClassTypeNode){
 			return true; 
 		}
 
-		return subType.getClass().equals(superType.getClass()) || ((subType instanceof BoolTypeNode) && (superType instanceof IntTypeNode)); //
+		return a.getClass().equals(b.getClass()) || ((a instanceof BoolTypeNode) && (b instanceof IntTypeNode)); //
 	}
 	
 	public static Node lowestCommonAncestor(Node a, Node b){
-		//Se uno dei due è NULL, ritorno l'altro
+		
+		System.out.println("ciao");
+
 		if (a instanceof EmptyTypeNode){
 			return b;
 		}
@@ -79,14 +79,13 @@ public class FOOLlib {
 			return a;
 		}
 		
-		//Se sono classi, cerco il lowest common ancestor utilizzando la superType map 
-		if (a instanceof ClassTypeNode && b instanceof ClassTypeNode){
+		if(a instanceof ClassTypeNode && b instanceof ClassTypeNode){
 			
 			String superClassID = ( (ClassTypeNode) a ).getClassID();
 			
+			Node superNode = new ClassTypeNode(superClassID);
 			do {
-				Node superNode = new ClassTypeNode(superClassID);
-
+				
 				if (FOOLlib.isSubtype(b, superNode)){
 					return superNode;
 				}
@@ -94,9 +93,6 @@ public class FOOLlib {
 				superClassID = FOOLlib.superTypeMap.get(superClassID);
 				
 			} while(superClassID != null);
-		// Se sono funzioni torna null se il controllo non ha successo, altrimenti torna un tipo 
-		// funzionale che ha come tipo di ritorno il risultato della chiamata ricorsiva e come tipo 
-		// di parametro i-esimo il tipo che è sottotipo dell'altro
 		} else if (a instanceof ArrowTypeNode && b instanceof ArrowTypeNode &&
 				((ArrowTypeNode)a).getParList().size() == ((ArrowTypeNode)b).getParList().size()){
 			
@@ -106,10 +102,7 @@ public class FOOLlib {
 			ArrayList<Node> parList = new ArrayList<>();
 			
 			if (retType != null ){
-				
 				for (int index = 0; index < ar.getParList().size(); index++){
-					
-					//Controllo quale parametro è sottotipo dell'altro e lo aggiungo alla parList dell'ArrowTypeNode
 					if(FOOLlib.isSubtype(ar.getParList().get(index), br.getParList().get(index))){
 						parList.add(index, ar.getParList().get(index));
 					} else if(FOOLlib.isSubtype(br.getParList().get(index), ar.getParList().get(index))){
@@ -118,20 +111,15 @@ public class FOOLlib {
 						return null; 
 					} 
 				}
-				
 				return new ArrowTypeNode(parList, retType);
 			} 
 			
 		} else if((a instanceof IntTypeNode && b instanceof IntTypeNode) || 
 				(a instanceof IntTypeNode && b instanceof BoolTypeNode) ||
 				(a instanceof BoolTypeNode && b instanceof IntTypeNode)){
-			
 			return new IntTypeNode();
-			
 		} else if((a instanceof BoolTypeNode && b instanceof BoolTypeNode)) {
-			
 			return new BoolTypeNode();
-			
 		}
 		
 		return null;
@@ -141,8 +129,8 @@ public class FOOLlib {
 		return "label" + (labCount++);
 	}
 
-	public static String freshFunLabel() {
-		return "function" + (funLabCount++);
+	public static String freshFunLabel(String labelName) {
+		return labelName + (funLabCount++);
 	}
 
 	public static void putCode(String c) {

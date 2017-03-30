@@ -30,7 +30,6 @@ public class GreaterEqualNode implements Node {
 	  String labelLesser = FOOLlib.freshLabel();
 	  String labelExit = FOOLlib.freshLabel();
 	  
-	  //Controllo che siano uguali, se lo sono restituisco true, altrimenti controllo che il primo non sia minore del secondo, in tal caso restituisco true
 	  return left.codeGeneration()+
 			   right.codeGeneration()+
 			   "beq "+ labelGreaterEqual +"\n"+

@@ -25,7 +25,7 @@ public class ParNode implements DecNode {
 
 	// non utilizzato
 	public String codeGeneration() {
-		return null;
+		return "";
 	}
 
 	@Override

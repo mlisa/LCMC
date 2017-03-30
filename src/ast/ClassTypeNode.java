@@ -1,9 +1,5 @@
 package ast;
-/**
- * Classe Type per le classi: contiene il nome della classe a cui si riferisce 
- * @author lisamazzini
- *
- */
+
 public class ClassTypeNode implements Node {
 	
 	private String id = "";

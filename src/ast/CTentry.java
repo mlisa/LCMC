@@ -37,7 +37,7 @@ public class CTentry {
 
 	// Costruttore nel caso in cui la classe erediti da un'altra 
 	public CTentry(CTentry entry) {
-		this.vTable = new HashMap<String,STentry>(entry.getVTable());
+		this.vTable = new HashMap<String, STentry>(entry.getVTable());
 		this.offsetFields = entry.getOffsetFields();
 		this.offsetMethods = entry.getOffsetMethods();
 		this.allFields = new ArrayList<Node>(entry.getAllFields());
@@ -65,26 +65,24 @@ public class CTentry {
 		return vTable;
 	}
 	
-	public void addField(String name, Node type) {
+	public void addField(FieldNode field) {
 			
-			STentry oldEntry = this.vTable.get(name);
+			STentry oldEntry = this.vTable.get(field.getFieldID());
 			STentry newEntry;
-			FieldNode field = new FieldNode(name, type);
+			//FieldNode field = new FieldNode(name, type);
 			int offset;
 			
-			//Se l'entry era già presente all'interno della virtual table, se ne fa l'override
+			//Se l'entry era giò presente all'interno della virtual table, se ne fa l'override
 			if(oldEntry != null){				
 				// prendo l'offset della entry ereditata
 				offset = oldEntry.getOffset();
-				// creo una nuova STentry che sostituisce la precedente, quindi con lo stesso offset 
-				// (nesting level sempre = 1 in quanto le classi sono dichiarate sempre a nesting level 0) 
-				newEntry = new STentry(1,type,offset);
+				// creo una nuova STentry che sostituisce la precedente, quindi con lo stesso offset (nesting level sempre = 1 ) 
+				newEntry = new STentry(1, field.getSymType(), offset);
 				// sovrascrivo l'elemento anche all'interno della lista dei campi
-				this.allFields.set(-(offset)-1, field); // Dato che i campi vanno da -1, -2, ecc, con questa operazione porto gli 
-														// indici in relazione alla lista (che va da 0, 1,2..)  -(-3)-1 = 2 
+				this.allFields.set(-(offset)-1, field); //Dato che i campi vanno da -1, -2, ecc, con questa operazione porto gli indici in relazione alla lista (che va da 0, 1,2..)  -(-3)-1 = 2 
 			} else {
 				//Se è un campo nuovo, creo una nuova entry all'offset a cui si è arrivati (nesting level sempre = 1 ) 
-				newEntry = new STentry(1,type,this.offsetFields);
+				newEntry = new STentry(1, field.getSymType(), this.offsetFields);
 				//Mi salvo l'offset attuale
 				offset = this.offsetFields;
 				// Decremento l'offset per il campo successivo
@@ -94,12 +92,12 @@ public class CTentry {
 			}
 			
 			// inserisco l'entry nella virtual table
-			this.vTable.put(name, newEntry);
+			this.vTable.put(field.getFieldID(), newEntry);
 			
 			//Controllo che non ci siano già dichiarati dei campi all'offset indicato, altrimenti lo aggiungo 		
 			if(!this.locals.add(offset)){
 				// ritorna true se non era presente
-				System.out.println("Error: field "+ name + " declared twice!");
+				System.out.println("Error: field "+ field.getFieldID() + " declared twice!");
 				System.exit(0);
 			}
 		}
@@ -108,6 +106,7 @@ public class CTentry {
 		
 		STentry oldEntry = this.vTable.get(name);
 		STentry newEntry;
+		//MethodNode method = new MethodNode(name, type);
 		int offset;
 		
 		//Se l'entry era giò presente all'interno della virtual table, se ne fa l'override
